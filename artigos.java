@@ -17,8 +17,9 @@ public class artigos {
         Sapatilha,
         TShirt,
         Mala
+        //outro
     }
-
+/* 
     public artigos(Tipo type, boolean state, int donos, String desc, String brand, String code, double price, int corr){
         this.tipo = type;
         this.estado = state;
@@ -29,7 +30,7 @@ public class artigos {
         this.preco = price;
         this.correcao = corr;
     }
-
+ */
     public artigos(sapatilhas sap, boolean state, int donos, String desc, String brand, String code, double price, int corr){
         this.tipo = Tipo.Sapatilha;
         this.estado = state;
@@ -65,7 +66,7 @@ public class artigos {
         this.correcao = corr;
         this.mala = mala;
     }
-
+/* 
     public artigos(artigos a){
         this.tipo = a.getTipo();
         this.estado = a.getEstado();
@@ -76,7 +77,7 @@ public class artigos {
         this.preco = a.getPreco();
         this.correcao = a.getCorr();
     }
-
+ */
     public int getNdonos() {
         return this.ndonos;
     }
@@ -137,7 +138,7 @@ public class artigos {
         switch(tipo){
             case Sapatilha:
                 if(sapatilha.getPremium()){
-                    this.correcao = -5 * ( /*data atual*/ - sapatilha.getData());
+                    this.correcao = -5 * ( 2023 - sapatilha.getData());
                 }
                 if(!this.estado /* || data não é a atual */){
                     this.correcao = this.ndonos * 10; // 10 para já como estado de utilização, ou seja 10% gasto
@@ -145,15 +146,15 @@ public class artigos {
                 break;
             case TShirt:
                 if(!this.estado && tshirt.getPadrao() != Padroes.Liso){
-                    this.correcao = 0;
+                    this.correcao = 50;
                 }
                 else{
-                    this.correcao = 50;
+                    this.correcao = 0;
                 }
                 break;
             case Mala:
                 if(mala.getPrem()){
-                    this.correcao = -5 * ( /*data atual*/ - mala.getData());
+                    this.correcao = -5 * ( 2023 - mala.getData());
                 }
                 if(!this.estado /* || data não é a atual */){
                     this.correcao = this.ndonos * 10; // 10 para já como estado de utilização, ou seja 10% gasto
