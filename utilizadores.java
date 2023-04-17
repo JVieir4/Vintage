@@ -1,16 +1,16 @@
 package vintage;
 
 public class utilizadores {
-    private int systemcode;
+    private String systemcode;
     private String email;
     private String nome;
     private String morada;
     private int nfiscal;
-    private artigos[] art_a_venda = new artigos[10];
-    private artigos[] art_vendidos;
-    private artigos[] art_comprados;
+    public artigos[] art_a_venda = new artigos[10];
+    private artigos[] art_vendidos = new artigos[10];;
+    private artigos[] art_comprados = new artigos[10];;
 
-    public utilizadores(int code, String mail, String name, String address, int fiscal){
+    public utilizadores(String code, String mail, String name, String address, int fiscal){
         this.systemcode = code;
         this.email = mail;
         this.nome = name;
@@ -54,10 +54,10 @@ public class utilizadores {
         this.email = mail;
     }
 
-    public int getCode() {
+    public String getCode() {
         return this.systemcode;
     }
-    public void setCode(int c) {
+    public void setCode(String c) {
         this.systemcode = c;
     }
 
@@ -81,19 +81,20 @@ public class utilizadores {
          */
     }
 
-    private void imprime(artigos[] a){
-        for (int i = 0; i < a.length; i++) {
+    public void imprime(artigos[] a){
+        for (int i = 0; i < a.length; i++){
             if(a[i] != null){
-                System.out.print(a[i] + "\n-------------\n");
+                System.out.println(a[i] + "\n-------------\n");
             }
         }
     }
 
+    public utilizadores clone() {
+        return new utilizadores(this);
+    }
+
     @Override
     public String toString(){
-        System.out.println("Utilizador: " + this.nome + ", Email: " + this.email + "\nMorada: " + this.morada + ", Número Fiscal: " + this.nfiscal +
-        "\nCódigo: " + this.systemcode + "\nArtigos à venda:\n-------------");
-        imprime(this.art_a_venda);
-        return "\n\ndone";
+        return this.nome + "\nEmail: " + this.email + "\nMorada: " + this.morada + "\nNúmero Fiscal: " + this.nfiscal;
     }
 }

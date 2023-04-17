@@ -14,9 +14,13 @@ public class mainV {
         artigos artM = new artigos(C, false, 2, "Mala fixe", "Samsonite", "A1A1A1", 49.99, 0);
         System.out.println(artM);
          */
-        utilizadores eu = new utilizadores(1, "teste@abc.com", "vieira", "rua teste", 123);
+        
+        utilizadores eu = new utilizadores("u001", "teste@abc.com", "Vieira", "rua teste", 123);
         eu.listarArtigo(artS);
         eu.listarArtigo(artT);
-        System.out.println(eu);
+        contas x = new contas();
+        x.addConta(eu);
+        System.out.println(x);
+        //eu.imprime(eu.art_a_venda);
     }
 }
