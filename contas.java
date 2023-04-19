@@ -29,13 +29,20 @@ public class contas {
     public void addConta (utilizadores conta) {
         this.contas.put(conta.getCode(), conta.clone());
     }
-
+    
     public String toString() {
         final StringBuffer sb = new StringBuffer();
-        sb.append("Contas:\n").append(contas.toString()).append('\n');
+        sb.append("Contas:\n");
+        for (Map.Entry<String, utilizadores> entry : contas.entrySet()) {
+            String key = entry.getKey();
+            utilizadores conta = entry.getValue();
+            sb.append(key).append("=").append(conta.getNome()).append("\n");
+            sb.append("Email: ").append(conta.getEmail()).append("\n");
+            sb.append("Morada: ").append(conta.getMorada()).append("\n");
+            sb.append("Número Fiscal: ").append(conta.getFiscal()).append("\n.\n");
+        }
         return sb.toString();
     }
-
     public boolean existeEmail(String s){
         return this.contas.entrySet().stream().anyMatch(a->s.equals(a.getValue().getEmail()));
     }

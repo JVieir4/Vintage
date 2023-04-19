@@ -84,7 +84,7 @@ public class utilizadores {
     public void imprime(artigos[] a){
         for (int i = 0; i < a.length; i++){
             if(a[i] != null){
-                System.out.println(a[i] + "\n-------------\n");
+                System.out.println(a[i] + "\n.");
             }
         }
     }

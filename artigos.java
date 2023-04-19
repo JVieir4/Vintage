@@ -16,10 +16,10 @@ public class artigos {
     enum Tipo {
         Sapatilha,
         TShirt,
-        Mala
-        //outro
+        Mala,
+        Outro
     }
-/* 
+
     public artigos(Tipo type, boolean state, int donos, String desc, String brand, String code, double price, int corr){
         this.tipo = type;
         this.estado = state;
@@ -30,7 +30,7 @@ public class artigos {
         this.preco = price;
         this.correcao = corr;
     }
- */
+
     public artigos(sapatilhas sap, boolean state, int donos, String desc, String brand, String code, double price, int corr){
         this.tipo = Tipo.Sapatilha;
         this.estado = state;
@@ -159,6 +159,9 @@ public class artigos {
                 if(!this.estado /* || data não é a atual */){
                     this.correcao = this.ndonos * 10; // 10 para já como estado de utilização, ou seja 10% gasto
                 }
+                break;
+            case Outro:
+                break;
         }
         return this.preco = this.preco - ((this.preco * this.correcao)/ 100);
     }
@@ -176,6 +179,9 @@ public class artigos {
             case Mala:
                 return "Artigo: " + this.tipo + ", Marca: " + this.marca + ", Premium?: " + mala.getPrem() + "\nDescrição: " + this.descricao +
                 "\nTamanho: " + mala.getDimx() + "x" + mala.getDimy() + ", Material: " + mala.getMaterial() + ", Edição: " + mala.getData() +
+                ", Novo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo;
+            case Outro:
+                return "Artigo: " + this.tipo + ", Marca: " + this.marca + "\nDescrição: " + this.descricao + "\nTamanho: " +
                 ", Novo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo;
         }
         return null;
