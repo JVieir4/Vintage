@@ -14,13 +14,21 @@ public class controlo {
                 Scanner scanner = new Scanner(System.in);
                 String mail = scanner.nextLine();
                 if(x.existeEmail(mail)){
-                    System.out.println("correto");
+                    utilizadores eu = x.getUtilizadores(mail);
+                    //System.out.println(eu);
+                    eu.imprime(eu.art_a_venda);
+                    controloutilizador.run(eu);
                 }
                 else{
                     System.out.println("Nenhuma conta encontrada com esse email.");
                 }
+                break;
             case 2:
+                System.out.println("vazio");
+                break;
             case 0:
+                System.exit(0);
+                break;
         }
     }
 }

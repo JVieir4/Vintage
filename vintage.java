@@ -16,9 +16,23 @@ public class vintage {
         return scanner.nextInt();
     }
 
-    private static void clearWindow(){
+    public static void clearWindow(){
         for (int i = 0;i<100;i++){
             System.out.println();
         }
+    }
+
+    public static int menuUtilizador(){
+        StringBuilder sb = new StringBuilder("-----------MENU UTILIZADOR-----------\n\n");
+        sb.append("1) Listar um artigo.\n");
+        sb.append("2) Comprar um artigo.\n");
+        sb.append("3) Verificar artigos à venda.\n");
+        sb.append("4) Histórico de artigos vendidos.\n");
+        sb.append("5) Histórico de artigos comprados.\n");
+        sb.append("0) Logout.\n\n");
+        sb.append("Selecione a opção pretendida: ");
+        System.out.println(sb.toString());
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
     }
 }

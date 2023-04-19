@@ -29,6 +29,16 @@ public class contas {
     public void addConta (utilizadores conta) {
         this.contas.put(conta.getCode(), conta.clone());
     }
+
+    public utilizadores getUtilizadores(String mail){
+        for (Map.Entry<String, utilizadores> entry : contas.entrySet()) {
+            utilizadores util = entry.getValue();
+            if (mail.equals(util.getEmail())){
+                return util;
+            }
+        }
+        return null;
+    }
     
     public String toString() {
         final StringBuffer sb = new StringBuffer();
