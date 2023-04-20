@@ -170,19 +170,19 @@ public class artigos {
     public String toString(){
         switch(tipo){
             case Sapatilha:
-                return "Artigo: " + this.tipo + ", Marca: " + this.marca + ", Premium?: " + sapatilha.getPremium() + "\nDescrição: " + this.descricao +
-                "\nTamanho: " + sapatilha.getTam() + ", Cor: " + sapatilha.getCor() + ", Atacadores?: " + sapatilha.getAtac() + ", Edição: " + sapatilha.getData() +
-                ", Novo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo;
+                return "Artigo: " + this.tipo + "\nMarca: " + this.marca + "\nPremium?: " + sapatilha.getPremium() + "\nDescrição: " + this.descricao +
+                "\nTamanho: " + sapatilha.getTam() + "\nCor: " + sapatilha.getCor() + "\nAtacadores?: " + sapatilha.getAtac() + "\nEdição: " + sapatilha.getData() +
+                "\nNovo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo + "\n.\n";
             case TShirt:
-                return "Artigo: " + this.tipo + ", Marca: " + this.marca + "\nDescrição: " + this.descricao + "\nTamanho: " + tshirt.getTamanho() +
-                ", Padrão: " + tshirt.getPadrao() + ", Novo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo;
+                return "Artigo: " + this.tipo + "\nMarca: " + this.marca + "\nDescrição: " + this.descricao + "\nTamanho: " + tshirt.getTamanho() +
+                "\nPadrão: " + tshirt.getPadrao() + "\nNovo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo + "\n.\n";
             case Mala:
-                return "Artigo: " + this.tipo + ", Marca: " + this.marca + ", Premium?: " + mala.getPrem() + "\nDescrição: " + this.descricao +
-                "\nTamanho: " + mala.getDimx() + "x" + mala.getDimy() + ", Material: " + mala.getMaterial() + ", Edição: " + mala.getData() +
-                ", Novo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo;
+                return "Artigo: " + this.tipo + "\nMarca: " + this.marca + "\nPremium?: " + mala.getPrem() + "\nDescrição: " + this.descricao +
+                "\nTamanho: " + mala.getDimx() + "x" + mala.getDimy() + "\nMaterial: " + mala.getMaterial() + "\nEdição: " + mala.getData() +
+                "\nNovo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo + "\n.\n";
             case Outro:
-                return "Artigo: " + this.tipo + ", Marca: " + this.marca + "\nDescrição: " + this.descricao + "\nTamanho: " +
-                ", Novo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo;
+                return "Artigo: " + this.tipo + "\nMarca: " + this.marca + "\nDescrição: " + this.descricao + "\nTamanho: " +
+                "\nNovo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo + "\n.\n";
         }
         return null;
     }

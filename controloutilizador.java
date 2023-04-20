@@ -22,10 +22,10 @@ public class controloutilizador {
                 System.out.println(u.getArtAVenda());
                 break;
             case 4:
-                System.out.println("vazio");
+                System.out.println(u.getArtVendidos());
                 break;
             case 5:
-                System.out.println("vazio");
+                System.out.println(u.getArtComprados());
                 break;
             case 0:
                 controlo.run(x,true);
@@ -51,8 +51,9 @@ public class controloutilizador {
                 art = vintage.criarArtigo(mala);
                 break;
             case 4:
-                /* art = vintage.criarArtigo(Tipo.Outro);
-                break;*/
+                Object obj = null;
+                art = vintage.criarArtigo(obj);
+                break;
         } 
         return art;
     }

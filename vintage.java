@@ -1,7 +1,6 @@
 package vintage;
 
 import java.util.Scanner;
-import java.util.prefs.AbstractPreferences;
 
 import vintage.artigos.Tipo;
 
@@ -75,11 +74,70 @@ public class vintage {
         return sap;
     }
 
-     public static tshirts criarTshirts(){
+    public static tshirts criarTshirts(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("-----------NOVA TSHIRT-----------\n\n");
+        System.out.println("Qual é o tamanho da tshirt? (S,M,L,XL)\n");
+        String t = scanner.nextLine();
+        Tamanho tamanho;
+        tamanho = identificaTamanho(t);
+        System.out.println("Qual é o padrão da tshirt? (Liso, Riscas, Palmeiras)\n");
+        String p = scanner.nextLine();
+        Padroes padrao;
+        padrao = identificaPadrao(p);
+        tshirts tshirt = new tshirts(tamanho,padrao);
         return tshirt;
     }
 
+    private static Padroes identificaPadrao(String p) {
+        if(p.equals("liso") || p.equals("Liso")){
+            return Padroes.Liso;
+        }
+        else if(p.equals("riscas") || p.equals("Riscas")){
+            return Padroes.Riscas;
+        }
+        else if(p.equals("palmeiras") || p.equals("Palmeiras")){
+            return Padroes.Palmeiras;
+        }
+        else{
+            return null;
+        }
+    }
+
+    private static Tamanho identificaTamanho(String t) {
+        if(t.equals("s") || t.equals("S")){
+            return Tamanho.S;
+        }
+        else if(t.equals("m") || t.equals("M")){
+            return Tamanho.M;
+        }
+        else if(t.equals("l") || t.equals("L")){
+            return Tamanho.L;
+        }
+        else{
+            return Tamanho.XL;
+        }
+    }
+
     public static malas criarMalas(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("-----------NOVA MALA-----------\n\n");
+        System.out.println("A mala é premium? (y/n)\n");
+        String n = scanner.nextLine();
+        boolean premium = false;
+        if(n.equals("y") || n.equals("Y")){ premium = true;}
+        System.out.println("Qual é a largura da mala? (cm)\n");
+        int largura_x = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Qual é a altura da mala? (cm)\n");
+        int altura_y = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Qual é o material da mala?\n");
+        String material = scanner.nextLine();
+        System.out.println("Qual é o ano da coleção da mala?\n");
+        int ano = scanner.nextInt();
+        scanner.nextLine();
+        malas mala = new malas(premium,largura_x,altura_y,material,ano);
         return mala;
     }
  

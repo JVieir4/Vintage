@@ -86,10 +86,6 @@ public class utilizadores implements Cloneable {
 
     public void listarArtigo(artigos A){
         artavenda.add(A);
-        /* Função para colocar um artigo à venda
-         * Nesta função são chamados os construtores da classe artigos
-         * E esse mesmo artigo é colocado na lista art_a_venda;
-         */
     }
 
     public void comprarArtigo(){
@@ -97,15 +93,6 @@ public class utilizadores implements Cloneable {
          * Esta função mostra uma lista dos artigos disponíveis
          * E esse mesmo artigo é colocado na lista art_comprados;
          */
-    }
-
-    public void imprime(artigos[] a){
-        System.out.println("Artigos:\n");
-        for (int i = 0; i < a.length; i++){
-            if(a[i] != null){ 
-                System.out.println(a[i] + "\n.");
-            }
-        }
     }
 
     @Override
