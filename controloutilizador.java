@@ -1,7 +1,7 @@
 package vintage;
 
 public class controloutilizador {
-    public static void run(utilizadores u){
+    public static void run(utilizadores u, contas x) throws CloneNotSupportedException{
         int opcao = -1;
         while(opcao < 0 || opcao > 5) {
             opcao = vintage.menuUtilizador();
@@ -14,7 +14,7 @@ public class controloutilizador {
                 System.out.println("vazio");
                 break;
             case 3:
-                u.imprime(u.art_a_venda);
+                System.out.println(u.getArtAVenda());
                 break;
             case 4:
                 System.out.println("vazio");
@@ -23,8 +23,9 @@ public class controloutilizador {
                 System.out.println("vazio");
                 break;
             case 0:
-                //controlo.run(contas x);
+                controlo.run(x,true);
                 break;
         }
+        x.addConta(u);
     }
 }

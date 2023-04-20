@@ -1,14 +1,16 @@
 package vintage;
 
-public class utilizadores {
+import java.util.ArrayList;
+
+public class utilizadores implements Cloneable {
     private String systemcode;
     private String email;
     private String nome;
     private String morada;
     private int nfiscal;
-    public artigos[] art_a_venda = new artigos[10];
-    private artigos[] art_vendidos = new artigos[10];;
-    private artigos[] art_comprados = new artigos[10];;
+    private ArrayList<artigos> artavenda = new ArrayList<>();
+    private ArrayList<artigos> artvendidos = new ArrayList<>();
+    private ArrayList<artigos> artcomprados = new ArrayList<>();
 
     public utilizadores(String code, String mail, String name, String address, int fiscal){
         this.systemcode = code;
@@ -61,13 +63,29 @@ public class utilizadores {
         this.systemcode = c;
     }
 
+    public ArrayList<artigos> getArtAVenda() {
+        return this.artavenda;
+    }
+    public void setArtAVenda(ArrayList<artigos> a) {
+        this.artavenda = a;
+    }
+
+    public ArrayList<artigos> getArtVendidos() {
+        return this.artvendidos;
+    }
+    public void setArtVendidos(ArrayList<artigos> a) {
+        this.artvendidos = a;
+    }
+
+    public ArrayList<artigos> getArtComprados() {
+        return this.artcomprados;
+    }
+    public void setArtComprados(ArrayList<artigos> a) {
+        this.artcomprados = a;
+    }
+
     public void listarArtigo(artigos A){
-        for (int i = 0; i < art_a_venda.length; i++){
-            if(art_a_venda[i] == null){
-                art_a_venda[i] = A;
-                break;
-            }
-        }
+        artavenda.add(A);
         /* Função para colocar um artigo à venda
          * Nesta função são chamados os construtores da classe artigos
          * E esse mesmo artigo é colocado na lista art_a_venda;
@@ -82,6 +100,7 @@ public class utilizadores {
     }
 
     public void imprime(artigos[] a){
+        System.out.println("Artigos:\n");
         for (int i = 0; i < a.length; i++){
             if(a[i] != null){ 
                 System.out.println(a[i] + "\n.");
@@ -89,8 +108,11 @@ public class utilizadores {
         }
     }
 
-    public utilizadores clone() {
-        return new utilizadores(this);
+    @Override
+    public utilizadores clone() throws CloneNotSupportedException {
+        utilizadores clone = (utilizadores) super.clone();
+        clone.artavenda = new ArrayList<>(this.artavenda);
+        return clone;
     }
 
     @Override

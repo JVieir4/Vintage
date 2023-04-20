@@ -3,11 +3,12 @@ package vintage;
 import java.util.Scanner;
 
 public class vintage {
-    public static int MenuInicial() {
-        clearWindow();
+    public static int MenuInicial(boolean clear) {
+        if(clear){clearWindow();}
         StringBuilder sb = new StringBuilder("-----------MENU INICIAL-----------\n\n");
         sb.append("1) Iniciar sessão.\n");
         sb.append("2) Registar nova conta.\n");
+        sb.append("3) Ver utilizadores registados.\n");
         //sb.append("3) Carregar logs.\n");
         sb.append("0) Sair.\n\n");
         sb.append("Selecione a opção pretendida: ");

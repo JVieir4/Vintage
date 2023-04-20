@@ -26,8 +26,22 @@ public class contas {
         this.contas = c;
     }
 
-    public void addConta (utilizadores conta) {
+    public void addConta (utilizadores conta) throws CloneNotSupportedException {
         this.contas.put(conta.getCode(), conta.clone());
+    }
+
+    public void deleteConta(String email) {
+        String keyToRemove = null;
+        for (Map.Entry<String, utilizadores> entry : this.contas.entrySet()) {
+            utilizadores util = entry.getValue();
+            if (email.equals(util.getEmail())) {
+                keyToRemove = entry.getKey();
+                break;
+            }
+        }
+        if (keyToRemove != null) {
+            this.contas.remove(keyToRemove);
+        }
     }
 
     public utilizadores getUtilizadores(String mail){
