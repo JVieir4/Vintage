@@ -8,7 +8,12 @@ public class controloutilizador {
         }       
         switch(opcao) {            
             case 1:
-                System.out.println("vazio");
+                int tipo = -1;
+                while(tipo < 1 || tipo > 4) {
+                    tipo = vintage.menuArtigo();
+                }
+                artigos art = criaArtigo(tipo);
+                u.listarArtigo(art);
                 break;
             case 2:
                 System.out.println("vazio");
@@ -27,5 +32,28 @@ public class controloutilizador {
                 break;
         }
         x.addConta(u);
+        controloutilizador.run(u,x);
+    }
+
+    private static artigos criaArtigo(int tipo) {
+        artigos art = null;
+        switch(tipo){
+            case 1:
+                sapatilhas sap = vintage.criarSapatilha();
+                art = vintage.criarArtigo(sap);
+                break;
+            case 2:
+                tshirts tshirt = vintage.criarTshirts();
+                art = vintage.criarArtigo(tshirt);
+                break;
+            case 3:
+                malas mala = vintage.criarMalas();
+                art = vintage.criarArtigo(mala);
+                break;
+            case 4:
+                /* art = vintage.criarArtigo(Tipo.Outro);
+                break;*/
+        } 
+        return art;
     }
 }
