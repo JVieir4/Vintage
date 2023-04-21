@@ -8,7 +8,7 @@ public class artigos {
     private String marca;
     private String codigo;
     private double preco;
-    private int correcao;
+    private int correcao = 0;
     private sapatilhas sapatilha;
     private tshirts tshirt;
     private malas mala;
@@ -20,7 +20,7 @@ public class artigos {
         Outro
     }
 
-    public artigos(Tipo type, boolean state, int donos, String desc, String brand, String code, double price, int corr){
+    public artigos(Tipo type, boolean state, int donos, String desc, String brand, String code, double price){
         this.tipo = type;
         this.estado = state;
         this.ndonos = donos;
@@ -28,10 +28,9 @@ public class artigos {
         this.marca = brand;
         this.codigo = code;
         this.preco = price;
-        this.correcao = corr;
     }
 
-    public artigos(sapatilhas sap, boolean state, int donos, String desc, String brand, String code, double price, int corr){
+    public artigos(sapatilhas sap, boolean state, int donos, String desc, String brand, String code, double price){
         this.tipo = Tipo.Sapatilha;
         this.estado = state;
         this.ndonos = donos;
@@ -39,11 +38,10 @@ public class artigos {
         this.marca = brand;
         this.codigo = code;
         this.preco = price;
-        this.correcao = corr;
         this.sapatilha = sap;
     }
 
-    public artigos(tshirts tshirt, boolean state, int donos, String desc, String brand, String code, double price, int corr){
+    public artigos(tshirts tshirt, boolean state, int donos, String desc, String brand, String code, double price){
         this.tipo = Tipo.TShirt;
         this.estado = state;
         this.ndonos = donos;
@@ -51,11 +49,10 @@ public class artigos {
         this.marca = brand;
         this.codigo = code;
         this.preco = price;
-        this.correcao = corr;
         this.tshirt = tshirt;
     }
 
-    public artigos(malas mala, boolean state, int donos, String desc, String brand, String code, double price, int corr){
+    public artigos(malas mala, boolean state, int donos, String desc, String brand, String code, double price){
         this.tipo = Tipo.Mala;
         this.estado = state;
         this.ndonos = donos;
@@ -63,7 +60,6 @@ public class artigos {
         this.marca = brand;
         this.codigo = code;
         this.preco = price;
-        this.correcao = corr;
         this.mala = mala;
     }
 /* 

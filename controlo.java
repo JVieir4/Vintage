@@ -24,7 +24,9 @@ public class controlo {
                 }
                 break;
             case 2:
-                System.out.println("vazio");
+                utilizadores novo = vintage.criarUtilizador();
+                x.addConta(novo);
+                controloutilizador.run(novo, x);
                 break;
             case 3:
                 System.out.println(x);

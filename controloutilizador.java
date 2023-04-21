@@ -28,6 +28,7 @@ public class controloutilizador {
                 System.out.println(u.getArtComprados());
                 break;
             case 0:
+                x.addConta(u);
                 controlo.run(x,true);
                 break;
         }

@@ -165,24 +165,37 @@ public class vintage {
         System.out.println("Qual é o preço do artigo.\n");
         double preço = scanner.nextDouble();
         scanner.nextLine();
-        System.out.println("Há alguma correção no preço? (Descontos ou aumentos [-100, 100]\n");
-        int correcao = scanner.nextInt();
-        scanner.nextLine();
         if (obj instanceof sapatilhas) {
             sapatilhas sap = (sapatilhas) obj;
-            art = new artigos(sap,estado,ndonos,descricao,marca,codigo,preço,correcao);
+            art = new artigos(sap,estado,ndonos,descricao,marca,codigo,preço);
         }
         else if (obj instanceof tshirts) {
             tshirts tshirt = (tshirts) obj;
-            art = new artigos(tshirt,estado,ndonos,descricao,marca,codigo,preço,correcao);
+            art = new artigos(tshirt,estado,ndonos,descricao,marca,codigo,preço);
         }
         else if (obj instanceof malas) {
             malas mala = (malas) obj;
-            art = new artigos(mala,estado,ndonos,descricao,marca,codigo,preço,correcao);
+            art = new artigos(mala,estado,ndonos,descricao,marca,codigo,preço);
         }
         else{
-            art = new artigos(Tipo.Outro,estado,ndonos,descricao,marca,codigo,preço,correcao);
+            art = new artigos(Tipo.Outro,estado,ndonos,descricao,marca,codigo,preço);
         }
         return art;
+    }
+
+    public static utilizadores criarUtilizador(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("-----------NOVO UTILIZADOR-----------\n\n");
+        System.out.println("Email:\n");
+        String mail = scanner.nextLine();
+        System.out.println("Nome:\n");
+        String nome = scanner.nextLine();
+        System.out.println("Morada:\n");
+        String morada = scanner.nextLine();
+        System.out.println("Número Fiscal:\n");
+        int nfiscal = scanner.nextInt();
+        scanner.nextLine();
+        utilizadores util = new utilizadores("u003", mail, nome, morada, nfiscal);
+        return util;
     }
 }
