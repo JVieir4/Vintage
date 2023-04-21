@@ -15,7 +15,7 @@ public class controlo {
                 String mail = scanner.nextLine();
                 if(x.existeEmail(mail)){
                     utilizadores eu = x.getUtilizadores(mail).clone();
-                    x.deleteConta(mail);
+                    //x.deleteConta(mail);
                     controloutilizador.run(eu, x);
                 }
                 else{

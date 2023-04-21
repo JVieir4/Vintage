@@ -12,8 +12,7 @@ public class utilizadores implements Cloneable {
     private ArrayList<artigos> artvendidos = new ArrayList<>();
     private ArrayList<artigos> artcomprados = new ArrayList<>();
 
-    public utilizadores(String code, String mail, String name, String address, int fiscal){
-        this.systemcode = code;
+    public utilizadores( String mail, String name, String address, int fiscal){
         this.email = mail;
         this.nome = name;
         this.morada = address;

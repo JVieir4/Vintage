@@ -5,9 +5,11 @@ import java.util.Map;
 
 public class contas {
     private Map<String,utilizadores> contas;
+    private int utilcounter;
 
     public contas(){
         this.contas = new HashMap<>();
+        utilcounter = 0;
     }
 
     public contas(Map<String,utilizadores> c){
@@ -27,7 +29,15 @@ public class contas {
     }
 
     public void addConta (utilizadores conta) throws CloneNotSupportedException {
+        String code = generateCode();
+        conta.setCode(code);
         this.contas.put(conta.getCode(), conta.clone());
+    }
+
+    private String generateCode() {
+        utilcounter++;
+        String code = "u" + String.format("%03d", utilcounter);
+        return code;
     }
 
     public void deleteConta(String email) {
@@ -57,16 +67,16 @@ public class contas {
     public String toString() {
         final StringBuffer sb = new StringBuffer();
         sb.append("Contas:\n");
-        for (Map.Entry<String, utilizadores> entry : contas.entrySet()) {
-            String key = entry.getKey();
-            utilizadores conta = entry.getValue();
+        contas.keySet().stream().sorted().forEach(key -> {
+            utilizadores conta = contas.get(key);
             sb.append(key).append("=").append(conta.getNome()).append("\n");
             sb.append("Email: ").append(conta.getEmail()).append("\n");
             sb.append("Morada: ").append(conta.getMorada()).append("\n");
             sb.append("Número Fiscal: ").append(conta.getFiscal()).append("\n.\n");
-        }
+        });
         return sb.toString();
     }
+
     public boolean existeEmail(String s){
         return this.contas.entrySet().stream().anyMatch(a->s.equals(a.getValue().getEmail()));
     }

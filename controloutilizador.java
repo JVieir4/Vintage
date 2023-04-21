@@ -28,12 +28,18 @@ public class controloutilizador {
                 System.out.println(u.getArtComprados());
                 break;
             case 0:
-                x.addConta(u);
+                update(x,u);
                 controlo.run(x,true);
                 break;
         }
-        x.addConta(u);
+        update(x,u);
         controloutilizador.run(u,x);
+    }
+
+    private static void update(contas x,utilizadores u){
+        x.getUtilizadores(u.getEmail()).setArtAVenda(u.getArtAVenda());
+        x.getUtilizadores(u.getEmail()).setArtComprados(u.getArtComprados());
+        x.getUtilizadores(u.getEmail()).setArtVendidos(u.getArtVendidos());
     }
 
     private static artigos criaArtigo(int tipo) {

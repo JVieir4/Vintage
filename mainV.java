@@ -9,8 +9,8 @@ public class mainV {
         malas C = new malas(true, 30, 32, "Policarbonato", 2008);
         artigos artM = new artigos(C, false, 2, "Mala fixe", "Samsonite", "A1A1A1", 49.99);
         
-        utilizadores eu = new utilizadores("u001", "aaa", "Vieira", "Rua Teste", 123);
-        utilizadores tu = new utilizadores("u002", "abc@teste.com", "Calafate", "Avenida Teste", 456);
+        utilizadores eu = new utilizadores("aaa", "Vieira", "Rua Teste", 123);
+        utilizadores tu = new utilizadores("abc@teste.com", "Calafate", "Avenida Teste", 456);
         
         eu.listarArtigo(artS);
         eu.listarArtigo(artM);

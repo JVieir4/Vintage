@@ -195,7 +195,7 @@ public class vintage {
         System.out.println("Número Fiscal:\n");
         int nfiscal = scanner.nextInt();
         scanner.nextLine();
-        utilizadores util = new utilizadores("u003", mail, nome, morada, nfiscal);
+        utilizadores util = new utilizadores(mail, nome, morada, nfiscal);
         return util;
     }
 }
