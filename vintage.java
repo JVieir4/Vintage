@@ -188,6 +188,16 @@ public class vintage {
         System.out.println("-----------NOVO UTILIZADOR-----------\n\n");
         System.out.println("Email:\n");
         String mail = scanner.nextLine();
+        String pass1 = "a", pass2 = "b";
+        int errado = 0;
+        while(!pass1.equals(pass2)){
+            if(errado == 1){System.out.println("As palavras-passes não são iguais. Tente outra vez.\n");}
+            System.out.println("Palavra-passe:\n");
+            pass1 = scanner.nextLine();
+            System.out.println("Confirmar Palavra-passe:\n");
+            pass2 = scanner.nextLine();
+            errado++;
+        }
         System.out.println("Nome:\n");
         String nome = scanner.nextLine();
         System.out.println("Morada:\n");
@@ -195,7 +205,7 @@ public class vintage {
         System.out.println("Número Fiscal:\n");
         int nfiscal = scanner.nextInt();
         scanner.nextLine();
-        utilizadores util = new utilizadores(mail, nome, morada, nfiscal);
+        utilizadores util = new utilizadores(mail, pass1, nome, morada, nfiscal);
         return util;
     }
 }

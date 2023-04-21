@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class utilizadores implements Cloneable {
     private String systemcode;
     private String email;
+    private String password;
     private String nome;
     private String morada;
     private int nfiscal;
@@ -12,8 +13,9 @@ public class utilizadores implements Cloneable {
     private ArrayList<artigos> artvendidos = new ArrayList<>();
     private ArrayList<artigos> artcomprados = new ArrayList<>();
 
-    public utilizadores( String mail, String name, String address, int fiscal){
+    public utilizadores( String mail,String pass, String name, String address, int fiscal){
         this.email = mail;
+        this.password = pass;
         this.nome = name;
         this.morada = address;
         this.nfiscal = fiscal;
@@ -21,10 +23,18 @@ public class utilizadores implements Cloneable {
 
     public utilizadores(utilizadores novo){
         this.systemcode = novo.getCode();
+        this.password = novo.getPassword();
         this.email = novo.getEmail();
         this.nome = novo.getNome();
         this.morada = novo.getMorada();
         this.nfiscal = novo.getFiscal();
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+    public void setPassword(String p) {
+        this.password = p;
     }
 
     public int getFiscal() {

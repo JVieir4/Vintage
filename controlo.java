@@ -14,9 +14,16 @@ public class controlo {
                 Scanner scanner = new Scanner(System.in);
                 String mail = scanner.nextLine();
                 if(x.existeEmail(mail)){
-                    utilizadores eu = x.getUtilizadores(mail).clone();
-                    //x.deleteConta(mail);
-                    controloutilizador.run(eu, x);
+                    System.out.println("Introduza a palavra-passe:\n");
+                    String pass = scanner.nextLine();
+                    if(x.getUtilizadores(mail).getPassword().equals(pass)){
+                        utilizadores eu = x.getUtilizadores(mail).clone();
+                        controloutilizador.run(eu, x);
+                    }
+                    else{
+                        System.out.println("A palavra-passe inserida não está correta.\n");
+                        controlo.run(x,false);
+                    }
                 }
                 else{
                     System.out.println("Nenhuma conta encontrada com esse email.\n");
