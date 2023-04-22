@@ -18,6 +18,7 @@ public class mainV {
         contas x = new contas();
         x.addConta(eu);
         x.addConta(tu);
-        controlo.run(x, true);
+        gestorencomendas g = new gestorencomendas();
+        controlo.run(x, g, true);
     }
 }

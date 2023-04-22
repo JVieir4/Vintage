@@ -4,7 +4,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class controloutilizador {
-    public static void run(utilizadores u, contas x) throws CloneNotSupportedException{
+    static encomendas carrinho = new encomendas();
+    public static void run(utilizadores u, contas x, gestorencomendas g) throws CloneNotSupportedException{
         int opcao = -1;
         while(opcao < 0 || opcao > 5) {
             opcao = vintage.menuUtilizador();
@@ -23,28 +24,54 @@ public class controloutilizador {
                 while(escolha < 0 || escolha > 2){
                     escolha = vintage.menuComprar();
                 }
-                encomendas carrinho = new encomendas();
-                comprarArtigo(escolha, u, x, carrinho);
+                comprarArtigo(escolha, u, x, carrinho, g);
                 
                 /* System.out.println("Insira o número do artigo que deseja comprar:\n"); */
 
                 break;
             case 3:
-                u.printArtavenda();
-                break;
+                System.out.println("Carrinho:\n" + carrinho.imprimeArtigos(carrinho.getArtigos()));
+                int op = -1;
+                while(op < 0 || op > 3) {
+                    op = vintage.menuCarrinho();
+                }
+                switch(op){
+                    case 1:
+                        int escolha2 = -1;
+                        while(escolha2 < 0 || escolha2 > 2){
+                            escolha2 = vintage.menuComprar();
+                        }
+                        comprarArtigo(escolha2, u, x, carrinho, g);
+                        break;
+                    case 2:
+                        System.out.println(carrinho.imprimeArtigos(carrinho.getArtigos()));
+                        /* 
+                         * Falta aqui poder remover artigos do carrinho
+                         */
+                        break;
+                    case 3:
+                        System.out.println(carrinho);
+                        g.adicionarEncomenda(carrinho);
+                    case 0:
+                        controloutilizador.run(u,x,g);
+                        break;
+                }
             case 4:
+                u.printArtavenda();
+                break;  
+            case 5:
                 System.out.println(u.getArtVendidos());
                 break;
-            case 5:
+            case 6:
                 System.out.println(u.getArtComprados());
                 break;
             case 0:
                 update(x,u);
-                controlo.run(x,true);
+                controlo.run(x,g,true);
                 break;
         }
         update(x,u);
-        controloutilizador.run(u,x);
+        controloutilizador.run(u,x,g);
     }
 
 
@@ -77,15 +104,18 @@ public class controloutilizador {
         return art;
     }
 
-    private static void comprarArtigo(int escolha, utilizadores u, contas x, encomendas carrinho) throws CloneNotSupportedException{
+    private static void comprarArtigo(int escolha, utilizadores u, contas x, encomendas carrinho, gestorencomendas g) throws CloneNotSupportedException{
         switch(escolha){
             case 1:
                 Map<Integer, artigos> TodosArtigos = x.printStock(u);
-                System.out.println("Insira o número do artigo que deseja comprar: ");
+                System.out.println("Insira o número do artigo que deseja comprar: (0 para terminar)");
                 Scanner scanner = new Scanner(System.in);
-                int index = scanner.nextInt();
-                carrinho.addArtigo(TodosArtigos.get(index));
-                x.removeFromArtavenda(TodosArtigos, index);
+                int index = scanner.nextInt();;
+                while(index != 0){
+                    carrinho.addArtigo(TodosArtigos.get(index));
+                    x.removeFromArtavenda(TodosArtigos, index); 
+                    index = scanner.nextInt();
+                }
                 break;
             case 2:
                 int tipo = -1;
@@ -95,7 +125,7 @@ public class controloutilizador {
                 /* dar print a todos os artigos de x tipo (todas as sapatilhas, ou tshirts, ou malas, ou outros) */
                 break;
             case 0:
-                controloutilizador.run(u,x);
+                controloutilizador.run(u,x,g);
                 break;
 
         }

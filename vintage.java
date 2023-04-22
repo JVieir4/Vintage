@@ -29,9 +29,10 @@ public class vintage {
         StringBuilder sb = new StringBuilder("-----------MENU UTILIZADOR-----------\n\n");
         sb.append("1) Listar um artigo.\n");
         sb.append("2) Comprar um artigo.\n");
-        sb.append("3) Verificar artigos à venda.\n");
-        sb.append("4) Histórico de artigos vendidos.\n");
-        sb.append("5) Histórico de artigos comprados.\n");
+        sb.append("3) Ver carrinho.\n");
+        sb.append("4) Verificar artigos à venda.\n");
+        sb.append("5) Histórico de artigos vendidos.\n");
+        sb.append("6) Histórico de artigos comprados.\n");
         sb.append("0) Logout.\n\n");
         sb.append("Selecione a opção pretendida: ");
         System.out.println(sb.toString());
@@ -214,6 +215,18 @@ public class vintage {
         sb.append("1) Ver todos os artigos.\n");
         sb.append("2) Pesquisar por tipo.\n");
         sb.append("0) Cancelar.\n\n");
+        sb.append("Selecione a opção pretendida: ");
+        System.out.println(sb.toString());
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
+    }
+
+    public static int menuCarrinho(){
+        StringBuilder sb = new StringBuilder("-----------MENU CARRINHO-----------\n\n");
+        sb.append("1) Adicionar um artigo.\n");
+        sb.append("2) Remover um artigo.\n");
+        sb.append("3) Concluir.\n");
+        sb.append("0) Voltar.\n\n");
         sb.append("Selecione a opção pretendida: ");
         System.out.println(sb.toString());
         Scanner scanner = new Scanner(System.in);

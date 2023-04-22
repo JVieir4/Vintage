@@ -94,9 +94,25 @@ public class encomendas {
         artigos.add(novoArtigo);
     }
 
+    public String imprimeArtigos(ArrayList<artigos> art){
+        int index = 1;
+        StringBuilder sb = new StringBuilder();
+        for (artigos artigo : this.artigos) {
+            sb.append(index + ") ").append(artigo.toString()).append("\n");
+            index++;
+        }
+        return sb.toString();
+    }
+
     @Override
-    public String toString(){
-        return "Encomenda " + this.dimensao + " feita em: " + this.data_de_criacao + ".\nEstado: " + this.estado +
-        "\nCusto: " + this.preco + "\nArtigos:\n" + this.artigos;
+    public String toString() {
+        int index = 1;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Encomenda ").append(calculaDimensao(this.artigos.size()))
+          .append(" feita em: ").append(this.data_de_criacao)
+          .append(".\nEstado: ").append(this.estado)
+          .append("\nCusto: ").append(calculaPreco(this.artigos))
+          .append("\nArtigos:\n").append(imprimeArtigos(this.artigos));
+        return sb.toString();
     }
 }
