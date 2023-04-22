@@ -106,7 +106,6 @@ public class encomendas {
 
     @Override
     public String toString() {
-        int index = 1;
         StringBuilder sb = new StringBuilder();
         sb.append("Encomenda ").append(calculaDimensao(this.artigos.size()))
           .append(" feita em: ").append(this.data_de_criacao)
