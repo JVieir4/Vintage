@@ -208,4 +208,15 @@ public class vintage {
         utilizadores util = new utilizadores(mail, pass1, nome, morada, nfiscal);
         return util;
     }
+
+    public static int menuComprar(){
+        StringBuilder sb = new StringBuilder("-----------MENU COMPRA-----------\n\n");
+        sb.append("1) Ver todos os artigos.\n");
+        sb.append("2) Pesquisar por tipo.\n");
+        sb.append("0) Cancelar.\n\n");
+        sb.append("Selecione a opção pretendida: ");
+        System.out.println(sb.toString());
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
+    }
 }

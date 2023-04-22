@@ -1,5 +1,8 @@
 package vintage;
 
+import java.util.Map;
+import java.util.Scanner;
+
 public class controloutilizador {
     public static void run(utilizadores u, contas x) throws CloneNotSupportedException{
         int opcao = -1;
@@ -16,10 +19,18 @@ public class controloutilizador {
                 u.listarArtigo(art);
                 break;
             case 2:
-                System.out.println("vazio");
+                int escolha = -1;
+                while(escolha < 0 || escolha > 2){
+                    escolha = vintage.menuComprar();
+                }
+                encomendas carrinho = new encomendas();
+                comprarArtigo(escolha, u, x, carrinho);
+                
+                /* System.out.println("Insira o número do artigo que deseja comprar:\n"); */
+
                 break;
             case 3:
-                System.out.println(u.getArtAVenda());
+                u.printArtavenda();
                 break;
             case 4:
                 System.out.println(u.getArtVendidos());
@@ -35,6 +46,7 @@ public class controloutilizador {
         update(x,u);
         controloutilizador.run(u,x);
     }
+
 
     private static void update(contas x,utilizadores u){
         x.getUtilizadores(u.getEmail()).setArtAVenda(u.getArtAVenda());
@@ -63,5 +75,29 @@ public class controloutilizador {
                 break;
         } 
         return art;
+    }
+
+    private static void comprarArtigo(int escolha, utilizadores u, contas x, encomendas carrinho) throws CloneNotSupportedException{
+        switch(escolha){
+            case 1:
+                Map<Integer, artigos> TodosArtigos = x.printStock(u);
+                System.out.println("Insira o número do artigo que deseja comprar: ");
+                Scanner scanner = new Scanner(System.in);
+                int index = scanner.nextInt();
+                carrinho.addArtigo(TodosArtigos.get(index));
+                x.removeFromArtavenda(TodosArtigos, index);
+                break;
+            case 2:
+                int tipo = -1;
+                while(tipo < 1 || tipo > 4) {
+                    tipo = vintage.menuArtigo();
+                }
+                /* dar print a todos os artigos de x tipo (todas as sapatilhas, ou tshirts, ou malas, ou outros) */
+                break;
+            case 0:
+                controloutilizador.run(u,x);
+                break;
+
+        }
     }
 }

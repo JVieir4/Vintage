@@ -111,6 +111,31 @@ public class utilizadores implements Cloneable {
         return clone;
     }
 
+    public void printArtavenda() {
+        System.out.println("Artigos à venda:");
+        for (artigos artigo : artavenda) {
+            System.out.println(artigo);
+            System.out.println();
+        }
+    }
+
+    public boolean equals(Object obj) {
+        if(obj==this) 
+           return true;
+        if(obj==null || obj.getClass() != this.getClass()) 
+           return false;
+        utilizadores u = (utilizadores) obj;
+        return u.getCode().equals(this.getCode()) &&
+            u.getEmail().equals(this.getEmail()) &&
+            u.getFiscal() == this.getFiscal() &&
+            u.getMorada().equals(this.getMorada()) &&
+            u.getNome().equals(this.getNome()) &&
+            u.getPassword().equals(this.getPassword()) &&
+            u.getArtAVenda().equals(this.getArtAVenda()) &&
+            u.getArtComprados().equals(this.getArtComprados()) &&
+            u.getArtVendidos().equals(this.getArtVendidos());
+    }
+
     @Override
     public String toString(){
         return this.nome + "\nEmail: " + this.email + "\nMorada: " + this.morada + "\nNúmero Fiscal: " + this.nfiscal;

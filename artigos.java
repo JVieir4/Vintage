@@ -166,19 +166,19 @@ public class artigos {
     public String toString(){
         switch(tipo){
             case Sapatilha:
-                return "Artigo: " + this.tipo + "\nMarca: " + this.marca + "\nPremium?: " + sapatilha.getPremium() + "\nDescrição: " + this.descricao +
+                return this.tipo + "\nMarca: " + this.marca + "\nPremium?: " + sapatilha.getPremium() + "\nDescrição: " + this.descricao +
                 "\nTamanho: " + sapatilha.getTam() + "\nCor: " + sapatilha.getCor() + "\nAtacadores?: " + sapatilha.getAtac() + "\nEdição: " + sapatilha.getData() +
-                "\nNovo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo + "\n.\n";
+                "\nNovo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo ;
             case TShirt:
-                return "Artigo: " + this.tipo + "\nMarca: " + this.marca + "\nDescrição: " + this.descricao + "\nTamanho: " + tshirt.getTamanho() +
-                "\nPadrão: " + tshirt.getPadrao() + "\nNovo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo + "\n.\n";
+                return this.tipo + "\nMarca: " + this.marca + "\nDescrição: " + this.descricao + "\nTamanho: " + tshirt.getTamanho() +
+                "\nPadrão: " + tshirt.getPadrao() + "\nNovo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo;
             case Mala:
-                return "Artigo: " + this.tipo + "\nMarca: " + this.marca + "\nPremium?: " + mala.getPrem() + "\nDescrição: " + this.descricao +
+                return this.tipo + "\nMarca: " + this.marca + "\nPremium?: " + mala.getPrem() + "\nDescrição: " + this.descricao +
                 "\nTamanho: " + mala.getDimx() + "x" + mala.getDimy() + "\nMaterial: " + mala.getMaterial() + "\nEdição: " + mala.getData() +
-                "\nNovo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo + "\n.\n";
+                "\nNovo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo;
             case Outro:
-                return "Artigo: " + this.tipo + "\nMarca: " + this.marca + "\nDescrição: " + this.descricao + "\nTamanho: " +
-                "\nNovo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo + "\n.\n";
+                return this.tipo + "\nMarca: " + this.marca + "\nDescrição: " + this.descricao + "\nTamanho: " +
+                "\nNovo?: " + this.estado + "\nPreço: " + CalculaPreço() + "\nCódigo: " + this.codigo;
         }
         return null;
     }
