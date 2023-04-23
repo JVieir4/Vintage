@@ -3,9 +3,12 @@ package vintage;
 import java.util.Map;
 import java.util.Scanner;
 
+import vintage.artigos.Tipo;
+
 public class controloutilizador {
-    static encomendas carrinho = new encomendas();
-    public static void run(utilizadores u, contas x, gestorencomendas g) throws CloneNotSupportedException{
+    private static Map<Integer, artigos> TodosArtigos = null;
+    public static void run(int novo, utilizadores u, contas x, gestorencomendas g) throws CloneNotSupportedException{
+        if(novo == 1){TodosArtigos = x.Stock(u);}
         int opcao = -1;
         while(opcao < 0 || opcao > 5) {
             opcao = vintage.menuUtilizador();
@@ -24,13 +27,10 @@ public class controloutilizador {
                 while(escolha < 0 || escolha > 2){
                     escolha = vintage.menuComprar();
                 }
-                comprarArtigo(escolha, u, x, carrinho, g);
-                
-                /* System.out.println("Insira o número do artigo que deseja comprar:\n"); */
-
+                comprarArtigo(escolha, u, x, u.getCarrinho(), g, TodosArtigos);
                 break;
             case 3:
-                System.out.println("Carrinho:\n" + carrinho.imprimeArtigos(carrinho.getArtigos()));
+                System.out.println("Carrinho:\n" + u.getCarrinho().imprimeArtigos(u.getCarrinho().getArtigos()));
                 int op = -1;
                 while(op < 0 || op > 3) {
                     op = vintage.menuCarrinho();
@@ -41,22 +41,31 @@ public class controloutilizador {
                         while(escolha2 < 0 || escolha2 > 2){
                             escolha2 = vintage.menuComprar();
                         }
-                        comprarArtigo(escolha2, u, x, carrinho, g);
+                        comprarArtigo(escolha2, u, x, u.getCarrinho(), g, TodosArtigos);
                         break;
                     case 2:
-                        System.out.println(carrinho.imprimeArtigos(carrinho.getArtigos()));
-                        /* 
-                         * Falta aqui poder remover artigos do carrinho
-                         */
+                        System.out.println(u.getCarrinho().imprimeArtigos(u.getCarrinho().getArtigos()));
+                        System.out.println("Insira o número do(s) artigo(s) que deseja remover: (0 para terminar)");
+                        Scanner scanner = new Scanner(System.in);
+                        int index = scanner.nextInt();
+                        while(index != 0){
+                            artigos arti = u.getCarrinho().getArtigos().get(index-1);
+                            TodosArtigos.put(index, arti);
+                            u.getCarrinho().removeArtigo(arti);
+                            index = scanner.nextInt();
+                        }
                         break;
                     case 3:
-                        System.out.println(carrinho);
-                        g.adicionarEncomenda(carrinho);
+                        System.out.println(u.getCarrinho());
+                        g.adicionarEncomenda(u.getCarrinho());
+                        break;
                     case 0:
-                        controloutilizador.run(u,x,g);
+                        controloutilizador.run(0, u,x,g);
                         break;
                 }
+                break;
             case 4:
+            System.out.println("ola");
                 u.printArtavenda();
                 break;  
             case 5:
@@ -71,7 +80,7 @@ public class controloutilizador {
                 break;
         }
         update(x,u);
-        controloutilizador.run(u,x,g);
+        controloutilizador.run(0,u,x,g);
     }
 
 
@@ -104,30 +113,65 @@ public class controloutilizador {
         return art;
     }
 
-    private static void comprarArtigo(int escolha, utilizadores u, contas x, encomendas carrinho, gestorencomendas g) throws CloneNotSupportedException{
+    private static void comprarArtigo(int escolha, utilizadores u, contas x, encomendas carrinho, gestorencomendas g, Map<Integer, artigos> TodosArtigos) throws CloneNotSupportedException{
         switch(escolha){
             case 1:
-                Map<Integer, artigos> TodosArtigos = x.printStock(u);
-                System.out.println("Insira o número do artigo que deseja comprar: (0 para terminar)");
-                Scanner scanner = new Scanner(System.in);
-                int index = scanner.nextInt();;
-                while(index != 0){
-                    carrinho.addArtigo(TodosArtigos.get(index));
-                    x.removeFromArtavenda(TodosArtigos, index); 
-                    index = scanner.nextInt();
-                }
+                imprime(TodosArtigos, "todos");
                 break;
             case 2:
                 int tipo = -1;
                 while(tipo < 1 || tipo > 4) {
                     tipo = vintage.menuArtigo();
+                    break;
                 }
-                /* dar print a todos os artigos de x tipo (todas as sapatilhas, ou tshirts, ou malas, ou outros) */
+                switch(tipo){
+                    case 1: imprime(TodosArtigos, "sapatilhas"); break;
+                    case 2: imprime(TodosArtigos, "tshirts"); break;
+                    case 3: imprime(TodosArtigos, "malas"); break;
+                    case 4: imprime(TodosArtigos, "outros"); break;
+                }
                 break;
             case 0:
-                controloutilizador.run(u,x,g);
+                controloutilizador.run(0, u,x,g);
                 break;
+        }
+        System.out.println("Insira o número do(s) artigo(s) que deseja comprar: (0 para terminar)");
+        Scanner scanner = new Scanner(System.in);
+        int index = scanner.nextInt();;
+        while(index != 0){
+            carrinho.addArtigo(TodosArtigos.get(index));
+            TodosArtigos.remove(index);
+            index = scanner.nextInt();
+        }
+    }
 
+    private static void imprime(Map<Integer, artigos> TodosArtigos, String filtro) {
+        for (Map.Entry<Integer, artigos> entry : TodosArtigos.entrySet()) {
+            Integer key = entry.getKey();
+            artigos value = entry.getValue();
+            boolean shouldPrint = false;
+            
+            switch (filtro) {
+                case "todos":
+                    shouldPrint = true;
+                    break;
+                case "sapatilhas":
+                    shouldPrint = value.getTipo() == Tipo.Sapatilha;
+                    break;
+                case "tshirts":
+                    shouldPrint = value.getTipo() == Tipo.TShirt;
+                    break;
+                case "malas":
+                    shouldPrint = value.getTipo() == Tipo.Mala;
+                    break;
+                case "outros":
+                    shouldPrint = value.getTipo() == Tipo.Outro;
+                    break;
+            }
+            
+            if (shouldPrint) {
+                System.out.println(key + ") " + value.toString());
+            }
         }
     }
 }

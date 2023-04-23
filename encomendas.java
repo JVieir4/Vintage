@@ -1,14 +1,17 @@
 package vintage;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class encomendas {
+    private String nome;
     private Dimensao dimensao;
     private Estado estado;
     private double preco;
     private LocalDate data_de_criacao;
     ArrayList<artigos> artigos;
+    DecimalFormat df = new DecimalFormat("#.##");
 
     enum Dimensao{
         Grande,
@@ -21,7 +24,8 @@ public class encomendas {
         Expedida
     }
 
-    public encomendas(){
+    public encomendas(String name){
+        this.nome = name;
         this.artigos = new ArrayList<>();
         this.estado = Estado.Pendente;
         this.data_de_criacao = LocalDate.of(2023, 4, 22);
@@ -94,6 +98,10 @@ public class encomendas {
         artigos.add(novoArtigo);
     }
 
+    public void removeArtigo(artigos art){
+        artigos.remove(art);
+    }
+
     public String imprimeArtigos(ArrayList<artigos> art){
         int index = 1;
         StringBuilder sb = new StringBuilder();
@@ -109,8 +117,9 @@ public class encomendas {
         StringBuilder sb = new StringBuilder();
         sb.append("Encomenda ").append(calculaDimensao(this.artigos.size()))
           .append(" feita em: ").append(this.data_de_criacao)
+          .append(" por: ").append(this.nome)
           .append(".\nEstado: ").append(this.estado)
-          .append("\nCusto: ").append(calculaPreco(this.artigos))
+          .append("\nCusto: ").append(df.format(calculaPreco(this.artigos)))
           .append("\nArtigos:\n").append(imprimeArtigos(this.artigos));
         return sb.toString();
     }

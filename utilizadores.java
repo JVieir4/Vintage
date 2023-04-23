@@ -9,6 +9,7 @@ public class utilizadores implements Cloneable {
     private String nome;
     private String morada;
     private int nfiscal;
+    private encomendas carrinho; 
     private ArrayList<artigos> artavenda = new ArrayList<>();
     private ArrayList<artigos> artvendidos = new ArrayList<>();
     private ArrayList<artigos> artcomprados = new ArrayList<>();
@@ -19,6 +20,7 @@ public class utilizadores implements Cloneable {
         this.nome = name;
         this.morada = address;
         this.nfiscal = fiscal;
+        this.carrinho = new encomendas(this.nome);
     }
 
     public utilizadores(utilizadores novo){
@@ -91,6 +93,13 @@ public class utilizadores implements Cloneable {
     }
     public void setArtComprados(ArrayList<artigos> a) {
         this.artcomprados = a;
+    }
+
+    public encomendas getCarrinho() {
+        return this.carrinho;
+    }
+    public void setCarrinho(encomendas c){
+        this.carrinho = c;
     }
 
     public void listarArtigo(artigos A){

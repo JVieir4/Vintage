@@ -69,23 +69,18 @@ public class contas {
         return this.contas.entrySet().stream().anyMatch(a->s.equals(a.getValue().getEmail()));
     }
 
-    public Map<Integer, artigos> printStock(utilizadores u) {
+    public Map<Integer, artigos> Stock(utilizadores u) {
         Map<Integer, artigos> artigosMap = new HashMap<>();
         int index = 0;
         for (utilizadores util : contas.values()) {
             if (util.equals(u)) {
-                continue; // Skip the given utilizadores u
+                continue;
             }
-            System.out.println("Username: " + util.getNome());
             ArrayList<artigos> artavenda = util.getArtAVenda();
-            System.out.println("Artigos à venda:");
             for (int i = 0; i < artavenda.size(); i++) {
-                System.out.println((i + 1 + index) + ". " + artavenda.get(i));
-                artigosMap.put(i + 1 + index, artavenda.get(i)); // Add index and artigos object to map
-                System.out.println();
+                artigosMap.put(i + 1 + index, artavenda.get(i));
             }
             index += artavenda.size();
-            System.out.println("------------");
         }
         return artigosMap;
     }
@@ -96,7 +91,7 @@ public class contas {
             for (artigos art : artavenda) {
                 if (art.getCodigo() == TodosArtigos.get(index).getCodigo()) {
                     artavenda.remove(art);
-                    return; // assuming each artigos object has a unique codigo, remove and exit loop
+                    return;
                 }
             }
         }

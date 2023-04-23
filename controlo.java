@@ -18,7 +18,7 @@ public class controlo {
                     String pass = scanner.nextLine();
                     if(x.getUtilizadores(mail).getPassword().equals(pass)){
                         utilizadores eu = x.getUtilizadores(mail).clone();
-                        controloutilizador.run(eu, x, g);
+                        controloutilizador.run(1, eu, x, g);
                     }
                     else{
                         System.out.println("A palavra-passe inserida não está correta.\n");
@@ -33,7 +33,7 @@ public class controlo {
             case 2:
                 utilizadores novo = vintage.criarUtilizador();
                 x.addConta(novo);
-                controloutilizador.run(novo, x, g);
+                controloutilizador.run(1,novo, x, g);
                 break;
             case 3:
                 System.out.println(x);
