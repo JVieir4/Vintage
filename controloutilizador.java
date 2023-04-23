@@ -30,7 +30,13 @@ public class controloutilizador {
                 comprarArtigo(escolha, u, x, u.getCarrinho(), g, TodosArtigos);
                 break;
             case 3:
-                System.out.println("Carrinho:\n" + u.getCarrinho().imprimeArtigos(u.getCarrinho().getArtigos()));
+                System.out.print(colors.BLUE + "Carrinho:\n" + colors.RESET);
+                if(u.getCarrinho().getArtigos().isEmpty()){
+                    System.out.println("O carrinho está vazio.\n");
+                }
+                else{
+                    System.out.println(u.getCarrinho().imprimeArtigos(u.getCarrinho().getArtigos()));
+                }
                 int op = -1;
                 while(op < 0 || op > 3) {
                     op = vintage.menuCarrinho();
@@ -44,8 +50,8 @@ public class controloutilizador {
                         comprarArtigo(escolha2, u, x, u.getCarrinho(), g, TodosArtigos);
                         break;
                     case 2:
-                        System.out.println(u.getCarrinho().imprimeArtigos(u.getCarrinho().getArtigos()));
-                        System.out.println("Insira o número do(s) artigo(s) que deseja remover: (0 para terminar)");
+                        System.out.println(colors.RESET + u.getCarrinho().imprimeArtigos(u.getCarrinho().getArtigos()));
+                        System.out.println("Insira o número do(s) artigo(s) que deseja remover: (0 para terminar)" + colors.BLACK);
                         Scanner scanner = new Scanner(System.in);
                         int index = scanner.nextInt();
                         while(index != 0){
@@ -56,8 +62,14 @@ public class controloutilizador {
                         }
                         break;
                     case 3:
-                        System.out.println(u.getCarrinho());
+                        if(u.getCarrinho().getArtigos().isEmpty()){
+                            System.out.println(colors.RESET + "O carrinho está vazio. Por favor adicione artigos.");
+                        }
+                        else{
+                            System.out.println(u.getCarrinho());
                         g.adicionarEncomenda(u.getCarrinho());
+                        }
+                        
                         break;
                     case 0:
                         controloutilizador.run(0, u,x,g);
@@ -65,7 +77,6 @@ public class controloutilizador {
                 }
                 break;
             case 4:
-            System.out.println("ola");
                 u.printArtavenda();
                 break;  
             case 5:
@@ -135,7 +146,7 @@ public class controloutilizador {
                 controloutilizador.run(0, u,x,g);
                 break;
         }
-        System.out.println("Insira o número do(s) artigo(s) que deseja comprar: (0 para terminar)");
+        System.out.println("Insira o número do(s) artigo(s) que deseja comprar: (0 para terminar)" + colors.BLACK);
         Scanner scanner = new Scanner(System.in);
         int index = scanner.nextInt();;
         while(index != 0){
@@ -170,7 +181,7 @@ public class controloutilizador {
             }
             
             if (shouldPrint) {
-                System.out.println(key + ") " + value.toString());
+                System.out.println(colors.BLUE + key + ") " + value.toString());
             }
         }
     }

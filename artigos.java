@@ -65,18 +65,7 @@ public class artigos {
         this.preco = price;
         this.mala = mala;
     }
-/* 
-    public artigos(artigos a){
-        this.tipo = a.getTipo();
-        this.estado = a.getEstado();
-        this.ndonos = a.getNdonos();
-        this.descricao = a.getDesc();
-        this.marca = a.getMarca();
-        this.codigo = a.getCodigo();
-        this.preco = a.getPreco();
-        this.correcao = a.getCorr();
-    }
- */
+
     public int getNdonos() {
         return this.ndonos;
     }
@@ -167,21 +156,49 @@ public class artigos {
 
     @Override
     public String toString(){
+        String reset = colors.RESET;
+        String green = colors.GREEN;
+        String yellow = colors.YELLOW;
         switch(tipo){
             case Sapatilha:
-                return this.tipo + "\nMarca: " + this.marca + "\nPremium?: " + sapatilha.getPremium() + "\nDescrição: " + this.descricao +
-                "\nTamanho: " + sapatilha.getTam() + "\nCor: " + sapatilha.getCor() + "\nAtacadores?: " + sapatilha.getAtac() + "\nEdição: " + sapatilha.getData() +
-                "\nNovo?: " + this.estado + "\nPreço: " + df.format(CalculaPreço()) + "\nCódigo: " + this.codigo ;
+                return yellow + this.tipo +
+                green + "\n- Marca: " + "\t" + reset + this.marca +
+                green + "\n- Premium? " + "\t" + reset + sapatilha.getPremium() + 
+                green + "\n- Descrição: " + "\t" + reset + this.descricao +
+                green + "\n- Tamanho: " + "\t" + reset + sapatilha.getTam() +
+                green + "\n- Cor: " + "\t\t" + reset + sapatilha.getCor() +
+                green + "\n- Atacadores? " + "\t" + reset + sapatilha.getAtac() +
+                green +  "\n- Edição: " + "\t" + reset + sapatilha.getData() +
+                green + "\n- Novo?: " + "\t" + reset + this.estado +
+                green + "\n- Preço: " + "\t" + reset + df.format(CalculaPreço()) +
+                green + "\n- Código: " + "\t" + reset + this.codigo;
             case TShirt:
-                return this.tipo + "\nMarca: " + this.marca + "\nDescrição: " + this.descricao + "\nTamanho: " + tshirt.getTamanho() +
-                "\nPadrão: " + tshirt.getPadrao() + "\nNovo?: " + this.estado + "\nPreço: " + df.format(CalculaPreço()) + "\nCódigo: " + this.codigo;
+                return yellow + this.tipo +
+                green + "\n- Marca: " + "\t" + reset + this.marca +
+                green + "\n- Descrição: " + "\t" + reset + this.descricao +
+                green + "\n- Tamanho: " + "\t" + reset + tshirt.getTamanho() +
+                green + "\n- Padrão: " + "\t" + reset + tshirt.getPadrao() +
+                green + "\n- Novo? " + "\t" + reset + this.estado +
+                green + "\n- Preço: " + "\t" + reset + df.format(CalculaPreço()) +
+                green + "\n- Código: " + "\t" + reset + this.codigo;
             case Mala:
-                return this.tipo + "\nMarca: " + this.marca + "\nPremium?: " + mala.getPrem() + "\nDescrição: " + this.descricao +
-                "\nTamanho: " + mala.getDimx() + "x" + mala.getDimy() + "\nMaterial: " + mala.getMaterial() + "\nEdição: " + mala.getData() +
-                "\nNovo?: " + this.estado + "\nPreço: " + df.format(CalculaPreço()) + "\nCódigo: " + this.codigo;
+                return yellow +this.tipo +
+                green + "\n- Marca: " + "\t" + reset + this.marca +
+                green + "\n- Premium? " + "\t" + reset + mala.getPrem() +
+                green + "\n- Descrição: " + "\t" + reset + this.descricao +
+                green + "\n- Tamanho: " + "\t" + reset + mala.getDimx() + "x" + mala.getDimy() +
+                green + "\n- Material: " + "\t" + reset + mala.getMaterial() +
+                green + "\n- Edição: " + "\t" + reset + mala.getData() +
+                green + "\n- Novo? " + "\t" + reset + this.estado +
+                green + "\n- Preço: " + "\t" + reset + df.format(CalculaPreço()) +
+                green + "\n- Código: " + "\t" + reset + this.codigo;
             case Outro:
-                return this.tipo + "\nMarca: " + this.marca + "\nDescrição: " + this.descricao + "\nTamanho: " +
-                "\nNovo?: " + this.estado + "\nPreço: " + df.format(CalculaPreço()) + "\nCódigo: " + this.codigo;
+                return yellow + this.tipo +
+                green + "\n- Marca: " + "\t" + reset + this.marca +
+                green + "\n- Descrição: " + "\t" + reset + this.descricao +
+                green + "\n- Novo? " + "\t" + reset + this.estado +
+                green + "\n- Preço: " + "\t" + reset + df.format(CalculaPreço()) +
+                green + "\n- Código: " + "\t" + reset + this.codigo;
         }
         return null;
     }

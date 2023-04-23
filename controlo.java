@@ -10,23 +10,23 @@ public class controlo {
         }       
         switch(opcao) {            
             case 1:
-                System.out.println("Introduza o seu email:\n");
+                System.out.println(colors.RESET + "Introduza o seu email:\n" + colors.BLACK);
                 Scanner scanner = new Scanner(System.in);
                 String mail = scanner.nextLine();
                 if(x.existeEmail(mail)){
-                    System.out.println("Introduza a palavra-passe:\n");
+                    System.out.println(colors.RESET + "Introduza a palavra-passe:\n" + colors.BLACK);
                     String pass = scanner.nextLine();
                     if(x.getUtilizadores(mail).getPassword().equals(pass)){
                         utilizadores eu = x.getUtilizadores(mail).clone();
                         controloutilizador.run(1, eu, x, g);
                     }
                     else{
-                        System.out.println("A palavra-passe inserida não está correta.\n");
+                        System.out.println(colors.RESET + "A palavra-passe inserida não está correta.\n");
                         controlo.run(x,g,false);
                     }
                 }
                 else{
-                    System.out.println("Nenhuma conta encontrada com esse email.\n");
+                    System.out.println(colors.RESET + "Nenhuma conta encontrada com esse email.\n");
                     controlo.run(x,g,false);
                 }
                 break;

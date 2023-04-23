@@ -121,7 +121,7 @@ public class utilizadores implements Cloneable {
     }
 
     public void printArtavenda() {
-        System.out.println("Artigos à venda:");
+        System.out.println(colors.BLUE + "Artigos à venda:");
         for (artigos artigo : artavenda) {
             System.out.println(artigo);
             System.out.println();
@@ -143,10 +143,5 @@ public class utilizadores implements Cloneable {
             u.getArtAVenda().equals(this.getArtAVenda()) &&
             u.getArtComprados().equals(this.getArtComprados()) &&
             u.getArtVendidos().equals(this.getArtVendidos());
-    }
-
-    @Override
-    public String toString(){
-        return this.nome + "\nEmail: " + this.email + "\nMorada: " + this.morada + "\nNúmero Fiscal: " + this.nfiscal;
     }
 }

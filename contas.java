@@ -99,13 +99,13 @@ public class contas {
     
     public String toString() {
         final StringBuffer sb = new StringBuffer();
-        sb.append("Contas:\n");
+        sb.append(colors.YELLOW + "Contas:\n");
         contas.keySet().stream().sorted().forEach(key -> {
             utilizadores conta = contas.get(key);
-            sb.append(key).append("=").append(conta.getNome()).append("\n");
-            sb.append("Email: ").append(conta.getEmail()).append("\n");
-            sb.append("Morada: ").append(conta.getMorada()).append("\n");
-            sb.append("Número Fiscal: ").append(conta.getFiscal()).append("\n.\n");
+            sb.append(colors.GREEN + key + colors.RESET).append("=").append(conta.getNome()).append("\n");
+            sb.append(colors.GREEN + "Email: " + colors.RESET).append(conta.getEmail()).append("\n");
+            sb.append(colors.GREEN +"Morada: " + colors.RESET).append(conta.getMorada()).append("\n");
+            sb.append(colors.GREEN + "Número Fiscal: " + colors.RESET).append(conta.getFiscal()).append("\n\n");
         });
         return sb.toString();
     }

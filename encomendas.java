@@ -115,12 +115,12 @@ public class encomendas {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Encomenda ").append(calculaDimensao(this.artigos.size()))
-          .append(" feita em: ").append(this.data_de_criacao)
-          .append(" por: ").append(this.nome)
-          .append(".\nEstado: ").append(this.estado)
-          .append("\nCusto: ").append(df.format(calculaPreco(this.artigos)))
-          .append("\nArtigos:\n").append(imprimeArtigos(this.artigos));
+        sb.append(colors.RESET + "Encomenda " + colors.GREEN).append(calculaDimensao(this.artigos.size()))
+          .append(colors.RESET + " feita em: " + colors.GREEN).append(this.data_de_criacao)
+          .append(colors.RESET + " por: " + colors.BLUE).append(this.nome)
+          .append("." + colors.GREEN + "\nEstado: " + colors.RESET).append(this.estado)
+          .append(colors.GREEN + "\nCusto: " + colors.RESET).append(df.format(calculaPreco(this.artigos)))
+          .append(colors.BLUE + "\nArtigos:\n" + colors.RESET).append(imprimeArtigos(this.artigos));
         return sb.toString();
     }
 }
