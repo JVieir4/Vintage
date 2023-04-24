@@ -102,10 +102,10 @@ public class contas {
         sb.append(colors.YELLOW + "Contas:\n");
         contas.keySet().stream().sorted().forEach(key -> {
             utilizadores conta = contas.get(key);
-            sb.append(colors.GREEN + key + colors.RESET).append("=").append(conta.getNome()).append("\n");
-            sb.append(colors.GREEN + "Email: " + colors.RESET).append(conta.getEmail()).append("\n");
-            sb.append(colors.GREEN +"Morada: " + colors.RESET).append(conta.getMorada()).append("\n");
-            sb.append(colors.GREEN + "Número Fiscal: " + colors.RESET).append(conta.getFiscal()).append("\n\n");
+            sb.append(colors.GREEN + key).append("=\t\t" + colors.RESET).append(conta.getNome()).append("\n");
+            sb.append(colors.GREEN + "Email: " + "\t\t" + colors.RESET).append(conta.getEmail()).append("\n");
+            sb.append(colors.GREEN +"Morada: " + "\t" + colors.RESET).append(conta.getMorada()).append("\n");
+            sb.append(colors.GREEN + "Número Fiscal: " + "\t" + colors.RESET).append(conta.getFiscal()).append("\n\n");
         });
         return sb.toString();
     }
