@@ -156,6 +156,7 @@ public class artigos {
 
     @Override
     public String toString(){
+        df.setMinimumFractionDigits(2);
         String reset = colors.RESET;
         String green = colors.GREEN;
         String yellow = colors.YELLOW;

@@ -128,6 +128,22 @@ public class utilizadores implements Cloneable {
         }
     }
 
+    public void printArtVendidos() {
+        System.out.println(colors.BLUE + "Artigos vendidos:");
+        for (artigos artigo : artvendidos) {
+            System.out.println(artigo);
+            System.out.println();
+        }
+    }
+
+    public void printArtComprados() {
+        System.out.println(colors.BLUE + "Artigos comprados:");
+        for (artigos artigo : artcomprados) {
+            System.out.println(artigo);
+            System.out.println();
+        }
+    }
+
     public boolean equals(Object obj) {
         if(obj==this) 
            return true;

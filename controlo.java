@@ -10,11 +10,11 @@ public class controlo {
         }       
         switch(opcao) {            
             case 1:
-                System.out.println(colors.RESET + "Introduza o seu email:\n" + colors.BLACK);
+                System.out.println(colors.RESET + "Introduza o seu email:" + colors.BLACK);
                 Scanner scanner = new Scanner(System.in);
                 String mail = scanner.nextLine();
                 if(x.existeEmail(mail)){
-                    System.out.println(colors.RESET + "Introduza a palavra-passe:\n" + colors.BLACK);
+                    System.out.println(colors.RESET + "\nIntroduza a palavra-passe:" + colors.BLACK);
                     String pass = scanner.nextLine();
                     if(x.getUtilizadores(mail).getPassword().equals(pass)){
                         utilizadores eu = x.getUtilizadores(mail).clone();

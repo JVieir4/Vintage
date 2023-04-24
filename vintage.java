@@ -18,11 +18,10 @@ public class vintage {
         sb.append(blue + "0) " + reset + "Sair.\n\n");
         sb.append("Selecione a opção pretendida: " + black);
         System.out.println(sb.toString());
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return intScanner();
     }
 
-    public static void clearWindow(){
+    private static void clearWindow(){
         for (int i = 0;i<100;i++){
             System.out.println();
         }
@@ -39,8 +38,7 @@ public class vintage {
         sb.append(blue + "0) " + reset + "Logout.\n\n");
         sb.append("Selecione a opção pretendida: " + black);
         System.out.println(sb.toString());
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return intScanner();
     }
 
     public static int menuArtigo(){
@@ -49,98 +47,90 @@ public class vintage {
         sb.append(blue + "2) " + reset + "Listar uma T-Shirt.\n");
         sb.append(blue + "3) " + reset + "Listar uma Mala.\n");
         sb.append(blue + "4) " + reset + "Outro.\n");
+        sb.append(blue + "0) " + reset + "Voltar.\n");
         sb.append("Selecione a opção pretendida: " + black);
         System.out.println(sb.toString());
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return intScanner();
     }
 
     public static sapatilhas criarSapatilha(){
         Scanner scanner = new Scanner(System.in);
         System.out.println(red + "-----------NOVA SAPATILHA-----------\n\n" + reset);
-        System.out.println("As sapatilhas são premium? (y/n)\n" + black);
-        String n = scanner.nextLine();
-        boolean premium = false;
-        if(n.equals("y") || n.equals("Y")){ premium = true;}
-        System.out.println(reset + "As sapatilhas têm atacadores? (y/n)\n" + black);
-        String m = scanner.nextLine();
-        boolean atacadores = false;
-        if(m.equals("y") || m.equals("Y")){ atacadores = true;}
-        System.out.println( reset + "Qual é o tamanho das sapatilhas?\n" + black);
-        int tamanho = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println(reset + "De que cor são as sapatilhas?\n" + black);
+        System.out.println("As sapatilhas são premium? (y/n)" + black);
+        boolean premium = isYesNo();
+        System.out.println(reset + "\nAs sapatilhas têm atacadores? (y/n)" + black);
+        boolean atacadores = isYesNo();
+        System.out.println( reset + "\nQual é o tamanho das sapatilhas?" + black);
+        int tamanho = intScanner();
+        System.out.println(reset + "\nDe que cor são as sapatilhas?" + black);
         String cor = scanner.nextLine();
-        System.out.println(reset + "Qual é o ano da edição das sapatilhas?\n" + black);
-        int ano = scanner.nextInt();
-        scanner.nextLine();
+        System.out.println(reset + "\nQual é o ano da edição das sapatilhas?" + black);
+        int ano = intScanner();
         sapatilhas sap = new sapatilhas(premium,tamanho,atacadores,cor,ano);
         return sap;
     }
 
     public static tshirts criarTshirts(){
-        Scanner scanner = new Scanner(System.in);
         System.out.println(red + "-----------NOVA TSHIRT-----------\n\n" + reset);
-        System.out.println("Qual é o tamanho da tshirt? (S,M,L,XL)\n" + black);
-        String t = scanner.nextLine();
-        Tamanho tamanho;
-        tamanho = identificaTamanho(t);
-        System.out.println(reset + "Qual é o padrão da tshirt? (Liso, Riscas, Palmeiras)\n" + black);
-        String p = scanner.nextLine();
-        Padroes padrao;
-        padrao = identificaPadrao(p);
+        System.out.println("Qual é o tamanho da tshirt? (S,M,L,XL)" + black);
+        Tamanho tamanho = identificaTamanho();
+        System.out.println(reset + "\nQual é o padrão da tshirt? (Liso, Riscas, Palmeiras)" + black);
+        Padroes padrao = identificaPadrao();
         tshirts tshirt = new tshirts(tamanho,padrao);
         return tshirt;
     }
 
-    private static Padroes identificaPadrao(String p) {
-        if(p.equals("liso") || p.equals("Liso")){
-            return Padroes.Liso;
+    private static Padroes identificaPadrao() {
+        Scanner scanner = new Scanner(System.in);
+        Padroes padrao = null;
+        while (padrao == null) {
+            String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("liso")) {
+                padrao = Padroes.Liso;
+            } else if (input.equalsIgnoreCase("riscas")) {
+                padrao = Padroes.Riscas;
+            } else if (input.equalsIgnoreCase("palmeiras")) {
+                padrao = Padroes.Palmeiras;
+            } else {
+                System.out.println(reset + "\nPadrão inválido, por favor insira novamente: (Liso, Riscas, Palmeiras)" + black);
+            }
         }
-        else if(p.equals("riscas") || p.equals("Riscas")){
-            return Padroes.Riscas;
-        }
-        else if(p.equals("palmeiras") || p.equals("Palmeiras")){
-            return Padroes.Palmeiras;
-        }
-        else{
-            return null;
-        }
+        return padrao;
     }
 
-    private static Tamanho identificaTamanho(String t) {
-        if(t.equals("s") || t.equals("S")){
-            return Tamanho.S;
+    private static Tamanho identificaTamanho() {
+        Scanner scanner = new Scanner(System.in);
+        Tamanho tamanho = null;
+        while (tamanho == null) {
+            String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("s")) {
+                tamanho = Tamanho.S;
+            } else if (input.equalsIgnoreCase("m")) {
+                tamanho = Tamanho.M;
+            } else if (input.equalsIgnoreCase("l")) {
+                tamanho = Tamanho.L;
+            } else if (input.equalsIgnoreCase("xl")) {
+                tamanho = Tamanho.XL;
+            } else {
+                System.out.println(reset + "\nTamanho inválido, por favor insira novamente: (S,M,L,XL)" + black);
+            }
         }
-        else if(t.equals("m") || t.equals("M")){
-            return Tamanho.M;
-        }
-        else if(t.equals("l") || t.equals("L")){
-            return Tamanho.L;
-        }
-        else{
-            return Tamanho.XL;
-        }
+        return tamanho;
     }
 
     public static malas criarMalas(){
         Scanner scanner = new Scanner(System.in);
         System.out.println(red + "-----------NOVA MALA-----------\n\n" + reset);
-        System.out.println("A mala é premium? (y/n)\n" + black);
-        String n = scanner.nextLine();
-        boolean premium = false;
-        if(n.equals("y") || n.equals("Y")){ premium = true;}
-        System.out.println(reset + "Qual é a largura da mala? (cm)\n" + black);
-        int largura_x = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println(reset + "Qual é a altura da mala? (cm)\n" + black);
-        int altura_y = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println(reset + "Qual é o material da mala?\n" + black);
+        System.out.println("A mala é premium? (y/n)" + black);
+        boolean premium = isYesNo();
+        System.out.println(reset + "\nQual é a largura da mala? (cm)" + black);
+        int largura_x = intScanner();
+        System.out.println(reset + "\nQual é a altura da mala? (cm)" + black);
+        int altura_y = intScanner();
+        System.out.println(reset + "\nQual é o material da mala?" + black);
         String material = scanner.nextLine();
-        System.out.println(reset + "Qual é o ano da coleção da mala?\n" + black);
-        int ano = scanner.nextInt();
-        scanner.nextLine();
+        System.out.println(reset + "\nQual é o ano da coleção da mala?" + black);
+        int ano = intScanner();
         malas mala = new malas(premium,largura_x,altura_y,material,ano);
         return mala;
     }
@@ -149,40 +139,36 @@ public class vintage {
         artigos art;
         Scanner scanner = new Scanner(System.in);
         System.out.println(red + "-----------NOVO ARTIGO-----------\n\n" + reset);
-        System.out.println("O artigo foi usado? (y/n)\n" + black);
-        String n = scanner.nextLine();
-        boolean estado = true;
+        System.out.println("O artigo foi usado? (y/n)" + black);
+        boolean estado = isYesNo();
         int ndonos = 0;
-        if(n.equals("y") || n.equals("Y")){
-            System.out.println(reset + "Quantos donos teve o artigo anteriormente?\n" + black);
-            int num = scanner.nextInt();
-            scanner.nextLine();
+        if(estado){
+            System.out.println(reset + "\nQuantos donos teve o artigo anteriormente?" + black);
+            int num = intScanner();
             ndonos = num;
-            estado = false;
         }
-        System.out.println(reset + "Escreva uma breve descrição do artigo.\n" + black);
+        System.out.println(reset + "\nEscreva uma breve descrição do artigo." + black);
         String descricao = scanner.nextLine();
-        System.out.println(reset + "Qual é a marca do artigo.\n" + black);
+        System.out.println(reset + "\nQual é a marca do artigo." + black);
         String marca = scanner.nextLine();
-        System.out.println(reset + "Qual é o código alfanumérico do artigo.\n" + black);
+        System.out.println(reset + "\nQual é o código alfanumérico do artigo." + black);
         String codigo = scanner.nextLine();
-        System.out.println(reset + "Qual é o preço do artigo.\n" + black);
-        double preço = scanner.nextDouble();
-        scanner.nextLine();
+        System.out.println(reset + "\nQual é o preço do artigo." + black);
+        double preço = doubleScanner();
         if (obj instanceof sapatilhas) {
             sapatilhas sap = (sapatilhas) obj;
-            art = new artigos(sap,estado,ndonos,descricao,marca,codigo,preço);
+            art = new artigos(sap,!estado,ndonos,descricao,marca,codigo,preço);
         }
         else if (obj instanceof tshirts) {
             tshirts tshirt = (tshirts) obj;
-            art = new artigos(tshirt,estado,ndonos,descricao,marca,codigo,preço);
+            art = new artigos(tshirt,!estado,ndonos,descricao,marca,codigo,preço);
         }
         else if (obj instanceof malas) {
             malas mala = (malas) obj;
-            art = new artigos(mala,estado,ndonos,descricao,marca,codigo,preço);
+            art = new artigos(mala,!estado,ndonos,descricao,marca,codigo,preço);
         }
         else{
-            art = new artigos(Tipo.Outro,estado,ndonos,descricao,marca,codigo,preço);
+            art = new artigos(Tipo.Outro,!estado,ndonos,descricao,marca,codigo,preço);
         }
         return art;
     }
@@ -190,25 +176,24 @@ public class vintage {
     public static utilizadores criarUtilizador(){
         Scanner scanner = new Scanner(System.in);
         System.out.println(red + "-----------NOVO UTILIZADOR-----------\n\n"+ reset);
-        System.out.println("Email:\n" + black);
+        System.out.println("Email:" + black);
         String mail = scanner.nextLine();
         String pass1 = "a", pass2 = "b";
         int errado = 0;
         while(!pass1.equals(pass2)){
-            if(errado == 1){System.out.println(reset + "As palavras-passes não são iguais. Tente outra vez.\n" + black);}
-            System.out.println(reset + "Palavra-passe:\n" + black);
+            if(errado == 1){System.out.println(reset + "\nAs palavras-passes não são iguais. Tente outra vez." + black);}
+            System.out.println(reset + "\nPalavra-passe:" + black);
             pass1 = scanner.nextLine();
-            System.out.println(reset + "Confirmar Palavra-passe:\n" + black);
+            System.out.println(reset + "\nConfirmar Palavra-passe:" + black);
             pass2 = scanner.nextLine();
             errado++;
         }
-        System.out.println(reset + "Nome:\n" + black);
+        System.out.println(reset + "\nNome:" + black);
         String nome = scanner.nextLine();
-        System.out.println(reset + "Morada:\n" + black);
+        System.out.println(reset + "\nMorada:" + black);
         String morada = scanner.nextLine();
-        System.out.println(reset + "Número Fiscal:\n" + black);
-        int nfiscal = scanner.nextInt();
-        scanner.nextLine();
+        System.out.println(reset + "\nNúmero Fiscal:" + black);
+        int nfiscal = intScanner();
         utilizadores util = new utilizadores(mail, pass1, nome, morada, nfiscal);
         return util;
     }
@@ -220,8 +205,7 @@ public class vintage {
         sb.append(blue + "0) " + reset + "Cancelar.\n\n");
         sb.append("Selecione a opção pretendida: " + black);
         System.out.println(sb.toString());
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return intScanner();
     }
 
     public static int menuCarrinho(){
@@ -232,7 +216,60 @@ public class vintage {
         sb.append(blue + "0) " + reset + "Voltar.\n\n");
         sb.append("Selecione a opção pretendida: " + black);
         System.out.println(sb.toString());
+        return intScanner();
+    }
+
+    private static int intScanner(){
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        String pattern = "\\d+";
+        int opcao = 0;
+        while(true){
+            String input = scanner.next();
+            if(input.matches(pattern)){
+                opcao = Integer.parseInt(input);
+                break;
+            }
+            else{
+                System.out.println(reset + "\nValor inválido, por favor insira um número: " + black);
+            }
+        }
+        scanner.nextLine();
+        return opcao;
+    }
+
+    private static double doubleScanner(){
+        Scanner scanner = new Scanner(System.in);
+        String pattern = "\\d+(,\\d{0,2})?|\\d+(\\.\\d{0,2})?";
+        double valor = 0;
+        while(true){
+            String input = scanner.next();
+            input = input.replace(",", ".");
+            if(input.matches(pattern)){
+                valor = Double.parseDouble(input);
+                break;
+            }
+            else{
+                System.out.println(reset + "\nValor inválido, por favor insira um número: " + black);
+            }
+        }
+        scanner.nextLine();
+        return valor;
+    }
+
+    private static boolean isYesNo(){
+        Scanner scanner = new Scanner(System.in);
+        String pattern = "(?i)[yn]|yes|no";
+        String ans = null;
+        while(true){
+            String input = scanner.next();
+            if(input.matches(pattern)){
+                ans = input;
+                break;
+            }
+            else{
+                System.out.println(reset + "\nValor inválido, por favor responda novamente: (y/n)" + black);
+            }
+        }
+        return ans.equalsIgnoreCase("yes") || ans.equalsIgnoreCase("y");
     }
 }

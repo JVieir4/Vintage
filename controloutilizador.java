@@ -10,16 +10,16 @@ public class controloutilizador {
     public static void run(int novo, utilizadores u, contas x, gestorencomendas g) throws CloneNotSupportedException{
         if(novo == 1){TodosArtigos = x.Stock(u);}
         int opcao = -1;
-        while(opcao < 0 || opcao > 5) {
+        while(opcao < 0 || opcao > 6) {
             opcao = vintage.menuUtilizador();
         }       
         switch(opcao) {            
             case 1:
                 int tipo = -1;
-                while(tipo < 1 || tipo > 4) {
+                while(tipo < 0 || tipo > 4) {
                     tipo = vintage.menuArtigo();
                 }
-                artigos art = criaArtigo(tipo);
+                artigos art = criaArtigo(tipo,u,x,g);
                 u.listarArtigo(art);
                 break;
             case 2:
@@ -69,7 +69,6 @@ public class controloutilizador {
                             System.out.println(u.getCarrinho());
                         g.adicionarEncomenda(u.getCarrinho());
                         }
-                        
                         break;
                     case 0:
                         controloutilizador.run(0, u,x,g);
@@ -77,13 +76,25 @@ public class controloutilizador {
                 }
                 break;
             case 4:
+                if(u.getArtAVenda().isEmpty()){
+                    System.out.println(colors.RESET + "Não tem artigos à venda.");
+                    break;
+                }
                 u.printArtavenda();
                 break;  
             case 5:
-                System.out.println(u.getArtVendidos());
+                if(u.getArtVendidos().isEmpty()){
+                    System.out.println(colors.RESET + "Não vendeu nenhum artigo.");
+                    break;
+                }
+                u.printArtVendidos();
                 break;
             case 6:
-                System.out.println(u.getArtComprados());
+                if(u.getArtComprados().isEmpty()){
+                    System.out.println(colors.RESET + "Não comprou nenhum artigo.");
+                    break;
+                }
+                u.printArtComprados();
                 break;
             case 0:
                 update(x,u);
@@ -101,7 +112,7 @@ public class controloutilizador {
         x.getUtilizadores(u.getEmail()).setArtVendidos(u.getArtVendidos());
     }
 
-    private static artigos criaArtigo(int tipo) {
+    private static artigos criaArtigo(int tipo, utilizadores u, contas x, gestorencomendas g) throws CloneNotSupportedException {
         artigos art = null;
         switch(tipo){
             case 1:
@@ -120,6 +131,8 @@ public class controloutilizador {
                 Object obj = null;
                 art = vintage.criarArtigo(obj);
                 break;
+            case 0:
+                controloutilizador.run(0,u,x,g);
         } 
         return art;
     }
