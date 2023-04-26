@@ -79,14 +79,14 @@ public class encomendas {
                 usados++;
             }
         }
-        return res + (0.5*novos) + (0.25*usados) /* + taxa de expedição */;
+        return res + (0.5*novos) + (0.25*usados) /* + art.getTransportadora().getTaxaExp() */;
     }
 
     public Dimensao calculaDimensao(int size){
-        if(size < 5){
+        if(size < 2){
             return Dimensao.Pequena;
         }
-        else if(size >= 5 && size <= 10){
+        else if(size >= 2 && size <= 5){
             return Dimensao.Média;
         }
         else{

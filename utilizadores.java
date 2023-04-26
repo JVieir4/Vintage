@@ -9,7 +9,7 @@ public class utilizadores implements Cloneable {
     private String nome;
     private String morada;
     private int nfiscal;
-    private encomendas carrinho; 
+    private encomendas carrinho;
     private ArrayList<artigos> artavenda = new ArrayList<>();
     private ArrayList<artigos> artvendidos = new ArrayList<>();
     private ArrayList<artigos> artcomprados = new ArrayList<>();
@@ -106,12 +106,6 @@ public class utilizadores implements Cloneable {
         artavenda.add(A);
     }
 
-    public void comprarArtigo(){
-        /* Função para comprar um artigo
-         * Esta função mostra uma lista dos artigos disponíveis
-         * E esse mesmo artigo é colocado na lista art_comprados;
-         */
-    }
 
     @Override
     public utilizadores clone() throws CloneNotSupportedException {
@@ -159,5 +153,14 @@ public class utilizadores implements Cloneable {
             u.getArtAVenda().equals(this.getArtAVenda()) &&
             u.getArtComprados().equals(this.getArtComprados()) &&
             u.getArtVendidos().equals(this.getArtVendidos());
+    }
+
+    public boolean carrinhotem(artigos art){
+        for(artigos a: carrinho.artigos){
+            if(a.equals(art)){
+                return true;
+            }
+        }
+        return false;
     }
 }

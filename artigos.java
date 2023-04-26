@@ -14,6 +14,7 @@ public class artigos {
     private sapatilhas sapatilha;
     private tshirts tshirt;
     private malas mala;
+    private transportadora transp;
     DecimalFormat df = new DecimalFormat("#.##");
 
     enum Tipo {
@@ -23,7 +24,7 @@ public class artigos {
         Outro
     }
 
-    public artigos(Tipo type, boolean state, int donos, String desc, String brand, String code, double price){
+    public artigos(Tipo type, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
         this.tipo = type;
         this.estado = state;
         this.ndonos = donos;
@@ -31,9 +32,10 @@ public class artigos {
         this.marca = brand;
         this.codigo = code;
         this.preco = price;
+        this.transp = t;
     }
 
-    public artigos(sapatilhas sap, boolean state, int donos, String desc, String brand, String code, double price){
+    public artigos(sapatilhas sap, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
         this.tipo = Tipo.Sapatilha;
         this.estado = state;
         this.ndonos = donos;
@@ -42,9 +44,10 @@ public class artigos {
         this.codigo = code;
         this.preco = price;
         this.sapatilha = sap;
+        this.transp = t;
     }
 
-    public artigos(tshirts tshirt, boolean state, int donos, String desc, String brand, String code, double price){
+    public artigos(tshirts tshirt, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
         this.tipo = Tipo.TShirt;
         this.estado = state;
         this.ndonos = donos;
@@ -53,9 +56,10 @@ public class artigos {
         this.codigo = code;
         this.preco = price;
         this.tshirt = tshirt;
+        this.transp = t;
     }
 
-    public artigos(malas mala, boolean state, int donos, String desc, String brand, String code, double price){
+    public artigos(malas mala, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
         this.tipo = Tipo.Mala;
         this.estado = state;
         this.ndonos = donos;
@@ -64,6 +68,14 @@ public class artigos {
         this.codigo = code;
         this.preco = price;
         this.mala = mala;
+        this.transp = t;
+    }
+
+    public transportadora getTransportadora() {
+        return this.transp;
+    }
+    public void setTransportadora(transportadora t) {
+        this.transp = t;
     }
 
     public int getNdonos() {
@@ -163,43 +175,47 @@ public class artigos {
         switch(tipo){
             case Sapatilha:
                 return yellow + this.tipo +
-                green + "\n- Marca: " + "\t" + reset + this.marca +
-                green + "\n- Premium? " + "\t" + reset + sapatilha.getPremium() + 
-                green + "\n- Descrição: " + "\t" + reset + this.descricao +
-                green + "\n- Tamanho: " + "\t" + reset + sapatilha.getTam() +
-                green + "\n- Cor: " + "\t\t" + reset + sapatilha.getCor() +
-                green + "\n- Atacadores? " + "\t" + reset + sapatilha.getAtac() +
-                green +  "\n- Edição: " + "\t" + reset + sapatilha.getData() +
-                green + "\n- Novo?: " + "\t" + reset + this.estado +
-                green + "\n- Preço: " + "\t" + reset + df.format(CalculaPreço()) +
-                green + "\n- Código: " + "\t" + reset + this.codigo;
+                green + "\n- Marca: " + "\t\t" + reset + this.marca +
+                green + "\n- Premium? " + "\t\t" + reset + sapatilha.getPremium() + 
+                green + "\n- Descrição: " + "\t\t" + reset + this.descricao +
+                green + "\n- Tamanho: " + "\t\t" + reset + sapatilha.getTam() +
+                green + "\n- Cor: " + "\t\t\t" + reset + sapatilha.getCor() +
+                green + "\n- Atacadores? " + "\t\t" + reset + sapatilha.getAtac() +
+                green +  "\n- Edição: " + "\t\t" + reset + sapatilha.getData() +
+                green + "\n- Novo?: " + "\t\t" + reset + this.estado +
+                green + "\n- Preço: " + "\t\t" + reset + df.format(CalculaPreço()) +
+                green + "\n- Código: " + "\t\t" + reset + this.codigo +
+                green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
             case TShirt:
                 return yellow + this.tipo +
-                green + "\n- Marca: " + "\t" + reset + this.marca +
-                green + "\n- Descrição: " + "\t" + reset + this.descricao +
-                green + "\n- Tamanho: " + "\t" + reset + tshirt.getTamanho() +
-                green + "\n- Padrão: " + "\t" + reset + tshirt.getPadrao() +
-                green + "\n- Novo? " + "\t" + reset + this.estado +
-                green + "\n- Preço: " + "\t" + reset + df.format(CalculaPreço()) +
-                green + "\n- Código: " + "\t" + reset + this.codigo;
+                green + "\n- Marca: " + "\t\t" + reset + this.marca +
+                green + "\n- Descrição: " + "\t\t" + reset + this.descricao +
+                green + "\n- Tamanho: " + "\t\t" + reset + tshirt.getTamanho() +
+                green + "\n- Padrão: " + "\t\t" + reset + tshirt.getPadrao() +
+                green + "\n- Novo? " + "\t\t" + reset + this.estado +
+                green + "\n- Preço: " + "\t\t" + reset + df.format(CalculaPreço()) +
+                green + "\n- Código: " + "\t\t" + reset + this.codigo +
+                green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
             case Mala:
                 return yellow +this.tipo +
-                green + "\n- Marca: " + "\t" + reset + this.marca +
-                green + "\n- Premium? " + "\t" + reset + mala.getPrem() +
-                green + "\n- Descrição: " + "\t" + reset + this.descricao +
-                green + "\n- Tamanho: " + "\t" + reset + mala.getDimx() + "x" + mala.getDimy() +
-                green + "\n- Material: " + "\t" + reset + mala.getMaterial() +
-                green + "\n- Edição: " + "\t" + reset + mala.getData() +
-                green + "\n- Novo? " + "\t" + reset + this.estado +
-                green + "\n- Preço: " + "\t" + reset + df.format(CalculaPreço()) +
-                green + "\n- Código: " + "\t" + reset + this.codigo;
+                green + "\n- Marca: " + "\t\t" + reset + this.marca +
+                green + "\n- Premium? " + "\t\t" + reset + mala.getPrem() +
+                green + "\n- Descrição: " + "\t\t" + reset + this.descricao +
+                green + "\n- Tamanho: " + "\t\t" + reset + mala.getDimx() + "x" + mala.getDimy() +
+                green + "\n- Material: " + "\t\t" + reset + mala.getMaterial() +
+                green + "\n- Edição: " + "\t\t" + reset + mala.getData() +
+                green + "\n- Novo? " + "\t\t" + reset + this.estado +
+                green + "\n- Preço: " + "\t\t" + reset + df.format(CalculaPreço()) +
+                green + "\n- Código: " + "\t\t" + reset + this.codigo +
+                green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
             case Outro:
                 return yellow + this.tipo +
-                green + "\n- Marca: " + "\t" + reset + this.marca +
-                green + "\n- Descrição: " + "\t" + reset + this.descricao +
-                green + "\n- Novo? " + "\t" + reset + this.estado +
-                green + "\n- Preço: " + "\t" + reset + df.format(CalculaPreço()) +
-                green + "\n- Código: " + "\t" + reset + this.codigo;
+                green + "\n- Marca: " + "\t\t" + reset + this.marca +
+                green + "\n- Descrição: " + "\t\t" + reset + this.descricao +
+                green + "\n- Novo? " + "\t\t" + reset + this.estado +
+                green + "\n- Preço: " + "\t\t" + reset + df.format(CalculaPreço()) +
+                green + "\n- Código: " + "\t\t" + reset + this.codigo +
+                green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
         }
         return null;
     }

@@ -135,7 +135,7 @@ public class vintage {
         return mala;
     }
  
-    public static artigos criarArtigo(Object obj){
+    public static artigos criarArtigo(Object obj, gestortransportadoras gt){
         artigos art;
         Scanner scanner = new Scanner(System.in);
         System.out.println(red + "-----------NOVO ARTIGO-----------\n\n" + reset);
@@ -155,22 +155,38 @@ public class vintage {
         String codigo = scanner.nextLine();
         System.out.println(reset + "\nQual é o preço do artigo." + black);
         double preço = doubleScanner();
+        System.out.println(reset + "\nQual transportadora quer utilizar: " + black);
+        transportadora t = escolheTransportadora(gt);
         if (obj instanceof sapatilhas) {
             sapatilhas sap = (sapatilhas) obj;
-            art = new artigos(sap,!estado,ndonos,descricao,marca,codigo,preço);
+            art = new artigos(sap,!estado,ndonos,descricao,marca,codigo,preço,t);
         }
         else if (obj instanceof tshirts) {
             tshirts tshirt = (tshirts) obj;
-            art = new artigos(tshirt,!estado,ndonos,descricao,marca,codigo,preço);
+            art = new artigos(tshirt,!estado,ndonos,descricao,marca,codigo,preço,t);
         }
         else if (obj instanceof malas) {
             malas mala = (malas) obj;
-            art = new artigos(mala,!estado,ndonos,descricao,marca,codigo,preço);
+            art = new artigos(mala,!estado,ndonos,descricao,marca,codigo,preço,t);
         }
         else{
-            art = new artigos(Tipo.Outro,!estado,ndonos,descricao,marca,codigo,preço);
+            art = new artigos(Tipo.Outro,!estado,ndonos,descricao,marca,codigo,preço,t);
         }
         return art;
+    }
+
+    private static transportadora escolheTransportadora(gestortransportadoras gt) {
+        System.out.println(gt);
+        transportadora t;
+        System.out.println(reset + "Insira o número da transportadora que deseja escolher: " + black);
+        Scanner scanner = new Scanner(System.in);
+        int index = scanner.nextInt();
+        while (index < 1 || index > gt.getCounter()){
+            System.out.println(reset + "Valor inválido, insira o número de uma das transportadoras: " + black);
+            index = scanner.nextInt();
+        }
+        t = gt.getTransportadorabyIndex(index);
+        return t;
     }
 
     public static utilizadores criarUtilizador(){
@@ -194,6 +210,7 @@ public class vintage {
         String morada = scanner.nextLine();
         System.out.println(reset + "\nNúmero Fiscal:" + black);
         int nfiscal = intScanner();
+        System.out.println("");
         utilizadores util = new utilizadores(mail, pass1, nome, morada, nfiscal);
         return util;
     }
