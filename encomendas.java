@@ -12,6 +12,7 @@ public class encomendas {
     private LocalDate data_de_criacao;
     ArrayList<artigos> artigos;
     DecimalFormat df = new DecimalFormat("#.##");
+    
 
     enum Dimensao{
         Grande,
@@ -117,12 +118,13 @@ public class encomendas {
 
     @Override
     public String toString() {
+        df.setMinimumFractionDigits(2);
         StringBuilder sb = new StringBuilder();
         sb.append(colors.RESET + "Encomenda " + colors.GREEN).append(calculaDimensao(this.artigos.size()))
           .append(colors.RESET + " feita em: " + colors.GREEN).append(this.data_de_criacao)
           .append(colors.RESET + " por: " + colors.BLUE).append(this.nome)
           .append("." + colors.GREEN + "\nEstado: " + colors.RESET).append(this.estado)
-          .append(colors.RESET + "\nCusto base (sem impostos e taxas): " + colors.RESET).append(df.format(calculaPreco(this.artigos)))
+          .append(colors.GREEN + "\nCusto base (sem impostos e taxas): " + colors.RESET).append(df.format(calculaPreco(this.artigos)))
           .append(colors.GREEN + "\nCusto: " + colors.RESET).append(df.format(this.preco))
           .append(colors.BLUE + "\nArtigos:\n" + colors.RESET).append(imprimeArtigos(this.artigos));
         return sb.toString();

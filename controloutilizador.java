@@ -1,9 +1,11 @@
 package vintage;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
 import vintage.artigos.Tipo;
+import vintage.encomendas.Estado;
 
 public class controloutilizador {
     private static Map<Integer, artigos> TodosArtigos = null;
@@ -69,8 +71,12 @@ public class controloutilizador {
                         if (u.getCarrinho().getArtigos().isEmpty()) {
                             System.out.println(colors.RESET + "O carrinho está vazio. Por favor adicione artigos.");
                         } else {
+                            u.getCarrinho().setEstado(Estado.Finalizada);
                             System.out.println(u.getCarrinho());
                             ge.adicionarEncomenda(u.getCarrinho());
+                            //ArrayList<artigos> temp = u.getCarrinho().getArtigos();
+                            u.getArtComprados().addAll(u.getCarrinho().getArtigos());
+                            u.getCarrinho().getArtigos().clear();
                         }
                         break;
                     case 0:
