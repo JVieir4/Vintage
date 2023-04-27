@@ -31,8 +31,8 @@ public class artigos {
         this.descricao = desc;
         this.marca = brand;
         this.codigo = code;
-        this.preco = price;
         this.transp = t;
+        this.preco = CalculaPreço(price);
     }
 
     public artigos(sapatilhas sap, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
@@ -42,9 +42,9 @@ public class artigos {
         this.descricao = desc;
         this.marca = brand;
         this.codigo = code;
-        this.preco = price;
         this.sapatilha = sap;
         this.transp = t;
+        this.preco = CalculaPreço(price);
     }
 
     public artigos(tshirts tshirt, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
@@ -54,9 +54,9 @@ public class artigos {
         this.descricao = desc;
         this.marca = brand;
         this.codigo = code;
-        this.preco = price;
         this.tshirt = tshirt;
         this.transp = t;
+        this.preco = CalculaPreço(price);
     }
 
     public artigos(malas mala, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
@@ -66,9 +66,9 @@ public class artigos {
         this.descricao = desc;
         this.marca = brand;
         this.codigo = code;
-        this.preco = price;
         this.mala = mala;
         this.transp = t;
+        this.preco = CalculaPreço(price);
     }
 
     public transportadora getTransportadora() {
@@ -134,7 +134,7 @@ public class artigos {
         this.tipo = t;
     }
 
-    public double CalculaPreço(){
+    public double CalculaPreço(double price){
         switch(tipo){
             case Sapatilha:
                 if(sapatilha.getPremium()){
@@ -163,7 +163,7 @@ public class artigos {
             case Outro:
                 break;
         }
-        return this.preco = this.preco - ((this.preco * this.correcao)/ 100);
+        return price = price - ((price * this.correcao)/ 100);
     }
 
     @Override
@@ -183,7 +183,7 @@ public class artigos {
                 green + "\n- Atacadores? " + "\t\t" + reset + sapatilha.getAtac() +
                 green +  "\n- Edição: " + "\t\t" + reset + sapatilha.getData() +
                 green + "\n- Novo?: " + "\t\t" + reset + this.estado +
-                green + "\n- Preço: " + "\t\t" + reset + df.format(CalculaPreço()) +
+                green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) +
                 green + "\n- Código: " + "\t\t" + reset + this.codigo +
                 green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
             case TShirt:
@@ -193,7 +193,7 @@ public class artigos {
                 green + "\n- Tamanho: " + "\t\t" + reset + tshirt.getTamanho() +
                 green + "\n- Padrão: " + "\t\t" + reset + tshirt.getPadrao() +
                 green + "\n- Novo? " + "\t\t" + reset + this.estado +
-                green + "\n- Preço: " + "\t\t" + reset + df.format(CalculaPreço()) +
+                green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) +
                 green + "\n- Código: " + "\t\t" + reset + this.codigo +
                 green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
             case Mala:
@@ -205,7 +205,7 @@ public class artigos {
                 green + "\n- Material: " + "\t\t" + reset + mala.getMaterial() +
                 green + "\n- Edição: " + "\t\t" + reset + mala.getData() +
                 green + "\n- Novo? " + "\t\t" + reset + this.estado +
-                green + "\n- Preço: " + "\t\t" + reset + df.format(CalculaPreço()) +
+                green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) +
                 green + "\n- Código: " + "\t\t" + reset + this.codigo +
                 green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
             case Outro:
@@ -213,7 +213,7 @@ public class artigos {
                 green + "\n- Marca: " + "\t\t" + reset + this.marca +
                 green + "\n- Descrição: " + "\t\t" + reset + this.descricao +
                 green + "\n- Novo? " + "\t\t" + reset + this.estado +
-                green + "\n- Preço: " + "\t\t" + reset + df.format(CalculaPreço()) +
+                green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) +
                 green + "\n- Código: " + "\t\t" + reset + this.codigo +
                 green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
         }

@@ -3,7 +3,7 @@ package vintage;
 public class mainV {   
     public static void main(String[] args) throws CloneNotSupportedException{
         /* Transportadoras */
-        transportadora amazon = new transportadora("Amazon", 1.50);
+        transportadora amazon = new transportadora("Amazon", 1.25);
         transportadora OLX = new transportadora("OLX", 1.15);
         //nova
 
