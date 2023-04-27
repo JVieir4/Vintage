@@ -2,7 +2,6 @@ package vintage;
 
 public class transportadora {
     private String transportadora;
-    private double precoExpedicao;
     private double margemlucro;
 
     public transportadora(String nome, double mlucro){

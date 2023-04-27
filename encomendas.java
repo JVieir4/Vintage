@@ -72,6 +72,8 @@ public class encomendas {
         int usados = 0;
         for(artigos art : a){
             res += art.CalculaPreço();
+            System.out.println(art.CalculaPreço());
+            preco += (art.CalculaPreço() * art.getTransportadora().getTaxa() * (1 + 0.20)); /* Sendo 20% imposto */
             if(art.getEstado()){
                 novos++;
             }
@@ -79,7 +81,8 @@ public class encomendas {
                 usados++;
             }
         }
-        return res + (0.5*novos) + (0.25*usados) /* + art.getTransportadora().getTaxaExp() */;
+        preco = (preco + (0.5*novos) + (0.25*usados)) * 0.9;
+        return res;
     }
 
     public Dimensao calculaDimensao(int size){
@@ -119,7 +122,8 @@ public class encomendas {
           .append(colors.RESET + " feita em: " + colors.GREEN).append(this.data_de_criacao)
           .append(colors.RESET + " por: " + colors.BLUE).append(this.nome)
           .append("." + colors.GREEN + "\nEstado: " + colors.RESET).append(this.estado)
-          .append(colors.GREEN + "\nCusto: " + colors.RESET).append(df.format(calculaPreco(this.artigos)))
+          .append(colors.RESET + "\nCusto base (sem impostos e taxas): " + colors.RESET).append(df.format(calculaPreco(this.artigos)))
+          .append(colors.GREEN + "\nCusto: " + colors.RESET).append(df.format(this.preco))
           .append(colors.BLUE + "\nArtigos:\n" + colors.RESET).append(imprimeArtigos(this.artigos));
         return sb.toString();
     }

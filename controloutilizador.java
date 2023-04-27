@@ -14,7 +14,7 @@ public class controloutilizador {
         }
         int opcao = -1;
         while (opcao < 0 || opcao > 6) {
-            opcao = vintage.menuUtilizador();
+            opcao = vintage.menuUtilizador(u);
         }
         switch (opcao) {
             case 1:
@@ -57,9 +57,11 @@ public class controloutilizador {
                         Scanner scanner = new Scanner(System.in);
                         int index = scanner.nextInt();
                         while (index != 0) {
-                            artigos arti = u.getCarrinho().getArtigos().get(index - 1);
-                            TodosArtigos.put(index, arti);
-                            u.getCarrinho().removeArtigo(arti);
+                            if(index <= u.getCarrinho().getArtigos().size()){
+                                artigos arti = u.getCarrinho().getArtigos().get(index - 1);
+                                TodosArtigos.put(index, arti);
+                                u.getCarrinho().removeArtigo(arti);
+                            }
                             index = scanner.nextInt();
                         }
                         break;

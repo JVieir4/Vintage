@@ -2,8 +2,8 @@ package vintage;
 
 public class mainV {   
     public static void main(String[] args) throws CloneNotSupportedException{
-        transportadora amazon = new transportadora("Amazon", 1.25);
-        transportadora OLX = new transportadora("OLX", 0.50);
+        transportadora amazon = new transportadora("Amazon", 1.50);
+        transportadora OLX = new transportadora("OLX", 1.15);
         sapatilhas A = new sapatilhas(false, 40, true, "azul", 2020);
         artigos artS = new artigos(A, false, 1, "sapatilhas fixes", "Nike", "A1B2C3", 19.99, amazon);
         tshirts B = new tshirts(Tamanho.M, Padroes.Liso);
@@ -11,8 +11,8 @@ public class mainV {
         malas C = new malas(true, 30, 32, "Policarbonato", 2008);
         artigos artM = new artigos(C, false, 2, "Mala fixe", "Samsonite", "A1A1A1", 49.99, OLX);
         
-        utilizadores eu = new utilizadores("aaa","pass", "Vieira", "Rua Teste", 123);
-        utilizadores tu = new utilizadores("abc@teste.com","abc", "Calafate", "Avenida Teste", 456);
+        utilizadores eu = new utilizadores("aaa","pass", "Vieira", "Rua Teste", 123456789);
+        utilizadores tu = new utilizadores("abc@teste.com","abc", "Calafate", "Avenida Teste", 987654321);
         
         eu.listarArtigo(artS);
         eu.listarArtigo(artM);

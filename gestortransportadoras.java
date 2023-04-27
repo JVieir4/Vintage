@@ -54,7 +54,7 @@ public class gestortransportadoras {
         int index = 1;
         for(transportadora t : this.transportadoras){
             sb.append(colors.BLUE + index + ") " + colors.YELLOW + t.getNome() +
-            "\t" + colors.GREEN + "Taxa de expedição: " + colors.RESET + t.getTaxa() + "\n\n");
+            "\n" + colors.GREEN + "Taxa de expedição: " + colors.RESET + t.getTaxa() + "\n\n");
             index++;
         }
         return sb.toString();

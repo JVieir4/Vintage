@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class controlo {
     public static void run(contas x, gestorencomendas ge, gestortransportadoras gt, boolean clear) throws CloneNotSupportedException{
         int opcao = -1;
-        while(opcao < 0 || opcao > 3) {
+        while(opcao < 0 || opcao > 4) {
             opcao = vintage.MenuInicial(clear);
         }       
         switch(opcao) {            
@@ -37,6 +37,24 @@ public class controlo {
                 break;
             case 3:
                 System.out.println(x);
+                controlo.run(x,ge,gt,false);
+                break;
+            case 4:
+                int op = -1;
+                while(op < 0 || op > 2) {
+                    op = vintage.menuTransportadora(gt);
+                }
+                switch(op){
+                    case 1:
+                        transportadora t = vintage.criarTransportadora();
+                        gt.adicionarTransportadora(t);
+                        break;
+                    case 2:
+                        gt.removerTransportadora(vintage.escolheTransportadora(gt, "remover: "));
+                        break;
+                    case 0:
+                        break;
+                }
                 controlo.run(x,ge,gt,false);
                 break;
             case 0:

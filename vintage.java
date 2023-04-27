@@ -14,7 +14,8 @@ public class vintage {
         StringBuilder sb = new StringBuilder(red + "-----------MENU INICIAL-----------\n\n");
         sb.append(blue + "1) " + reset + "Iniciar sessão.\n");
         sb.append(blue + "2) " + reset + "Registar nova conta.\n");
-        sb.append(blue + "3) " + reset +  "Ver utilizadores registados.\n");
+        sb.append(blue + "3) " + reset + "Ver utilizadores registados.\n");
+        sb.append(blue + "4) " + reset + "Ver transportadoras registadas.\n");
         sb.append(blue + "0) " + reset + "Sair.\n\n");
         sb.append("Selecione a opção pretendida: " + black);
         System.out.println(sb.toString());
@@ -27,8 +28,9 @@ public class vintage {
         }
     }
 
-    public static int menuUtilizador(){
-        StringBuilder sb = new StringBuilder(red + "-----------MENU UTILIZADOR-----------\n\n");
+    public static int menuUtilizador(utilizadores u){
+        StringBuilder sb = new StringBuilder(red + "-----------MENU UTILIZADOR-----------\n");
+        sb.append(colors.YELLOW + u.getNome() + ":\n\n");
         sb.append(blue + "1) " + reset + "Listar um artigo.\n");
         sb.append(blue + "2) " + reset + "Comprar um artigo.\n");
         sb.append(blue + "3) " + reset + "Ver carrinho.\n");
@@ -54,7 +56,6 @@ public class vintage {
     }
 
     public static sapatilhas criarSapatilha(){
-        Scanner scanner = new Scanner(System.in);
         System.out.println(red + "-----------NOVA SAPATILHA-----------\n\n" + reset);
         System.out.println("As sapatilhas são premium? (y/n)" + black);
         boolean premium = isYesNo();
@@ -63,7 +64,7 @@ public class vintage {
         System.out.println( reset + "\nQual é o tamanho das sapatilhas?" + black);
         int tamanho = intScanner();
         System.out.println(reset + "\nDe que cor são as sapatilhas?" + black);
-        String cor = scanner.nextLine();
+        String cor = stringScanner();
         System.out.println(reset + "\nQual é o ano da edição das sapatilhas?" + black);
         int ano = intScanner();
         sapatilhas sap = new sapatilhas(premium,tamanho,atacadores,cor,ano);
@@ -119,7 +120,6 @@ public class vintage {
     }
 
     public static malas criarMalas(){
-        Scanner scanner = new Scanner(System.in);
         System.out.println(red + "-----------NOVA MALA-----------\n\n" + reset);
         System.out.println("A mala é premium? (y/n)" + black);
         boolean premium = isYesNo();
@@ -128,7 +128,7 @@ public class vintage {
         System.out.println(reset + "\nQual é a altura da mala? (cm)" + black);
         int altura_y = intScanner();
         System.out.println(reset + "\nQual é o material da mala?" + black);
-        String material = scanner.nextLine();
+        String material = stringScanner();
         System.out.println(reset + "\nQual é o ano da coleção da mala?" + black);
         int ano = intScanner();
         malas mala = new malas(premium,largura_x,altura_y,material,ano);
@@ -137,7 +137,6 @@ public class vintage {
  
     public static artigos criarArtigo(Object obj, gestortransportadoras gt){
         artigos art;
-        Scanner scanner = new Scanner(System.in);
         System.out.println(red + "-----------NOVO ARTIGO-----------\n\n" + reset);
         System.out.println("O artigo foi usado? (y/n)" + black);
         boolean estado = isYesNo();
@@ -148,15 +147,15 @@ public class vintage {
             ndonos = num;
         }
         System.out.println(reset + "\nEscreva uma breve descrição do artigo." + black);
-        String descricao = scanner.nextLine();
+        String descricao = stringScanner();
         System.out.println(reset + "\nQual é a marca do artigo." + black);
-        String marca = scanner.nextLine();
+        String marca = stringScanner();
         System.out.println(reset + "\nQual é o código alfanumérico do artigo." + black);
-        String codigo = scanner.nextLine();
+        String codigo = stringScanner();
         System.out.println(reset + "\nQual é o preço do artigo." + black);
         double preço = doubleScanner();
         System.out.println(reset + "\nQual transportadora quer utilizar: " + black);
-        transportadora t = escolheTransportadora(gt);
+        transportadora t = escolheTransportadora(gt, "escolher: ");
         if (obj instanceof sapatilhas) {
             sapatilhas sap = (sapatilhas) obj;
             art = new artigos(sap,!estado,ndonos,descricao,marca,codigo,preço,t);
@@ -175,39 +174,37 @@ public class vintage {
         return art;
     }
 
-    private static transportadora escolheTransportadora(gestortransportadoras gt) {
+    public static transportadora escolheTransportadora(gestortransportadoras gt, String acao) {
         System.out.println(gt);
         transportadora t;
-        System.out.println(reset + "Insira o número da transportadora que deseja escolher: " + black);
-        Scanner scanner = new Scanner(System.in);
-        int index = scanner.nextInt();
+        System.out.println(reset + "Insira o número da transportadora que deseja " + acao + black);
+        int index = intScanner();
         while (index < 1 || index > gt.getCounter()){
             System.out.println(reset + "Valor inválido, insira o número de uma das transportadoras: " + black);
-            index = scanner.nextInt();
+            index = intScanner();
         }
         t = gt.getTransportadorabyIndex(index);
         return t;
     }
 
     public static utilizadores criarUtilizador(){
-        Scanner scanner = new Scanner(System.in);
         System.out.println(red + "-----------NOVO UTILIZADOR-----------\n\n"+ reset);
         System.out.println("Email:" + black);
-        String mail = scanner.nextLine();
+        String mail = stringScanner();
         String pass1 = "a", pass2 = "b";
         int errado = 0;
         while(!pass1.equals(pass2)){
             if(errado == 1){System.out.println(reset + "\nAs palavras-passes não são iguais. Tente outra vez." + black);}
             System.out.println(reset + "\nPalavra-passe:" + black);
-            pass1 = scanner.nextLine();
+            pass1 = stringScanner();
             System.out.println(reset + "\nConfirmar Palavra-passe:" + black);
-            pass2 = scanner.nextLine();
+            pass2 = stringScanner();
             errado++;
         }
         System.out.println(reset + "\nNome:" + black);
-        String nome = scanner.nextLine();
+        String nome = stringScanner();
         System.out.println(reset + "\nMorada:" + black);
-        String morada = scanner.nextLine();
+        String morada = stringScanner();
         System.out.println(reset + "\nNúmero Fiscal:" + black);
         int nfiscal = intScanner();
         System.out.println("");
@@ -234,6 +231,42 @@ public class vintage {
         sb.append("Selecione a opção pretendida: " + black);
         System.out.println(sb.toString());
         return intScanner();
+    }
+
+    public static int menuTransportadora(gestortransportadoras gt){
+        StringBuilder sb = new StringBuilder(red + "-----------MENU TRANSPORTADORA-----------\n\n" + reset);
+        sb.append(gt.toString());
+        sb.append(blue + "1) " + reset + "Adicionar transportadora.\n");
+        sb.append(blue + "2) " + reset + "Remover transportadora.\n");
+        sb.append(blue + "0) " + reset + "Voltar.\n");
+        sb.append("Selecione a opção pretendida: " + black);
+        System.out.println(sb.toString());
+        return intScanner();
+    }
+
+    public static transportadora criarTransportadora(){
+        System.out.println(red + "-----------NOVA TRANSPORTADORA-----------\n\n");
+        System.out.println(reset + "Qual é o nome da transportadora: " + black);
+        String nome = stringScanner();
+        System.out.println(reset + "\nQual é a taxa de expedição da transportadora: " + black);
+        double taxa = doubleScanner();
+        return new transportadora(nome, taxa);
+    }
+
+    private static String stringScanner(){
+        Scanner scanner = new Scanner(System.in);
+        String txt;
+        while(true){
+            String input = scanner.nextLine();
+            if(input != null && input != "" && input != "\n"){
+                txt = input;
+                break;
+            }
+            else{
+                System.out.println(reset + "\nInválido, por favor responda novamente: " + black);
+            }
+        }
+        return txt;
     }
 
     private static int intScanner(){
