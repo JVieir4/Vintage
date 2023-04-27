@@ -96,6 +96,12 @@ public class contas {
             }
         }
     }
+
+    public void artigoVendidoForAll(){
+        for(utilizadores u: contas.values()){
+            u.artigoVendido();
+        }
+    }
     
     public String toString() {
         final StringBuffer sb = new StringBuffer();

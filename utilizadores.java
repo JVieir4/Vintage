@@ -1,6 +1,7 @@
 package vintage;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class utilizadores implements Cloneable {
     private String systemcode;
@@ -135,6 +136,17 @@ public class utilizadores implements Cloneable {
         for (artigos artigo : artcomprados) {
             System.out.println(artigo);
             System.out.println();
+        }
+    }
+
+    public void artigoVendido(){
+        Iterator<artigos> iterator = artavenda.iterator();
+        while (iterator.hasNext()) {
+            artigos art = iterator.next();
+            if (!art.getDisponivel()) {
+                iterator.remove();
+                artvendidos.add(art);
+            }
         }
     }
 

@@ -15,6 +15,7 @@ public class artigos {
     private tshirts tshirt;
     private malas mala;
     private transportadora transp;
+    private boolean disponivel;
     DecimalFormat df = new DecimalFormat("#.##");
 
     enum Tipo {
@@ -33,6 +34,7 @@ public class artigos {
         this.codigo = code;
         this.transp = t;
         this.preco = CalculaPreço(price);
+        this.disponivel = true;
     }
 
     public artigos(sapatilhas sap, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
@@ -45,6 +47,7 @@ public class artigos {
         this.sapatilha = sap;
         this.transp = t;
         this.preco = CalculaPreço(price);
+        this.disponivel = true;
     }
 
     public artigos(tshirts tshirt, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
@@ -57,6 +60,7 @@ public class artigos {
         this.tshirt = tshirt;
         this.transp = t;
         this.preco = CalculaPreço(price);
+        this.disponivel = true;
     }
 
     public artigos(malas mala, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
@@ -69,6 +73,7 @@ public class artigos {
         this.mala = mala;
         this.transp = t;
         this.preco = CalculaPreço(price);
+        this.disponivel = true;
     }
 
     public transportadora getTransportadora() {
@@ -76,6 +81,13 @@ public class artigos {
     }
     public void setTransportadora(transportadora t) {
         this.transp = t;
+    }
+
+    public boolean getDisponivel(){
+        return this.disponivel;
+    }
+    public void setDisponivel(boolean x){
+        this.disponivel = x;
     }
 
     public int getNdonos() {

@@ -61,6 +61,7 @@ public class controloutilizador {
                         while (index != 0) {
                             if(index <= u.getCarrinho().getArtigos().size()){
                                 artigos arti = u.getCarrinho().getArtigos().get(index - 1);
+                                arti.setDisponivel(true);
                                 TodosArtigos.put(index, arti);
                                 u.getCarrinho().removeArtigo(arti);
                             }
@@ -74,9 +75,12 @@ public class controloutilizador {
                             u.getCarrinho().setEstado(Estado.Finalizada);
                             System.out.println(u.getCarrinho());
                             ge.adicionarEncomenda(u.getCarrinho());
-                            //ArrayList<artigos> temp = u.getCarrinho().getArtigos();
+                            for(artigos a: u.getCarrinho().getArtigos()){
+                                a.setDisponivel(false);
+                            }
                             u.getArtComprados().addAll(u.getCarrinho().getArtigos());
                             u.getCarrinho().getArtigos().clear();
+                            x.artigoVendidoForAll();
                         }
                         break;
                     case 0:
