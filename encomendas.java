@@ -85,7 +85,6 @@ public class encomendas {
 
     public double calculaPreco(ArrayList<artigos> a){
         double res = 0;
-        double lucro_transportadora = 0;
         int novos = 0;
         int usados = 0;
         for(artigos art : a){

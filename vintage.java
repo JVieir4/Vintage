@@ -48,9 +48,9 @@ public class vintage {
 
     public static int menuArtigo(){
         StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU ARTIGO-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n" + colors.RESET);
-        sb.append(colors.BLUE + "1) " + colors.RESET + "Listar uma Sapatilha.\n");
-        sb.append(colors.BLUE + "2) " + colors.RESET + "Listar uma T-Shirt.\n");
-        sb.append(colors.BLUE + "3) " + colors.RESET + "Listar uma Mala.\n");
+        sb.append(colors.BLUE + "1) " + colors.RESET + "Sapatilha.\n");
+        sb.append(colors.BLUE + "2) " + colors.RESET + "T-Shirt.\n");
+        sb.append(colors.BLUE + "3) " + colors.RESET + "Mala.\n");
         sb.append(colors.BLUE + "4) " + colors.RESET + "Outro.\n");
         sb.append(colors.BLUE + "0) " + colors.RESET + "Voltar.\n");
         sb.append("Selecione a opção pretendida: " + colors.BLACK);
