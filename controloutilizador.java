@@ -2,14 +2,13 @@ package vintage;
 
 import java.util.Map;
 import java.util.Scanner;
-
 import vintage.artigos.Tipo;
 import vintage.encomendas.Estado;
 
 public class controloutilizador {
     private static Map<Integer, artigos> TodosArtigos = null;
-
     public static void run(int novo, utilizadores u, contas x, gestorencomendas ge, gestortransportadoras gt) throws CloneNotSupportedException {
+        ge.adicionarEncomenda(u.getCarrinho());
         if (novo == 1) {
             TodosArtigos = x.Stock(u);
         }
@@ -191,7 +190,6 @@ public class controloutilizador {
             }
             index = scanner.nextInt();
         }
-        scanner.close();
     }
 
     private static void imprime(utilizadores u, Map<Integer, artigos> TodosArtigos, String filtro) {

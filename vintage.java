@@ -1,5 +1,6 @@
 package vintage;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 import vintage.artigos.Tipo;
@@ -8,6 +9,7 @@ public class vintage {
     private static String timejump = colors.BLACK + "T" + colors.RED + "I" + colors.GREEN + "M" + colors.YELLOW + "E" + colors.BLUE + " J" +
     colors.PURPLE + "U" + colors.CYAN + "M" + colors.WHITE + "P.\n"; 
     private static datemanager date = datemanager.getInstance();
+    static DecimalFormat df = new DecimalFormat("#.##");
     public static int MenuInicial(boolean clear) {
         if(clear){clearWindow();}
         StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU INICIAL-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n" + colors.RESET);
@@ -254,6 +256,20 @@ public class vintage {
         return new transportadora(nome, taxa);
     }
 
+    public static int MenuEstatisticas(String melhorU, String melhorT, double total) {
+        df.setMinimumFractionDigits(2);
+        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------ESTATÍSTICAS-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n" + colors.RESET);
+        sb.append(colors.GREEN + "Vendedor com mais lucro:\t" + colors.YELLOW + melhorU);
+        sb.append(colors.GREEN + "\nTransportador com mais lucro:\t " + colors.YELLOW + melhorT);
+        sb.append(colors.GREEN + "\nLucro do Vintage:\t\t " + colors.YELLOW + df.format(total));
+        sb.append(colors.BLUE + "\n1) " + colors.RESET +"Ver histórico de encomendas.\n");
+        sb.append(colors.BLUE + "2) " + colors.RESET +"Melhores vendedores / Melhores compradores.\n");
+        sb.append(colors.BLUE + "0) " + colors.RESET + "Sair.\n\n");
+        sb.append("Selecione a opção pretendida: " + colors.BLACK);
+        System.out.println(sb.toString());
+        return intScanner();
+    }
+
     private static String stringScanner(){
         Scanner scanner = new Scanner(System.in);
         String txt;
@@ -322,5 +338,5 @@ public class vintage {
             }
         }
         return ans.equalsIgnoreCase("yes") || ans.equalsIgnoreCase("y");
-    }        
+    }    
 }

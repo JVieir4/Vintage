@@ -6,7 +6,6 @@ public class sapatilhas {
     private boolean atacadores;
     private String cor;
     private int data;
-    //private int desconto;
     
     public sapatilhas(boolean prem, int tam, boolean atac, String c, int ano /* ,int desc */){
         this.premium = prem;

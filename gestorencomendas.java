@@ -1,11 +1,13 @@
 package vintage;
 
+import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 
 public class gestorencomendas {
     private Set<encomendas> encomendas;
     private int counter;
+    DecimalFormat df = new DecimalFormat("#.##");
 
     public gestorencomendas() {
         this.encomendas = new HashSet<>();
@@ -39,8 +41,10 @@ public class gestorencomendas {
     }
 
     public void adicionarEncomenda(encomendas encomenda) {
+        if(!this.encomendas.contains(encomenda)){
+            this.counter++;
+        }
         this.encomendas.add(encomenda);
-        this.counter++;
     }
 
     public void removerEncomenda(encomendas encomenda) {
@@ -50,10 +54,23 @@ public class gestorencomendas {
 
     @Override
     public String toString() {
-        return "gestorencomendas{" +
-                "encomendas=" + this.encomendas +
-                ", counter=" + this.counter +
-                '}';
+        df.setMinimumFractionDigits(2);
+        StringBuilder sb = new StringBuilder(colors.BLUE + "Encomendas:\n");
+        for(encomendas e : this.encomendas){
+            sb.append(colors.GREEN + e.calculaDimensao(e.getArtigos().size()))
+            .append(colors.RESET + " feita em: " + colors.GREEN).append(e.getData())
+            .append(colors.RESET + " por: " + colors.BLUE).append(e.getNome())
+            .append("." + colors.GREEN + "\nEstado: " + colors.RESET).append(e.getEstado());
+        }
+        return sb.toString();
+    }
+
+    public double lucroTotal() {
+        double lucro = 0;
+        for(encomendas e: this.encomendas){
+            lucro += e.getPreco();
+        }
+        return lucro;
     }
 }
 

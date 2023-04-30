@@ -116,4 +116,37 @@ public class contas {
         return sb.toString();
     }
 
+    public String melhorVendedor() {
+        utilizadores maior = null;
+        double maximo = 0;
+        for(utilizadores u : contas.values()){
+            double temp = 0;
+            for(artigos art: u.getArtVendidos()){
+                temp += art.getPreco();
+            }
+            if(temp > maximo){
+                maior = u;
+                maximo = temp;
+            }
+        }
+        if(maior == null){
+            return "N/A";
+        }
+        return maior.getNome();
+    }
+
+    public double maiorLucroTransportadora(String nome_transportadora){
+        double lucro = 0;
+        for(utilizadores u: contas.values()){
+            for(artigos art: u.getArtVendidos()){
+                if(art.getTransportadora().getNome().equals(nome_transportadora)){
+                    lucro += ((art.getPreco() * art.getTransportadora().getTaxa()) - art.getPreco());
+                }
+                else{
+                    continue;
+                }
+            }
+        }
+        return lucro;
+    }
 }

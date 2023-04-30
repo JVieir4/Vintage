@@ -41,6 +41,20 @@ public class encomendas {
         this.preco = e.getPreco();
     }
 
+    public String getNome(){
+        return this.nome;
+    }
+    public void setNome(String n){
+        this.nome = n;
+    }
+
+    public LocalDate getData(){
+        return this.data_de_criacao;
+    }
+    public void setData(LocalDate d){
+        this.data_de_criacao = d;
+    }
+
     public double getPreco() {
         return this.preco;
     }
@@ -71,6 +85,7 @@ public class encomendas {
 
     public double calculaPreco(ArrayList<artigos> a){
         double res = 0;
+        double lucro_transportadora = 0;
         int novos = 0;
         int usados = 0;
         for(artigos art : a){

@@ -68,4 +68,20 @@ public class gestortransportadoras {
         }
         return null;
     }
+
+    public String melhorTransportadora(contas x) {
+        transportadora melhor = null;
+        double maximo = 0;
+        for(transportadora t : this.transportadoras){
+            double temp = x.maiorLucroTransportadora(t.getNome());
+            if(temp > maximo){
+                melhor = t;
+                maximo = temp;
+            }
+        }
+        if(melhor == null){
+            return "N/A";
+        }
+        return melhor.getNome();
+    }
 }

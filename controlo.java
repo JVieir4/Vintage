@@ -58,16 +58,17 @@ public class controlo {
                 controlo.run(x,ge,gt,false);
                 break;
             case 5:
-                
+                controloestatisticas.run(x,ge,gt);
+                break;
             case 6:
                 System.out.println(colors. RESET + "Quantos dias deseja avançar?" + colors.BLACK);
                 int dias = vintage.intScanner();
                 datemanager.getInstance().advanceDays(dias);
                 controlo.run(x,ge,gt,true);
+                break;
             case 0:
                 System.exit(0);
                 break;
         }
-        scanner.close();
     }
 }
