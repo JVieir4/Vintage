@@ -1,11 +1,13 @@
 package vintage;
 
+import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 
 public class gestortransportadoras {
     private Set<transportadora> transportadoras;
     private int counter;
+    DecimalFormat df = new DecimalFormat("#");
 
     public gestortransportadoras() {
         this.transportadoras = new HashSet<>();
@@ -54,7 +56,7 @@ public class gestortransportadoras {
         int index = 1;
         for(transportadora t : this.transportadoras){
             sb.append(colors.BLUE + index + ") " + colors.YELLOW + t.getNome() +
-            "\n" + colors.GREEN + "Taxa de expedição: " + colors.RESET + t.getTaxa() + "\n\n");
+            "\n" + colors.GREEN + "Taxa de expedição: " + colors.RESET + (df.format((t.getTaxa() * 100) - 100)) + "%\n\n");
             index++;
         }
         return sb.toString();

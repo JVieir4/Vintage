@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class controlo {
     public static void run(contas x, gestorencomendas ge, gestortransportadoras gt, boolean clear) throws CloneNotSupportedException{
+        Scanner scanner = new Scanner(System.in);
         int opcao = -1;
-        while(opcao < 0 || opcao > 4) {
+        while(opcao < 0 || opcao > 6) {
             opcao = vintage.MenuInicial(clear);
         }       
         switch(opcao) {            
             case 1:
                 System.out.println(colors.RESET + "Introduza o seu email:" + colors.BLACK);
-                Scanner scanner = new Scanner(System.in);
                 String mail = scanner.nextLine();
                 if(x.existeEmail(mail)){
                     System.out.println(colors.RESET + "\nIntroduza a palavra-passe:" + colors.BLACK);
@@ -57,9 +57,17 @@ public class controlo {
                 }
                 controlo.run(x,ge,gt,false);
                 break;
+            case 5:
+                
+            case 6:
+                System.out.println(colors. RESET + "Quantos dias deseja avançar?" + colors.BLACK);
+                int dias = vintage.intScanner();
+                datemanager.getInstance().advanceDays(dias);
+                controlo.run(x,ge,gt,true);
             case 0:
                 System.exit(0);
                 break;
         }
+        scanner.close();
     }
 }

@@ -1,6 +1,5 @@
 package vintage;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -192,6 +191,7 @@ public class controloutilizador {
             }
             index = scanner.nextInt();
         }
+        scanner.close();
     }
 
     private static void imprime(utilizadores u, Map<Integer, artigos> TodosArtigos, String filtro) {

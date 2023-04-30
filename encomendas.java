@@ -9,6 +9,7 @@ public class encomendas {
     private Dimensao dimensao;
     private Estado estado;
     private double preco;
+    private datemanager data = datemanager.getInstance();
     private LocalDate data_de_criacao;
     ArrayList<artigos> artigos;
     DecimalFormat df = new DecimalFormat("#.##");
@@ -29,7 +30,8 @@ public class encomendas {
         this.nome = name;
         this.artigos = new ArrayList<>();
         this.estado = Estado.Pendente;
-        this.data_de_criacao = LocalDate.of(2023, 4, 22);
+        this.data_de_criacao = data.getCurrentDate();
+        //this.data_de_criacao = LocalDate.of(2023, 4, 22);
     }
 
     public encomendas(encomendas e){

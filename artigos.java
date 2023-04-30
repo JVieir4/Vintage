@@ -16,6 +16,7 @@ public class artigos {
     private malas mala;
     private transportadora transp;
     private boolean disponivel;
+    private static datemanager data = datemanager.getInstance();
     DecimalFormat df = new DecimalFormat("#.##");
 
     enum Tipo {
@@ -150,10 +151,10 @@ public class artigos {
         switch(tipo){
             case Sapatilha:
                 if(sapatilha.getPremium()){
-                    this.correcao = -5 * ( 2023 - sapatilha.getData());
+                    this.correcao = -10 * ( data.getCurrentDate().getYear() - sapatilha.getData());
                 }
-                if(!this.estado /* || data não é a atual */){
-                    this.correcao = this.ndonos * 10; // 10 para já como estado de utilização, ou seja 10% gasto
+                if(!this.estado){
+                    this.correcao = this.ndonos * 10;
                 }
                 break;
             case TShirt:
@@ -166,13 +167,16 @@ public class artigos {
                 break;
             case Mala:
                 if(mala.getPrem()){
-                    this.correcao = -5 * ( 2023 - mala.getData());
+                    this.correcao = -10 * ( data.getCurrentDate().getYear() - mala.getData());
                 }
-                if(!this.estado /* || data não é a atual */){
-                    this.correcao = this.ndonos * 10; // 10 para já como estado de utilização, ou seja 10% gasto
+                if(!this.estado){
+                    this.correcao = this.ndonos * 10;
                 }
                 break;
             case Outro:
+                if(!this.estado){
+                    this.correcao = this.ndonos * 10;
+                }
                 break;
         }
         return price = price - ((price * this.correcao)/ 100);
