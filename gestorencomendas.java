@@ -4,6 +4,8 @@ import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 
+import vintage.encomendas.Estado;
+
 public class gestorencomendas {
     private Set<encomendas> encomendas;
     DecimalFormat df = new DecimalFormat("#.##");
@@ -57,6 +59,13 @@ public class gestorencomendas {
             lucro += e.getPreco();
         }
         return lucro;
+    }
+
+    public void concluirEncomenda(utilizadores u){
+        encomendas nova = new encomendas(u.getNome());
+        nova = u.getCarrinho();
+        nova.setEstado(Estado.Finalizada);
+        encomendas.add(nova);
     }
 }
 

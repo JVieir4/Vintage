@@ -3,6 +3,8 @@ package vintage;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import vintage.encomendas.Estado;
+
 public class utilizadores implements Cloneable {
     private String systemcode;
     private String email;
@@ -10,7 +12,7 @@ public class utilizadores implements Cloneable {
     private String nome;
     private String morada;
     private int nfiscal;
-    private encomendas carrinho;
+    private ArrayList<encomendas> encomendas;
     private ArrayList<artigos> artavenda = new ArrayList<>();
     private ArrayList<artigos> artvendidos = new ArrayList<>();
     private ArrayList<artigos> artcomprados = new ArrayList<>();
@@ -21,7 +23,7 @@ public class utilizadores implements Cloneable {
         this.nome = name;
         this.morada = address;
         this.nfiscal = fiscal;
-        this.carrinho = new encomendas(this.nome);
+        this.encomendas = new ArrayList<encomendas>();
     }
 
     public utilizadores(utilizadores novo){
@@ -97,10 +99,12 @@ public class utilizadores implements Cloneable {
     }
 
     public encomendas getCarrinho() {
-        return this.carrinho;
-    }
-    public void setCarrinho(encomendas c){
-        this.carrinho = c;
+        if (encomendas.isEmpty() || encomendas.get(encomendas.size() - 1).getEstado() != Estado.Pendente) {
+            encomendas newEncomenda = new encomendas(this.nome);
+            newEncomenda.setEstado(Estado.Pendente);
+            encomendas.add(newEncomenda);
+        }
+        return encomendas.get(encomendas.size() - 1);
     }
 
     public void listarArtigo(artigos A){
@@ -168,7 +172,7 @@ public class utilizadores implements Cloneable {
     }
 
     public boolean carrinhotem(artigos art){
-        for(artigos a: carrinho.artigos){
+        for(artigos a: getCarrinho().artigos){
             if(a.equals(art)){
                 return true;
             }

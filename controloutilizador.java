@@ -32,7 +32,6 @@ public class controloutilizador {
                 comprarArtigo(escolha, u, x, u.getCarrinho(), ge, gt, TodosArtigos);
                 break;
             case 3:
-                ge.adicionarEncomenda(u.getCarrinho());
                 System.out.print(colors.BLUE + "Carrinho:\n" + colors.RESET);
                 if (u.getCarrinho().getArtigos().isEmpty()) {
                     System.out.println("O carrinho está vazio.\n");
@@ -70,15 +69,17 @@ public class controloutilizador {
                         if (u.getCarrinho().getArtigos().isEmpty()) {
                             System.out.println(colors.RESET + "O carrinho está vazio. Por favor adicione artigos.");
                         } else {
-                            u.getCarrinho().setEstado(Estado.Finalizada);
+                            //u.getCarrinho().setEstado(Estado.Finalizada);
                             System.out.println(u.getCarrinho());
-                            ge.adicionarEncomenda(new encomendas(u.getCarrinho()));
+                            //ge.adicionarEncomenda(new encomendas(u.getCarrinho()));
                             for(artigos a: u.getCarrinho().getArtigos()){
                                 a.setDisponivel(false);
                             }
                             u.getArtComprados().addAll(u.getCarrinho().getArtigos());
-                            u.getCarrinho().getArtigos().clear();
                             x.artigoVendidoForAll();
+                            ge.concluirEncomenda(u);
+                            u.getCarrinho().getArtigos().clear();
+                            
                         }
                         break;
                     case 0:
@@ -190,6 +191,7 @@ public class controloutilizador {
             }
             index = scanner.nextInt();
         }
+        ge.adicionarEncomenda(u.getCarrinho());
     }
 
     private static void imprime(utilizadores u, Map<Integer, artigos> TodosArtigos, String filtro) {
