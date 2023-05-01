@@ -191,8 +191,4 @@ public class utilizadores implements Cloneable {
         }
         return total;
     }
-
-    public void resetCarrinho(){
-        this.carrinho = new encomendas(this.nome);
-    }
 }
