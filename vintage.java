@@ -252,7 +252,10 @@ public class vintage {
         System.out.println(colors.RESET + "Qual é o nome da transportadora: " + colors.BLACK);
         String nome = stringScanner();
         System.out.println(colors.RESET + "\nQual é a taxa de expedição da transportadora: " + colors.BLACK);
-        double taxa = doubleScanner();
+        int taxa = -1;
+        while(taxa < 0 || taxa > 100){
+            taxa = intScanner();
+        }
         return new transportadora(nome, taxa);
     }
 

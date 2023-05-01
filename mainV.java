@@ -4,9 +4,9 @@ import vintage.artigos.Tipo;
 public class mainV {   
     public static void main(String[] args) throws CloneNotSupportedException{
         /* Transportadoras */
-        transportadora amazon = new transportadora("Amazon", 1.50);
-        transportadora UPS = new transportadora("UPS", 1.15);
-        transportadora DHL = new transportadora("DHL", 1.30);
+        transportadora amazon = new transportadora("Amazon", 25);
+        transportadora UPS = new transportadora("UPS", 15);
+        transportadora DHL = new transportadora("DHL", 30);
 
         /* Artigos */
         sapatilhas A = new sapatilhas(false, 40, true, "azul", 2020);
