@@ -9,6 +9,7 @@ public class encomendas {
     private Dimensao dimensao;
     private Estado estado;
     private double preco;
+    private int numero_artigos;
     private datemanager data = datemanager.getInstance();
     private LocalDate data_de_criacao;
     ArrayList<artigos> artigos;
@@ -20,6 +21,7 @@ public class encomendas {
         Média,
         Pequena
     }
+
     enum Estado{
         Pendente,
         Finalizada,
@@ -31,10 +33,12 @@ public class encomendas {
         this.artigos = new ArrayList<>();
         this.estado = Estado.Pendente;
         this.data_de_criacao = data.getCurrentDate();
-        //this.data_de_criacao = LocalDate.of(2023, 4, 22);
+        this.numero_artigos = 0;
     }
 
     public encomendas(encomendas e){
+        this.nome = e.getNome();
+        this.data_de_criacao = getData();
         this.dimensao = e.getDimensao();
         this.estado = e.getEstado();
         this.artigos = e.getArtigos();
@@ -46,6 +50,13 @@ public class encomendas {
     }
     public void setNome(String n){
         this.nome = n;
+    }
+
+    public int getNartigos(){
+        return this.numero_artigos;
+    }
+    public void setNartigos(int n){
+        this.numero_artigos = n;
     }
 
     public LocalDate getData(){
@@ -116,10 +127,12 @@ public class encomendas {
 
     public void addArtigo(artigos novoArtigo) {
         artigos.add(novoArtigo);
+        this.numero_artigos++;
     }
 
     public void removeArtigo(artigos art){
         artigos.remove(art);
+        this.numero_artigos--;
     }
 
     public String imprimeArtigos(ArrayList<artigos> art){
@@ -133,10 +146,10 @@ public class encomendas {
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         df.setMinimumFractionDigits(2);
         StringBuilder sb = new StringBuilder();
-        sb.append(colors.RESET + "Encomenda " + colors.GREEN).append(calculaDimensao(this.artigos.size()))
+        sb.append(colors.RESET + "Encomenda " + colors.GREEN).append(calculaDimensao(this.numero_artigos))
           .append(colors.RESET + " feita em: " + colors.GREEN).append(this.data_de_criacao)
           .append(colors.RESET + " por: " + colors.BLUE).append(this.nome)
           .append("." + colors.GREEN + "\nEstado: " + colors.RESET).append(this.estado)

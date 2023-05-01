@@ -260,8 +260,8 @@ public class vintage {
         df.setMinimumFractionDigits(2);
         StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------ESTATÍSTICAS-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n" + colors.RESET);
         sb.append(colors.GREEN + "Vendedor com mais lucro:\t" + colors.YELLOW + melhorU);
-        sb.append(colors.GREEN + "\nTransportador com mais lucro:\t " + colors.YELLOW + melhorT);
-        sb.append(colors.GREEN + "\nLucro do Vintage:\t\t " + colors.YELLOW + df.format(total));
+        sb.append(colors.GREEN + "\nTransportador com mais lucro:\t" + colors.YELLOW + melhorT);
+        sb.append(colors.GREEN + "\nLucro do Vintage:\t\t" + colors.YELLOW + df.format(total));
         sb.append(colors.BLUE + "\n1) " + colors.RESET +"Ver histórico de encomendas.\n");
         sb.append(colors.BLUE + "2) " + colors.RESET +"Melhores vendedores / Melhores compradores.\n");
         sb.append(colors.BLUE + "0) " + colors.RESET + "Sair.\n\n");

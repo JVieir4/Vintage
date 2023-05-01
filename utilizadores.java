@@ -175,4 +175,24 @@ public class utilizadores implements Cloneable {
         }
         return false;
     }
+
+    public double getTotalVendas() {
+        double total = 0;
+        for(artigos art: this.artvendidos){
+            total += art.getPreco();
+        }
+        return total;
+    }
+
+    public double getTotalComprado() {
+        double total = 0;
+        for(artigos art: this.artcomprados){
+            total += art.getPreco();
+        }
+        return total;
+    }
+
+    public void resetCarrinho(){
+        this.carrinho = new encomendas(this.nome);
+    }
 }

@@ -1,6 +1,7 @@
 package vintage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -120,10 +121,7 @@ public class contas {
         utilizadores maior = null;
         double maximo = 0;
         for(utilizadores u : contas.values()){
-            double temp = 0;
-            for(artigos art: u.getArtVendidos()){
-                temp += art.getPreco();
-            }
+            double temp = u.getTotalVendas();
             if(temp > maximo){
                 maior = u;
                 maximo = temp;
@@ -133,6 +131,17 @@ public class contas {
             return "N/A";
         }
         return maior.getNome();
+    }
+
+    public String melhoresVendedores() {
+        StringBuilder sb = new StringBuilder(colors.YELLOW + "Melhores Vendedores:\n");
+        ArrayList<utilizadores> sortedUtilizadores = new ArrayList<>(contas.values());
+        Collections.sort(sortedUtilizadores, (u1, u2) -> Double.compare(u2.getTotalVendas(), u1.getTotalVendas()));
+        for(utilizadores u : sortedUtilizadores) {
+            sb.append("- " + colors.GREEN + u.getNome() + "\n" + colors.YELLOW);
+        }
+        sb.append(colors.RESET);
+        return sb.toString();
     }
 
     public double maiorLucroTransportadora(String nome_transportadora){
@@ -148,5 +157,16 @@ public class contas {
             }
         }
         return lucro;
+    }
+
+    public String melhoresCompradores() {
+        StringBuilder sb = new StringBuilder(colors.YELLOW + "Melhores Compradores:\n");
+        ArrayList<utilizadores> sortedUtilizadores = new ArrayList<>(contas.values());
+        Collections.sort(sortedUtilizadores, (u1, u2) -> Double.compare(u2.getTotalComprado(), u1.getTotalComprado()));
+        for(utilizadores u : sortedUtilizadores) {
+            sb.append("- " + colors.GREEN + u.getNome() + "\n" + colors.YELLOW);
+        }
+        sb.append(colors.RESET);
+        return sb.toString();
     }
 }

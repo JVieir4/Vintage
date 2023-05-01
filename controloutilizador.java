@@ -8,7 +8,6 @@ import vintage.encomendas.Estado;
 public class controloutilizador {
     private static Map<Integer, artigos> TodosArtigos = null;
     public static void run(int novo, utilizadores u, contas x, gestorencomendas ge, gestortransportadoras gt) throws CloneNotSupportedException {
-        ge.adicionarEncomenda(u.getCarrinho());
         if (novo == 1) {
             TodosArtigos = x.Stock(u);
         }
@@ -33,6 +32,7 @@ public class controloutilizador {
                 comprarArtigo(escolha, u, x, u.getCarrinho(), ge, gt, TodosArtigos);
                 break;
             case 3:
+                ge.adicionarEncomenda(u.getCarrinho());
                 System.out.print(colors.BLUE + "Carrinho:\n" + colors.RESET);
                 if (u.getCarrinho().getArtigos().isEmpty()) {
                     System.out.println("O carrinho está vazio.\n");
@@ -72,7 +72,7 @@ public class controloutilizador {
                         } else {
                             u.getCarrinho().setEstado(Estado.Finalizada);
                             System.out.println(u.getCarrinho());
-                            ge.adicionarEncomenda(u.getCarrinho());
+                            ge.adicionarEncomenda(new encomendas(u.getCarrinho()));
                             for(artigos a: u.getCarrinho().getArtigos()){
                                 a.setDisponivel(false);
                             }

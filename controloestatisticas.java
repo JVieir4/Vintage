@@ -12,16 +12,18 @@ public class controloestatisticas {
         }       
         switch(opcao) {
             case 1:
-                if(ge.getCounter() == 0){
+                if(ge.getEncomendas().isEmpty()){
                     System.out.println("Nenhuma encomenda feita.");
                 }
                 else{
                     System.out.println(ge);
                 }
-                controlo.run(x,ge,gt,false);
+                controloestatisticas.run(x,ge,gt);
                 break;
             case 2:
-                System.out.println("Por fazer");
+                System.out.println(x.melhoresVendedores() + "\n");
+                System.out.println(x.melhoresCompradores());
+                controloestatisticas.run(x,ge,gt);
                 break;
             case 0:
                 controlo.run(x,ge,gt,false);
