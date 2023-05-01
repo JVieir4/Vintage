@@ -48,7 +48,7 @@ public class gestorencomendas {
             .append(colors.RESET + " feita em: " + colors.GREEN).append(e.getData())
             .append(colors.RESET + " por: " + colors.BLUE).append(e.getNome())
             .append("." + colors.GREEN + "\nEstado: " + colors.RESET).append(e.getEstado())
-            .append(colors.GREEN + "\nArtigos: " + colors.RESET + e.getNartigos() + "\n");
+            .append(colors.GREEN + "\nArtigos: " + colors.RESET + e.getNartigos() + "\n\n");
         }
         return sb.toString();
     }

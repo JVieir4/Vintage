@@ -100,7 +100,6 @@ public class encomendas {
         int usados = 0;
         for(artigos art : a){
             res += art.getPreco();
-            System.out.println(art.getPreco());
             preco += (art.getPreco() * art.getTransportadora().getTaxa() * (1 + 0.10)); /* Sendo 10% imposto */
             if(art.getEstado()){
                 novos++;

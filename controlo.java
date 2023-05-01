@@ -1,6 +1,9 @@
 package vintage;
 
+import java.time.Period;
 import java.util.Scanner;
+
+import vintage.encomendas.Estado;
 
 public class controlo {
     public static void run(contas x, gestorencomendas ge, gestortransportadoras gt, boolean clear) throws CloneNotSupportedException{
@@ -64,11 +67,21 @@ public class controlo {
                 System.out.println(colors. RESET + "Quantos dias deseja avançar?" + colors.BLACK);
                 int dias = vintage.intScanner();
                 datemanager.getInstance().advanceDays(dias);
+                update(ge);
                 controlo.run(x,ge,gt,true);
                 break;
             case 0:
                 System.exit(0);
                 break;
+        }
+    }
+
+    private static void update(gestorencomendas ge){
+        for(encomendas e: ge.getEncomendas()){
+            Period dif = Period.between(e.getData(), datemanager.getInstance().getCurrentDate());
+            if(dif.getDays() > 2){
+                e.setEstado(Estado.Expedida);
+            }
         }
     }
 }
