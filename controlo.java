@@ -1,6 +1,6 @@
 package vintage;
 
-import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 import vintage.encomendas.Estado;
@@ -64,9 +64,21 @@ public class controlo {
                 controloestatisticas.run(x,ge,gt);
                 break;
             case 6:
-                System.out.println(colors. RESET + "Quantos dias deseja avançar?" + colors.BLACK);
-                int dias = vintage.intScanner();
-                datemanager.getInstance().advanceDays(dias);
+                int escolha = -1;
+                while(escolha < 0 || escolha > 2){
+                    escolha = vintage.MenuTimeJump();
+                }
+                switch(escolha){
+                    case 1:
+                        System.out.println(colors. RESET + "Quantos dias deseja avançar?" + colors.BLACK);
+                        long dias = vintage.intScanner();
+                        datemanager.getInstance().advanceDays(dias);
+                        break;
+                    case 2:
+                        vintage.escolheData();
+                    case 0:
+                        break;
+                }
                 update(ge);
                 controlo.run(x,ge,gt,true);
                 break;
@@ -78,8 +90,8 @@ public class controlo {
 
     private static void update(gestorencomendas ge){
         for(encomendas e: ge.getEncomendas()){
-            Period dif = Period.between(e.getData(), datemanager.getInstance().getCurrentDate());
-            if(dif.getDays() > 2){
+            long dif = ChronoUnit.DAYS.between(e.getData(), datemanager.getInstance().getCurrentDate());
+            if(dif > 2){
                 e.setEstado(Estado.Expedida);
             }
         }

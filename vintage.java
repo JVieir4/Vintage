@@ -1,24 +1,26 @@
 package vintage;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 import vintage.artigos.Tipo;
 
 public class vintage {
     private static String timejump = colors.BLACK + "T" + colors.RED + "I" + colors.GREEN + "M" + colors.YELLOW + "E" + colors.BLUE + " J" +
-    colors.PURPLE + "U" + colors.CYAN + "M" + colors.WHITE + "P.\n"; 
+    colors.PURPLE + "U" + colors.CYAN + "M" + colors.WHITE + "P"; 
     private static datemanager date = datemanager.getInstance();
     static DecimalFormat df = new DecimalFormat("#.##");
     public static int MenuInicial(boolean clear) {
         if(clear){clearWindow();}
-        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU INICIAL-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n" + colors.RESET);
+        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU INICIAL-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n");
         sb.append(colors.BLUE + "1) " + colors.RESET + "Iniciar sessão.\n");
         sb.append(colors.BLUE + "2) " + colors.RESET + "Registar nova conta.\n");
         sb.append(colors.BLUE + "3) " + colors.RESET + "Ver utilizadores registados.\n");
         sb.append(colors.BLUE + "4) " + colors.RESET + "Ver transportadoras registadas.\n");
         sb.append(colors.BLUE + "5) " + colors.RESET + "Ver estatísticas.\n");
-        sb.append(colors.BLUE + "6) " + colors.RESET + timejump);
+        sb.append(colors.BLUE + "6) " + colors.RESET + timejump + ".\n");
         sb.append(colors.BLUE + "0) " + colors.RESET + "Sair.\n\n");
         sb.append("Selecione a opção pretendida: " + colors.BLACK);
         System.out.println(sb.toString());
@@ -32,7 +34,7 @@ public class vintage {
     }
 
     public static int menuUtilizador(utilizadores u){
-        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU UTILIZADOR-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n" + colors.RESET);
+        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU UTILIZADOR-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n");
         sb.append(colors.YELLOW + u.getNome() + ":\n\n");
         sb.append(colors.BLUE + "1) " + colors.RESET + "Listar um artigo.\n");
         sb.append(colors.BLUE + "2) " + colors.RESET + "Comprar um artigo.\n");
@@ -47,7 +49,7 @@ public class vintage {
     }
 
     public static int menuArtigo(){
-        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU ARTIGO-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n" + colors.RESET);
+        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU ARTIGO-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n");
         sb.append(colors.BLUE + "1) " + colors.RESET + "Sapatilha.\n");
         sb.append(colors.BLUE + "2) " + colors.RESET + "T-Shirt.\n");
         sb.append(colors.BLUE + "3) " + colors.RESET + "Mala.\n");
@@ -216,7 +218,7 @@ public class vintage {
     }
 
     public static int menuComprar(){
-        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU COMPRA-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n" + colors.RESET);
+        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU COMPRA-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n");
         sb.append(colors.BLUE + "1) " + colors.RESET + "Ver todos os artigos.\n");
         sb.append(colors.BLUE + "2) " + colors.RESET + "Pesquisar por tipo.\n");
         sb.append(colors.BLUE + "0) " + colors.RESET + "Cancelar.\n\n");
@@ -226,7 +228,7 @@ public class vintage {
     }
 
     public static int menuCarrinho(){
-        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU CARRINHO-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n" + colors.RESET);
+        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU CARRINHO-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n");
         sb.append(colors.BLUE + "1) " + colors.RESET + "Adicionar um artigo.\n");
         sb.append(colors.BLUE + "2) " + colors.RESET + "Remover um artigo.\n");
         sb.append(colors.BLUE + "3) " + colors.RESET + "Concluir.\n");
@@ -237,7 +239,7 @@ public class vintage {
     }
 
     public static int menuTransportadora(gestortransportadoras gt){
-        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU TRANSPORTADORA-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n" + colors.RESET);
+        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU TRANSPORTADORA-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n");
         sb.append(gt.toString());
         sb.append(colors.BLUE + "1) " + colors.RESET + "Adicionar transportadora.\n");
         sb.append(colors.BLUE + "2) " + colors.RESET + "Remover transportadora.\n");
@@ -248,7 +250,7 @@ public class vintage {
     }
 
     public static transportadora criarTransportadora(){
-        System.out.println(colors.RED + "\n\n|-----------NOVA TRANSPORTADORA-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n" + colors.RESET);
+        System.out.println(colors.RED + "\n\n|-----------NOVA TRANSPORTADORA-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n");
         System.out.println(colors.RESET + "Qual é o nome da transportadora: " + colors.BLACK);
         String nome = stringScanner();
         System.out.println(colors.RESET + "\nQual é a taxa de expedição da transportadora: " + colors.BLACK);
@@ -261,13 +263,23 @@ public class vintage {
 
     public static int MenuEstatisticas(String melhorU, String melhorT, double total) {
         df.setMinimumFractionDigits(2);
-        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------ESTATÍSTICAS-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n" + colors.RESET);
+        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------ESTATÍSTICAS-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n");
         sb.append(colors.GREEN + "Vendedor com mais lucro:\t" + colors.YELLOW + melhorU);
         sb.append(colors.GREEN + "\nTransportador com mais lucro:\t" + colors.YELLOW + melhorT);
         sb.append(colors.GREEN + "\nLucro do Vintage:\t\t" + colors.YELLOW + df.format(total));
         sb.append(colors.BLUE + "\n1) " + colors.RESET +"Ver histórico de encomendas.\n");
         sb.append(colors.BLUE + "2) " + colors.RESET +"Melhores vendedores / Melhores compradores.\n");
         sb.append(colors.BLUE + "0) " + colors.RESET + "Sair.\n\n");
+        sb.append("Selecione a opção pretendida: " + colors.BLACK);
+        System.out.println(sb.toString());
+        return intScanner();
+    }
+
+    public static int MenuTimeJump(){
+        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------" + timejump + colors.RED + "-----------| " + colors.YELLOW + date.getCurrentDate() + colors.RED + " |\n\n");
+        sb.append(colors.BLUE + "1) " + colors.RESET + "Avançar x dias.\n");
+        sb.append(colors.BLUE + "2) " + colors.RESET + "Escolher uma data.\n");
+        sb.append(colors.BLUE + "0) " + colors.RESET + "Voltar.\n\n");
         sb.append("Selecione a opção pretendida: " + colors.BLACK);
         System.out.println(sb.toString());
         return intScanner();
@@ -341,5 +353,79 @@ public class vintage {
             }
         }
         return ans.equalsIgnoreCase("yes") || ans.equalsIgnoreCase("y");
-    }    
+    }
+
+    public static void escolheData(){
+        Scanner scanner = new Scanner(System.in);
+        boolean ano = true, mes = true, dia = true;
+        int a = 0, m = 0, d = 0;
+        while(ano || mes || dia){
+            if(ano){
+                System.out.println(colors. RESET + "\nEscolha o ano: (>" + date.getCurrentDate().getYear() + ")" + colors.BLACK);
+                a = intScanner();
+                if(a >= date.getCurrentDate().getYear()){
+                    ano = false;
+                }
+                else{
+                    System.out.print("Ano inválido.\n");
+                }
+            }
+            if(mes && !ano){
+                System.out.println(colors. RESET + "\nEscolha o mês: (1-12)" + colors.BLACK);
+                m = intScanner();
+                int minM = 0;
+                if(a == date.getCurrentDate().getYear()){
+                    minM = date.getCurrentDate().getMonthValue();
+                }
+                if(m >= minM && m < 12){
+                    mes = false;
+                }
+                else{
+                    System.out.print("Mês inválido.\n");
+                }
+            }
+            if(dia && !mes && !ano){
+                System.out.println(colors. RESET + "\nEscolha o dia: " + colors.BLACK);
+                d = intScanner();
+                int minD = 0;
+                if(a == date.getCurrentDate().getYear() && m == date.getCurrentDate().getMonthValue()){
+                    minD = date.getCurrentDate().getDayOfMonth();
+                }
+                if(m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12){
+                    if(d >= minD && d < 32){
+                        dia = false;
+                    }
+                    else{
+                        System.out.print("Dia inválido.\n");
+                    }
+                }
+                else if(m == 4 || m == 6 || m == 9 || m == 11){
+                    if(d >= minD && d < 31){
+                        dia = false;
+                    }
+                    else{
+                        System.out.print("Dia inválido.\n");
+                    }
+                }
+                else if((a % 4 == 0 && a % 100 != 0) || a % 400 == 0){
+                    if(d >= minD && d < 30){
+                        dia = false;
+                    }
+                    else{
+                        System.out.print("Dia inválido.\n");
+                    }
+                }
+                else{
+                    if(d >= minD && d < 29){
+                        dia = false;
+                    }
+                    else{
+                        System.out.print("Dia inválido.\n");
+                    }
+                }
+            }
+        }
+        long dif = ChronoUnit.DAYS.between(date.getCurrentDate(),LocalDate.of(a,m,d));
+        date.advanceDays(dif);
+    }
 }

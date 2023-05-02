@@ -2,10 +2,10 @@ package vintage;
 
 public class transportadora {
     private String transportadora;
-    private double margemlucro;
+    private int margemlucro;
     private double lucro;
 
-    public transportadora(String nome, double mlucro){
+    public transportadora(String nome, int mlucro){
         this.transportadora = nome;
         this.margemlucro = mlucro;
     }
@@ -27,7 +27,7 @@ public class transportadora {
     public double getTaxa(){
         return this.margemlucro;
     }
-    public void setTaxa(double t){
+    public void setTaxa(int t){
         this.margemlucro = t;
     }
 }

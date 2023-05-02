@@ -18,8 +18,8 @@ public class datemanager {
         return instance;
     }
 
-    public void advanceDays(int days) {
-        currentDate = currentDate.plusDays(days);
+    public void advanceDays(long dif) {
+        currentDate = currentDate.plusDays(dif);
     }
 
     public LocalDate getCurrentDate() {
