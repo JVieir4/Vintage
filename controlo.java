@@ -1,13 +1,11 @@
 package vintage;
 
 import java.time.temporal.ChronoUnit;
-import java.util.Scanner;
 
 import vintage.encomendas.Estado;
 
 public class controlo {
     public static void run(contas x, gestorencomendas ge, gestortransportadoras gt, boolean clear) throws CloneNotSupportedException{
-        Scanner scanner = new Scanner(System.in);
         int opcao = -1;
         while(opcao < 0 || opcao > 6) {
             opcao = vintage.MenuInicial(clear);
@@ -15,10 +13,10 @@ public class controlo {
         switch(opcao) {            
             case 1:
                 System.out.println(colors.RESET + "Introduza o seu email:" + colors.BLACK);
-                String mail = scanner.nextLine();
+                String mail = vintage.stringScanner();
                 if(x.existeEmail(mail)){
                     System.out.println(colors.RESET + "\nIntroduza a palavra-passe:" + colors.BLACK);
-                    String pass = scanner.nextLine();
+                    String pass = vintage.stringScanner();
                     if(x.getUtilizadores(mail).getPassword().equals(pass)){
                         utilizadores eu = x.getUtilizadores(mail).clone();
                         controloutilizador.run(1, eu, x, ge, gt);

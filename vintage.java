@@ -285,7 +285,7 @@ public class vintage {
         return intScanner();
     }
 
-    private static String stringScanner(){
+    public static String stringScanner(){
         Scanner scanner = new Scanner(System.in);
         String txt;
         while(true){
@@ -319,7 +319,7 @@ public class vintage {
         return opcao;
     }
 
-    private static double doubleScanner(){
+    public static double doubleScanner(){
         Scanner scanner = new Scanner(System.in);
         String pattern = "\\d+(,\\d{0,2})?|\\d+(\\.\\d{0,2})?";
         double valor = 0;
@@ -338,7 +338,7 @@ public class vintage {
         return valor;
     }
 
-    private static boolean isYesNo(){
+    public static boolean isYesNo(){
         Scanner scanner = new Scanner(System.in);
         String pattern = "(?i)[yn]|yes|no";
         String ans = null;
@@ -356,7 +356,6 @@ public class vintage {
     }
 
     public static void escolheData(){
-        Scanner scanner = new Scanner(System.in);
         boolean ano = true, mes = true, dia = true;
         int a = 0, m = 0, d = 0;
         while(ano || mes || dia){

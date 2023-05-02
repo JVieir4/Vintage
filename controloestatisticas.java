@@ -1,10 +1,7 @@
 package vintage;
 
-import java.util.Scanner;
-
 public class controloestatisticas {
     public static void run(contas x, gestorencomendas ge, gestortransportadoras gt) throws CloneNotSupportedException{
-        Scanner scanner = new Scanner(System.in);
         double lucrototal = ge.lucroTotal();
         int opcao = -1;
         while(opcao < 0 || opcao > 6) {

@@ -3,7 +3,6 @@ package vintage;
 import java.util.Map;
 import java.util.Scanner;
 import vintage.artigos.Tipo;
-import vintage.encomendas.Estado;
 
 public class controloutilizador {
     private static Map<Integer, artigos> TodosArtigos = null;
@@ -181,15 +180,14 @@ public class controloutilizador {
                 break;
         }
         System.out.println("Insira o número do(s) artigo(s) que deseja comprar: (0 para terminar)" + colors.BLACK);
-        Scanner scanner = new Scanner(System.in);
-        int index = scanner.nextInt();
+        int index = vintage.intScanner();
         while (index != 0) {
             artigos a = TodosArtigos.get((index));
             if (a != null) {
                 carrinho.addArtigo(a);
                 TodosArtigos.remove(index);
             }
-            index = scanner.nextInt();
+            index = vintage.intScanner();
         }
         ge.adicionarEncomenda(u.getCarrinho());
     }
