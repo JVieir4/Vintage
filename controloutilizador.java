@@ -1,5 +1,7 @@
 package vintage;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import vintage.artigos.Tipo;
@@ -51,17 +53,29 @@ public class controloutilizador {
                         break;
                     case 2:
                         System.out.println(colors.RESET + u.getCarrinho().imprimeArtigos(u.getCarrinho().getArtigos()));
+                        ArrayList<artigos> temp = u.getCarrinho().getArtigos();
+                        ArrayList<String> codigos = new ArrayList<>();
                         System.out.println("Insira o número do(s) artigo(s) que deseja remover: (0 para terminar)" + colors.BLACK);
                         Scanner scanner = new Scanner(System.in);
                         int index = scanner.nextInt();
                         while (index != 0) {
-                            if(index <= u.getCarrinho().getArtigos().size()){
-                                artigos arti = u.getCarrinho().getArtigos().get(index - 1);
-                                arti.setDisponivel(true);
-                                TodosArtigos.put(index, arti);
-                                u.getCarrinho().removeArtigo(arti);
+                            if(index <= temp.size()){
+                                String codigo = temp.get(index-1).getCodigo();
+                                codigos.add(codigo);
                             }
                             index = scanner.nextInt();
+                        }
+                        int next = TodosArtigos.size() + 1;
+                        Iterator<artigos> iterator = temp.iterator();
+                        while (iterator.hasNext()) {
+                            artigos a = iterator.next();
+                            if (codigos.contains(a.getCodigo())) {
+                                a.setDisponivel(true);
+                                TodosArtigos.put(next, a);
+                                iterator.remove();
+                                u.getCarrinho().removeArtigo(a);
+                                next++;
+                            }
                         }
                         break;
                     case 3:

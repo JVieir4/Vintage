@@ -163,8 +163,6 @@ public class vintage {
         String descricao = stringScanner();
         System.out.println(colors.RESET + "\nQual é a marca do artigo." + colors.BLACK);
         String marca = stringScanner();
-        System.out.println(colors.RESET + "\nQual é o código alfanumérico do artigo." + colors.BLACK);
-        String codigo = stringScanner();
         System.out.println(colors.RESET + "\nQual é o preço do artigo." + colors.BLACK);
         double preço = doubleScanner();
         System.out.println(colors.RESET + "\nQual transportadora quer utilizar: " + colors.BLACK);
@@ -177,12 +175,12 @@ public class vintage {
             else{
                 t = escolheTransportadora(gt, "escolher: ", false);
             }
-            art = new artigos(sap,!estado,ndonos,descricao,marca,codigo,preço,t);
+            art = new artigos(sap,!estado,ndonos,descricao,marca,preço,t);
         }
         else if (obj instanceof tshirts) {
             tshirts tshirt = (tshirts) obj;
             t = escolheTransportadora(gt, "escolher: ", false);
-            art = new artigos(tshirt,!estado,ndonos,descricao,marca,codigo,preço,t);
+            art = new artigos(tshirt,!estado,ndonos,descricao,marca,preço,t);
         }
         else if (obj instanceof malas) {
             malas mala = (malas) obj;
@@ -192,11 +190,11 @@ public class vintage {
             else{
                 t = escolheTransportadora(gt, "escolher: ", false);
             }
-            art = new artigos(mala,!estado,ndonos,descricao,marca,codigo,preço,t);
+            art = new artigos(mala,!estado,ndonos,descricao,marca,preço,t);
         }
         else{
             t = escolheTransportadora(gt, "escolher: ", false);
-            art = new artigos(Tipo.Outro,!estado,ndonos,descricao,marca,codigo,preço,t);
+            art = new artigos(Tipo.Outro,!estado,ndonos,descricao,marca,preço,t);
         }
         return art;
     }

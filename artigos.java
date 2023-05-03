@@ -1,6 +1,7 @@
 package vintage;
 
 import java.text.DecimalFormat;
+import java.util.UUID;
 
 public class artigos {
     private Tipo tipo;
@@ -26,51 +27,52 @@ public class artigos {
         Outro
     }
 
-    public artigos(Tipo type, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
+    public artigos(Tipo type, boolean state, int donos, String desc, String brand, double price, transportadora t){
         this.tipo = type;
         this.estado = state;
         this.ndonos = donos;
         this.descricao = desc;
         this.marca = brand;
-        this.codigo = code;
+        this.codigo = UUID.randomUUID().toString().substring(0, 8);
+        //this.codigo = code;
         this.transp = t;
         this.preco = CalculaPreço(price);
         this.disponivel = true;
     }
 
-    public artigos(sapatilhas sap, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
+    public artigos(sapatilhas sap, boolean state, int donos, String desc, String brand, double price, transportadora t){
         this.tipo = Tipo.Sapatilha;
         this.estado = state;
         this.ndonos = donos;
         this.descricao = desc;
         this.marca = brand;
-        this.codigo = code;
+        this.codigo = UUID.randomUUID().toString().substring(0, 8);
         this.sapatilha = sap;
         this.transp = t;
         this.preco = CalculaPreço(price);
         this.disponivel = true;
     }
 
-    public artigos(tshirts tshirt, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
+    public artigos(tshirts tshirt, boolean state, int donos, String desc, String brand, double price, transportadora t){
         this.tipo = Tipo.TShirt;
         this.estado = state;
         this.ndonos = donos;
         this.descricao = desc;
         this.marca = brand;
-        this.codigo = code;
+        this.codigo = UUID.randomUUID().toString().substring(0, 8);
         this.tshirt = tshirt;
         this.transp = t;
         this.preco = CalculaPreço(price);
         this.disponivel = true;
     }
 
-    public artigos(malas mala, boolean state, int donos, String desc, String brand, String code, double price, transportadora t){
+    public artigos(malas mala, boolean state, int donos, String desc, String brand, double price, transportadora t){
         this.tipo = Tipo.Mala;
         this.estado = state;
         this.ndonos = donos;
         this.descricao = desc;
         this.marca = brand;
-        this.codigo = code;
+        this.codigo = UUID.randomUUID().toString().substring(0, 8);
         this.mala = mala;
         this.transp = t;
         this.preco = CalculaPreço(price);
