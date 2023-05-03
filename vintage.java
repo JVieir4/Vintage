@@ -4,9 +4,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
-
 import vintage.artigos.Tipo;
-import vintage.encomendas.Estado;
 
 public class vintage {
     static StringBuilder banner = new StringBuilder(" _    ___       __                 \n")

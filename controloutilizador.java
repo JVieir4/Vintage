@@ -2,12 +2,11 @@ package vintage;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Scanner;
 import vintage.artigos.Tipo;
 
 public class controloutilizador {
-    private static Map<Integer, artigos> TodosArtigos = null;
+    private static ArrayList<artigos> TodosArtigos = null;
     public static void run(int novo, utilizadores u, contas x, gestorencomendas ge, gestortransportadoras gt) throws CloneNotSupportedException {
         if (novo == 1) {
             TodosArtigos = x.Stock(u);
@@ -65,16 +64,14 @@ public class controloutilizador {
                             }
                             index = scanner.nextInt();
                         }
-                        int next = TodosArtigos.size() + 1;
                         Iterator<artigos> iterator = temp.iterator();
                         while (iterator.hasNext()) {
                             artigos a = iterator.next();
                             if (codigos.contains(a.getCodigo())) {
                                 a.setDisponivel(true);
-                                TodosArtigos.put(next, a);
+                                TodosArtigos.add(a);
                                 iterator.remove();
                                 u.getCarrinho().removeArtigo(a);
-                                next++;
                             }
                         }
                         break;
@@ -163,7 +160,7 @@ public class controloutilizador {
     }
 
     private static void comprarArtigo(int escolha, utilizadores u, contas x, encomendas carrinho, gestorencomendas ge, gestortransportadoras gt,
-    Map<Integer, artigos> TodosArtigos) throws CloneNotSupportedException {
+    ArrayList<artigos> TodosArtigos) throws CloneNotSupportedException {
         switch (escolha) {
             case 1:
                 imprime(u, TodosArtigos, "todos");
@@ -206,33 +203,32 @@ public class controloutilizador {
         ge.adicionarEncomenda(u.getCarrinho());
     }
 
-    private static void imprime(utilizadores u, Map<Integer, artigos> TodosArtigos, String filtro) {
-        for (Map.Entry<Integer, artigos> entry : TodosArtigos.entrySet()) {
-            Integer key = entry.getKey();
-            artigos value = entry.getValue();
+    private static void imprime(utilizadores u, ArrayList<artigos> TodosArtigos, String filtro) {
+        int index = 1;
+        for (artigos a: TodosArtigos) {
             boolean shouldPrint = false;
-
             switch (filtro) {
                 case "todos":
                     shouldPrint = true;
                     break;
                 case "sapatilhas":
-                    shouldPrint = value.getTipo() == Tipo.Sapatilha;
+                    shouldPrint = a.getTipo() == Tipo.Sapatilha;
                     break;
                 case "tshirts":
-                    shouldPrint = value.getTipo() == Tipo.TShirt;
+                    shouldPrint = a.getTipo() == Tipo.TShirt;
                     break;
                 case "malas":
-                    shouldPrint = value.getTipo() == Tipo.Mala;
+                    shouldPrint = a.getTipo() == Tipo.Mala;
                     break;
                 case "outros":
-                    shouldPrint = value.getTipo() == Tipo.Outro;
+                    shouldPrint = a.getTipo() == Tipo.Outro;
                     break;
             }
 
-            if (shouldPrint && !u.carrinhotem(value)) {
-                System.out.println(colors.BLUE + key + ") " + value.toString());
+            if (shouldPrint && !u.carrinhotem(a)) {
+                System.out.println(colors.BLUE + index + ") " + a.toString());
             }
+            index++;
         }
     }
 }

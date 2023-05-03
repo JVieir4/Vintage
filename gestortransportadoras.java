@@ -2,8 +2,6 @@ package vintage;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class gestortransportadoras {
     private ArrayList<transportadora> transportadoras;

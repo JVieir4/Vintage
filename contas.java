@@ -70,18 +70,16 @@ public class contas {
         return this.contas.entrySet().stream().anyMatch(a->s.equals(a.getValue().getEmail()));
     }
 
-    public Map<Integer, artigos> Stock(utilizadores u) {
-        Map<Integer, artigos> artigosMap = new HashMap<>();
-        int index = 0;
+    public ArrayList<artigos> Stock(utilizadores u) {
+        ArrayList< artigos> artigosMap = new ArrayList<>();
         for (utilizadores util : contas.values()) {
             if (util.equals(u)) {
                 continue;
             }
             ArrayList<artigos> artavenda = util.getArtAVenda();
             for (int i = 0; i < artavenda.size(); i++) {
-                artigosMap.put(i + 1 + index, artavenda.get(i));
+                artigosMap.add(artavenda.get(i));
             }
-            index += artavenda.size();
         }
         return artigosMap;
     }
