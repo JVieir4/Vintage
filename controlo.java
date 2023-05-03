@@ -51,7 +51,7 @@ public class controlo {
                         gt.adicionarTransportadora(t);
                         break;
                     case 2:
-                        gt.removerTransportadora(vintage.escolheTransportadora(gt, "remover: "));
+                        gt.removerTransportadora(vintage.escolheTransportadora(gt, "remover: ", true));
                         break;
                     case 0:
                         break;

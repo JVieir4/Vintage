@@ -151,7 +151,7 @@ public class artigos {
         switch(tipo){
             case Sapatilha:
                 if(sapatilha.getPremium()){
-                    this.correcao = -10 * ( data.getCurrentDate().getYear() - sapatilha.getData());
+                    this.correcao = -5 * ( data.getCurrentDate().getYear() - sapatilha.getData());
                 }
                 if(!this.estado){
                     this.correcao = this.ndonos * 10;
@@ -167,7 +167,7 @@ public class artigos {
                 break;
             case Mala:
                 if(mala.getPrem()){
-                    this.correcao = -10 * ( data.getCurrentDate().getYear() - mala.getData());
+                    this.correcao = -5 * ( data.getCurrentDate().getYear() - mala.getData());
                 }
                 if(!this.estado){
                     this.correcao = this.ndonos * 10;

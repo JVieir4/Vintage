@@ -6,6 +6,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 import vintage.artigos.Tipo;
+import vintage.encomendas.Estado;
 
 public class vintage {
     static StringBuilder banner = new StringBuilder(" _    ___       __                 \n")
@@ -167,31 +168,52 @@ public class vintage {
         System.out.println(colors.RESET + "\nQual é o preço do artigo." + colors.BLACK);
         double preço = doubleScanner();
         System.out.println(colors.RESET + "\nQual transportadora quer utilizar: " + colors.BLACK);
-        transportadora t = escolheTransportadora(gt, "escolher: ");
+        transportadora t = null;
         if (obj instanceof sapatilhas) {
             sapatilhas sap = (sapatilhas) obj;
+            if(sap.getPremium()){
+                t = escolheTransportadora(gt, "escolher: ", true);
+            }
+            else{
+                t = escolheTransportadora(gt, "escolher: ", false);
+            }
             art = new artigos(sap,!estado,ndonos,descricao,marca,codigo,preço,t);
         }
         else if (obj instanceof tshirts) {
             tshirts tshirt = (tshirts) obj;
+            t = escolheTransportadora(gt, "escolher: ", false);
             art = new artigos(tshirt,!estado,ndonos,descricao,marca,codigo,preço,t);
         }
         else if (obj instanceof malas) {
             malas mala = (malas) obj;
+            if(mala.getPrem()){
+                t = escolheTransportadora(gt, "escolher: ", true);
+            }
+            else{
+                t = escolheTransportadora(gt, "escolher: ", false);
+            }
             art = new artigos(mala,!estado,ndonos,descricao,marca,codigo,preço,t);
         }
         else{
+            t = escolheTransportadora(gt, "escolher: ", false);
             art = new artigos(Tipo.Outro,!estado,ndonos,descricao,marca,codigo,preço,t);
         }
         return art;
     }
 
-    public static transportadora escolheTransportadora(gestortransportadoras gt, String acao) {
-        System.out.println(gt);
+    public static transportadora escolheTransportadora(gestortransportadoras gt, String acao, boolean premium) {
+        int prem = 0;
+        if(premium){
+            System.out.println(gt.imprime(true));
+            prem = 1;
+        }
+        else{
+            System.out.println(gt.imprime(false));
+        }
         transportadora t;
         System.out.println(colors.RESET + "Insira o número da transportadora que deseja " + acao + colors.BLACK);
         int index = intScanner();
-        while (index < 1 || index > gt.getCounter()){
+        while (index < 1 || index > (gt.getCounter() - (prem * gt.getNotPremiumCounter()))){
             System.out.println(colors.RESET + "Valor inválido, insira o número de uma das transportadoras: " + colors.BLACK);
             index = intScanner();
         }
@@ -265,7 +287,9 @@ public class vintage {
         while(taxa < 0 || taxa > 100){
             taxa = intScanner();
         }
-        return new transportadora(nome, taxa);
+        System.out.println(colors.RESET + "\nA transportadora " + nome + " é premium? (y/n)" + colors.BLACK);
+        boolean premium = isYesNo();
+        return new transportadora(nome, taxa, premium);
     }
 
     public static int MenuEstatisticas(String melhorU, String melhorT, double total) {

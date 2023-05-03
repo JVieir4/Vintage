@@ -1,34 +1,31 @@
 package vintage;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class gestortransportadoras {
-    private Set<transportadora> transportadoras;
+    private ArrayList<transportadora> transportadoras;
     private int counter;
     DecimalFormat df = new DecimalFormat("#");
 
     public gestortransportadoras() {
-        this.transportadoras = new HashSet<>();
+        this.transportadoras = new ArrayList<transportadora>();
         this.counter = 0;
     }
 
-    public gestortransportadoras(Set<transportadora> transportadoras) {
+    public gestortransportadoras(ArrayList<transportadora> transportadoras) {
         this.transportadoras = transportadoras;
         this.counter = transportadoras.size();
     }
 
-    public gestortransportadoras(gestortransportadoras gestorTrans) {
-        this.transportadoras = new HashSet<>(gestorTrans.getTransportadora());
-        this.counter = gestorTrans.getCounter();
-    }
 
-    public Set<transportadora> getTransportadora() {
+    public ArrayList<transportadora> getTransportadora() {
         return this.transportadoras;
     }
 
-    public void setTransportadora(Set<transportadora> transportadoras){
+    public void setTransportadora(ArrayList<transportadora> transportadoras){
         this.transportadoras = transportadoras;
     }
 
@@ -50,21 +47,29 @@ public class gestortransportadoras {
         this.counter--;
     }
 
-    @Override
-    public String toString() {
+    
+    public String imprime(boolean prem) {
         StringBuilder sb = new StringBuilder();
         int index = 1;
         for(transportadora t : this.transportadoras){
-            sb.append(colors.BLUE + index + ") " + colors.YELLOW + t.getNome() +
-            "\n" + colors.GREEN + "Taxa de expedição: " + colors.RESET + (df.format((t.getTaxa() * 100) - 100)) + "%\n\n");
-            index++;
+            if(prem && t.getPremium()){
+                sb.append(colors.BLUE + index + ") " + colors.YELLOW + t.getNome() +
+                "\n" + colors.GREEN + "Taxa de expedição: " + colors.RESET + df.format(t.getTaxa()) + "%\n\n");
+                index++;
+            }
+            else if(!prem){
+                sb.append(colors.BLUE + index + ") " + colors.YELLOW + t.getNome() +
+                "\n" + colors.GREEN + "Taxa de expedição: " + colors.RESET + df.format(t.getTaxa()) + "%\n\n");
+                index++;
+            }
         }
         return sb.toString();
     }
 
     public transportadora getTransportadorabyIndex(int index) {
-        if (index-1 >= 0 && index-1 < counter) {
-            return transportadoras.toArray(new transportadora[0])[index-1];
+        if (index-1 >= 0 && index-1 < counter){
+            return transportadoras.get(index-1);
+            //return transportadoras.toArray(new transportadora[0])[index-1];
         }
         return null;
     }
@@ -83,5 +88,15 @@ public class gestortransportadoras {
             return "N/A";
         }
         return melhor.getNome();
+    }
+
+    public int getNotPremiumCounter() {
+        int n = 0;
+        for(transportadora t: this.transportadoras){
+            if(!t.getPremium()){
+                n++;
+            }
+        }
+        return n;
     }
 }

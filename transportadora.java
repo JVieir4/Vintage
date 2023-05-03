@@ -2,12 +2,21 @@ package vintage;
 
 public class transportadora {
     private String transportadora;
+    private boolean premium;
     private int margemlucro;
     private double lucro;
 
-    public transportadora(String nome, int mlucro){
+    public transportadora(String nome, int mlucro, boolean prem){
         this.transportadora = nome;
         this.margemlucro = mlucro;
+        this.premium = prem;
+    }
+
+    public boolean getPremium(){
+        return this.premium;
+    }
+    public void setPremium(boolean p){
+        this.premium = p;
     }
 
     public double getLucro(){
