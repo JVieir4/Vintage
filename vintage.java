@@ -8,13 +8,20 @@ import java.util.Scanner;
 import vintage.artigos.Tipo;
 
 public class vintage {
+    static StringBuilder banner = new StringBuilder(" _    ___       __                 \n")
+    .append("| |  / (_)___  / /_____ _____ ____ \n")
+    .append("| | / / / __ \\/ __/ __ `/ __ `/ _ \\\n")
+    .append("| |/ / / / / / /_/ /_/ / /_/ /  __/\n")
+    .append("|___/_/_/ /_/\\__/\\__,_/\\__, /\\___/ \n")
+    .append("                      /____/       \n\n");
+    
     private static String timejump = colors.BLACK + "T" + colors.RED + "I" + colors.GREEN + "M" + colors.YELLOW + "E" + colors.BLUE + " J" +
     colors.PURPLE + "U" + colors.CYAN + "M" + colors.WHITE + "P"; 
     private static datemanager date = datemanager.getInstance();
     static DecimalFormat df = new DecimalFormat("#.##");
     public static int MenuInicial(boolean clear) {
         if(clear){clearWindow();}
-        StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU INICIAL-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n");
+        StringBuilder sb = new StringBuilder(colors.RED + banner + "Data: " + colors.YELLOW +date.getCurrentDate() + "\n\n");
         sb.append(colors.BLUE + "1) " + colors.RESET + "Iniciar sessão.\n");
         sb.append(colors.BLUE + "2) " + colors.RESET + "Registar nova conta.\n");
         sb.append(colors.BLUE + "3) " + colors.RESET + "Ver utilizadores registados.\n");
