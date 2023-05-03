@@ -51,6 +51,16 @@ public class controlo {
                         gt.adicionarTransportadora(t);
                         break;
                     case 2:
+                        System.out.println(colors.RESET + "Insira o número da transportadora que deseja modificar: " + colors.BLACK);
+                        transportadora temp = gt.getTransportadorabyIndex(vintage.intScanner());
+                        System.out.println(colors.RESET + "Insira uma nova taxa: " + colors.BLACK);
+                        int novataxa = 0;
+                        while(novataxa < 0 || novataxa > 100){
+                            novataxa = vintage.intScanner();
+                        }
+                        temp.setTaxa(novataxa);
+                        break;
+                    case 3:
                         gt.removerTransportadora(vintage.escolheTransportadora(gt, "remover: ", true));
                         break;
                     case 0:

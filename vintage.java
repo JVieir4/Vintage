@@ -269,9 +269,10 @@ public class vintage {
 
     public static int menuTransportadora(gestortransportadoras gt){
         StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU TRANSPORTADORA-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n");
-        sb.append(gt.toString());
+        sb.append("\n" + gt.imprime(false));
         sb.append(colors.BLUE + "1) " + colors.RESET + "Adicionar transportadora.\n");
-        sb.append(colors.BLUE + "2) " + colors.RESET + "Remover transportadora.\n");
+        sb.append(colors.BLUE + "2) " + colors.RESET + "Alterar taxa da transportadora.\n");
+        sb.append(colors.BLUE + "3) " + colors.RESET + "Remover transportadora.\n");
         sb.append(colors.BLUE + "0) " + colors.RESET + "Voltar.\n");
         sb.append("Selecione a opção pretendida: " + colors.BLACK);
         System.out.println(sb.toString());

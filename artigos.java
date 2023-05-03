@@ -153,29 +153,29 @@ public class artigos {
                 if(sapatilha.getPremium()){
                     this.correcao = -5 * ( data.getCurrentDate().getYear() - sapatilha.getData());
                 }
-                if(!this.estado){
-                    this.correcao = this.ndonos * 10;
+                else if(!this.estado){
+                    this.correcao = this.ndonos * 5;
+                }
+                else if(sapatilha.getTam() > 45){
+                    this.correcao = 20;
                 }
                 break;
             case TShirt:
                 if(!this.estado && tshirt.getPadrao() != Padroes.Liso){
                     this.correcao = 50;
                 }
-                else{
-                    this.correcao = 0;
-                }
                 break;
             case Mala:
                 if(mala.getPrem()){
                     this.correcao = -5 * ( data.getCurrentDate().getYear() - mala.getData());
                 }
-                if(!this.estado){
-                    this.correcao = this.ndonos * 10;
+                else if(!this.estado){
+                    this.correcao = this.ndonos * 5;
                 }
                 break;
             case Outro:
                 if(!this.estado){
-                    this.correcao = this.ndonos * 10;
+                    this.correcao = this.ndonos * 5;
                 }
                 break;
         }
