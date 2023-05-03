@@ -118,31 +118,16 @@ public class utilizadores implements Cloneable {
         clone.artavenda = new ArrayList<>(this.artavenda);
         return clone;
     }
-
-    public void printArtavenda() {
-        System.out.println(colors.BLUE + "Artigos à venda:");
-        for (artigos artigo : artavenda) {
-            System.out.println(artigo);
-            System.out.println();
+    
+    public void printListaArts(ArrayList<artigos> lista, String filtro){
+        int index = 1;
+        System.out.println(colors.BLUE + "Artigos " + filtro + ":");
+        for (artigos artigo : lista) {
+            System.out.println(colors.BLUE + index + ") " + artigo + "\n");
+            index++;
         }
     }
-
-    public void printArtVendidos() {
-        System.out.println(colors.BLUE + "Artigos vendidos:");
-        for (artigos artigo : artvendidos) {
-            System.out.println(artigo);
-            System.out.println();
-        }
-    }
-
-    public void printArtComprados() {
-        System.out.println(colors.BLUE + "Artigos comprados:");
-        for (artigos artigo : artcomprados) {
-            System.out.println(artigo);
-            System.out.println();
-        }
-    }
-
+    
     public void artigoVendido(){
         Iterator<artigos> iterator = artavenda.iterator();
         while (iterator.hasNext()) {

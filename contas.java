@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import vintage.artigos.Tipo;
+
 public class contas {
     private Map<String,utilizadores> contas;
     private int utilcounter;
@@ -70,7 +72,7 @@ public class contas {
         return this.contas.entrySet().stream().anyMatch(a->s.equals(a.getValue().getEmail()));
     }
 
-    public ArrayList<artigos> Stock(utilizadores u) {
+    public ArrayList<artigos> Stock(utilizadores u, String filtro) {
         ArrayList< artigos> artigosMap = new ArrayList<>();
         for (utilizadores util : contas.values()) {
             if (util.equals(u)) {
@@ -81,7 +83,35 @@ public class contas {
                 artigosMap.add(artavenda.get(i));
             }
         }
-        return artigosMap;
+        int index = 1;
+        ArrayList<artigos> stock = new ArrayList<>();
+        for (artigos a: artigosMap) {
+            boolean shouldPrint = false;
+            switch (filtro) {
+                case "todos":
+                    shouldPrint = true;
+                    break;
+                case "sapatilhas":
+                    shouldPrint = a.getTipo() == Tipo.Sapatilha;
+                    break;
+                case "tshirts":
+                    shouldPrint = a.getTipo() == Tipo.TShirt;
+                    break;
+                case "malas":
+                    shouldPrint = a.getTipo() == Tipo.Mala;
+                    break;
+                case "outros":
+                    shouldPrint = a.getTipo() == Tipo.Outro;
+                    break;
+            }
+
+            if (shouldPrint && !u.carrinhotem(a) && a.getDisponivel()) {
+                stock.add(a);
+                System.out.println(colors.BLUE + index + ") " + a.toString());
+                index++;
+            }
+        }
+        return stock;
     }
 
     public void removeFromArtavenda(Map<Integer, artigos> TodosArtigos, int index) {
