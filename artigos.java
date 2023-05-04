@@ -34,7 +34,6 @@ public class artigos {
         this.descricao = desc;
         this.marca = brand;
         this.codigo = UUID.randomUUID().toString().substring(0, 8);
-        //this.codigo = code;
         this.transp = t;
         this.preco = CalculaPreço(price);
         this.disponivel = true;
@@ -201,7 +200,7 @@ public class artigos {
                 green + "\n- Atacadores? " + "\t\t" + reset + sapatilha.getAtac() +
                 green +  "\n- Edição: " + "\t\t" + reset + sapatilha.getData() +
                 green + "\n- Novo?: " + "\t\t" + reset + this.estado +
-                green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) +
+                green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) + "EUR" +
                 green + "\n- Código: " + "\t\t" + reset + this.codigo +
                 green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
             case TShirt:
@@ -211,8 +210,8 @@ public class artigos {
                 green + "\n- Tamanho: " + "\t\t" + reset + tshirt.getTamanho() +
                 green + "\n- Padrão: " + "\t\t" + reset + tshirt.getPadrao() +
                 green + "\n- Novo? " + "\t\t" + reset + this.estado +
-                green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) +
-                green + "\n- Código: " + "\t\t" + reset + this.codigo +
+                green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) + "EUR" +
+                green + "€\n- Código: " + "\t\t" + reset + this.codigo +
                 green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
             case Mala:
                 return yellow +this.tipo +
@@ -223,16 +222,16 @@ public class artigos {
                 green + "\n- Material: " + "\t\t" + reset + mala.getMaterial() +
                 green + "\n- Edição: " + "\t\t" + reset + mala.getData() +
                 green + "\n- Novo? " + "\t\t" + reset + this.estado +
-                green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) +
-                green + "\n- Código: " + "\t\t" + reset + this.codigo +
+                green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) + "EUR" +
+                green + "€\n- Código: " + "\t\t" + reset + this.codigo +
                 green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
             case Outro:
                 return yellow + this.tipo +
                 green + "\n- Marca: " + "\t\t" + reset + this.marca +
                 green + "\n- Descrição: " + "\t\t" + reset + this.descricao +
                 green + "\n- Novo? " + "\t\t" + reset + this.estado +
-                green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) +
-                green + "\n- Código: " + "\t\t" + reset + this.codigo +
+                green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) + "EUR" +
+                green + "€\n- Código: " + "\t\t" + reset + this.codigo +
                 green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
         }
         return null;

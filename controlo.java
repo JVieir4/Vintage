@@ -53,7 +53,7 @@ public class controlo {
                     case 2:
                         System.out.println(colors.RESET + "Insira o número da transportadora que deseja modificar: " + colors.BLACK);
                         transportadora temp = gt.getTransportadorabyIndex(vintage.intScanner());
-                        System.out.println(colors.RESET + "Insira uma nova taxa: " + colors.BLACK);
+                        System.out.println(colors.RESET + "Insira uma nova taxa: (0-100)" + colors.BLACK);
                         int novataxa = 0;
                         while(novataxa < 0 || novataxa > 100){
                             novataxa = vintage.intScanner();
@@ -99,7 +99,7 @@ public class controlo {
     private static void update(gestorencomendas ge){
         for(encomendas e: ge.getEncomendas()){
             long dif = ChronoUnit.DAYS.between(e.getData(), datemanager.getInstance().getCurrentDate());
-            if(dif > 2){
+            if(dif > 2 && e.getEstado() == Estado.Finalizada){
                 e.setEstado(Estado.Expedida);
             }
         }

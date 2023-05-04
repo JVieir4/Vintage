@@ -40,10 +40,15 @@ public class gestorencomendas {
 
     @Override
     public String toString() {
+        for(encomendas enc : this.encomendas){
+            if(enc.getNartigos() < 1){ removerEncomenda(enc);}
+        }
+        if(this.encomendas.isEmpty()){
+            return "Nenhuma encomenda feita.";
+        }
         df.setMinimumFractionDigits(2);
         StringBuilder sb = new StringBuilder(colors.BLUE + "Encomendas:\n");
         for(encomendas e : this.encomendas){
-            if(e.getNartigos() < 1){ continue;}
             sb.append(colors.GREEN + e.calculaDimensao(e.getNartigos()))
             .append(colors.RESET + " feita em: " + colors.GREEN).append(e.getData())
             .append(colors.RESET + " por: " + colors.BLUE).append(e.getNome())
@@ -65,6 +70,7 @@ public class gestorencomendas {
         encomendas nova = new encomendas(u.getNome());
         nova = u.getCarrinho();
         nova.setEstado(Estado.Finalizada);
+        nova.setData(datemanager.getInstance().getCurrentDate());
         encomendas.add(nova);
     }
 }

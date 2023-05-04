@@ -21,6 +21,7 @@ public class vintage {
     public static int MenuInicial(boolean clear) {
         if(clear){clearWindow();}
         StringBuilder sb = new StringBuilder(colors.RED + banner + "Data: " + colors.YELLOW +date.getCurrentDate() + "\n\n");
+        System.out.println("\u20AC");
         sb.append(colors.BLUE + "1) " + colors.RESET + "Iniciar sessão.\n");
         sb.append(colors.BLUE + "2) " + colors.RESET + "Registar nova conta.\n");
         sb.append(colors.BLUE + "3) " + colors.RESET + "Ver utilizadores registados.\n");

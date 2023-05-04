@@ -153,8 +153,8 @@ public class encomendas {
           .append(colors.RESET + " feita em: " + colors.GREEN).append(this.data_de_criacao)
           .append(colors.RESET + " por: " + colors.BLUE).append(this.nome)
           .append("." + colors.GREEN + "\nEstado: " + colors.RESET).append(this.estado)
-          .append(colors.GREEN + "\nCusto base (sem impostos e taxas): " + colors.RESET).append(df.format(calculaPreco(this.artigos)))
-          .append(colors.GREEN + "\nCusto: " + colors.RESET).append(df.format(this.preco))
+          .append(colors.GREEN + "\nCusto base (sem impostos e taxas): " + colors.RESET).append(df.format(calculaPreco(this.artigos))).append(" EUR")
+          .append(colors.GREEN + "\nCusto: " + colors.RESET).append(df.format(this.preco)).append(" EUR")
           .append(colors.BLUE + "\nArtigos:\n" + colors.RESET).append(imprimeArtigos(this.artigos));
         return sb.toString();
     }
