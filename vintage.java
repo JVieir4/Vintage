@@ -20,8 +20,7 @@ public class vintage {
     static DecimalFormat df = new DecimalFormat("#.##");
     public static int MenuInicial(boolean clear) {
         if(clear){clearWindow();}
-        StringBuilder sb = new StringBuilder(colors.RED + banner + "Data: " + colors.YELLOW +date.getCurrentDate() + "\n\n");
-        System.out.println("\u20AC");
+        StringBuilder sb = new StringBuilder(colors.RED + banner + "Data: " + colors.YELLOW + date.getCurrentDate() + "\n\n");
         sb.append(colors.BLUE + "1) " + colors.RESET + "Iniciar sessão.\n");
         sb.append(colors.BLUE + "2) " + colors.RESET + "Registar nova conta.\n");
         sb.append(colors.BLUE + "3) " + colors.RESET + "Ver utilizadores registados.\n");
@@ -42,13 +41,16 @@ public class vintage {
 
     public static int menuUtilizador(utilizadores u){
         StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU UTILIZADOR-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n");
-        sb.append(colors.YELLOW + u.getNome() + ":\n\n");
+        sb.append(colors.YELLOW + u.getNome() + ":\n");
+        sb.append(colors.YELLOW + "Lucro: " + colors.RESET + df.format(u.getLucro()) + " EUR\n");
+        sb.append(colors.YELLOW + "Prejuízo: " + colors.RESET + df.format(u.getPrejuizo()) + " EUR\n\n");
         sb.append(colors.BLUE + "1) " + colors.RESET + "Listar um artigo.\n");
         sb.append(colors.BLUE + "2) " + colors.RESET + "Comprar um artigo.\n");
         sb.append(colors.BLUE + "3) " + colors.RESET + "Ver carrinho.\n");
         sb.append(colors.BLUE + "4) " + colors.RESET + "Verificar artigos à venda.\n");
         sb.append(colors.BLUE + "5) " + colors.RESET + "Histórico de artigos vendidos.\n");
         sb.append(colors.BLUE + "6) " + colors.RESET + "Histórico de artigos comprados.\n");
+        sb.append(colors.BLUE + "7) " + colors.RESET + "Encomendas pendentes (" + u.getPendentes().size() + ").\n");
         sb.append(colors.BLUE + "0) " + colors.RESET + "Logout.\n\n");
         sb.append("Selecione a opção pretendida: " + colors.BLACK);
         System.out.println(sb.toString());

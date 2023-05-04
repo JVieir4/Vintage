@@ -12,7 +12,10 @@ public class utilizadores implements Cloneable {
     private String nome;
     private String morada;
     private int nfiscal;
+    private double lucro = 0;
+    private double prejuizo = 0;
     private ArrayList<encomendas> encomendas;
+    private ArrayList<encomendas> pendentes;
     private ArrayList<artigos> artavenda = new ArrayList<>();
     private ArrayList<artigos> artvendidos = new ArrayList<>();
     private ArrayList<artigos> artcomprados = new ArrayList<>();
@@ -24,6 +27,7 @@ public class utilizadores implements Cloneable {
         this.morada = address;
         this.nfiscal = fiscal;
         this.encomendas = new ArrayList<encomendas>();
+        this.pendentes = new ArrayList<encomendas>();
     }
 
     public utilizadores(utilizadores novo){
@@ -33,6 +37,20 @@ public class utilizadores implements Cloneable {
         this.nome = novo.getNome();
         this.morada = novo.getMorada();
         this.nfiscal = novo.getFiscal();
+    }
+
+    public double getLucro(){
+        return this.lucro;
+    }
+    public void setLucro(double l){
+        this.lucro = l;
+    }
+
+    public double getPrejuizo(){
+        return this.prejuizo;
+    }
+    public void setPrejuizo(double p){
+        this.prejuizo = p;
     }
 
     public String getPassword() {
@@ -98,6 +116,13 @@ public class utilizadores implements Cloneable {
         this.artcomprados = a;
     }
 
+    public ArrayList<encomendas> getPendentes() {
+        return this.pendentes;
+    }
+    public void setPendentes(ArrayList<encomendas> p) {
+        this.pendentes = p;
+    }
+
     public encomendas getCarrinho() {
         if (encomendas.isEmpty() || encomendas.get(encomendas.size() - 1).getEstado() != Estado.Pendente) {
             encomendas newEncomenda = new encomendas(this.nome);
@@ -110,7 +135,6 @@ public class utilizadores implements Cloneable {
     public void listarArtigo(artigos A){
         artavenda.add(A);
     }
-
 
     @Override
     public utilizadores clone() throws CloneNotSupportedException {
@@ -179,5 +203,17 @@ public class utilizadores implements Cloneable {
             total += art.getPreco();
         }
         return total;
+    }
+
+    public String imprimePendentes(){
+        int index = 1;
+        StringBuilder sb = new StringBuilder(colors.BLUE + "Encomendas pendentes: (Tem 48h para as cancelar, antes da expedição)\n\n");
+        for(encomendas e : this.pendentes){
+            sb.append(colors.BLUE + index + ") " + colors.GREEN + e.calculaDimensao(e.getNartigos()))
+            .append(colors.RESET + " feita em: " + colors.GREEN).append(e.getData())
+            .append(colors.GREEN + "\nArtigos: " + colors.RESET + e.getArtigosLista() + "\n\n");
+            index++;
+        }
+        return sb.toString();
     }
 }

@@ -6,7 +6,7 @@ import java.util.Iterator;
 public class controloutilizador {
     public static void run(int novo, utilizadores u, contas x, gestorencomendas ge, gestortransportadoras gt) throws CloneNotSupportedException {
         int opcao = -1;
-        while (opcao < 0 || opcao > 6) {
+        while (opcao < 0 || opcao > 7) {
             opcao = vintage.menuUtilizador(u);
         }
         switch (opcao) {
@@ -55,7 +55,6 @@ public class controloutilizador {
                         } else {
                             System.out.println(u.getCarrinho());
                             u.getArtComprados().addAll(u.getCarrinho().getArtigos());
-                            x.artigoVendidoForAll();
                             ge.concluirEncomenda(u);
                             u.getCarrinho().getArtigos().clear();
                             
@@ -91,6 +90,40 @@ public class controloutilizador {
                 }
                 u.printListaArts(u.getArtComprados(), "comprados");
                 break;
+            case 7:
+                if(u.getPendentes().isEmpty()){
+                    System.out.println("Nenhuma encomenda por expedir.");
+                    break;
+                }
+                System.out.println(u.imprimePendentes());
+                System.out.println(colors.RESET + "Pretende cancelar alguma encomenda? (y/n)" + colors.BLACK);
+                if(vintage.isYesNo()){
+                    ArrayList<encomendas> temp = u.getPendentes();
+                    ArrayList<String> codigos = new ArrayList<>();
+                    System.out.println(colors.RESET + "Insira o número da(s) encomenda(s) que deseja cancelar: (0 para terminar)" + colors.BLACK);
+                    int index = vintage.intScanner();
+                    while (index != 0) {
+                        if(index <= temp.size()){
+                            String codigo = temp.get(index-1).getCodigo();
+                            codigos.add(codigo);
+                        }
+                        index = vintage.intScanner();
+                    }
+                    Iterator<encomendas> iterator = temp.iterator();
+                    while (iterator.hasNext()) {
+                        encomendas e = iterator.next();
+                        if (codigos.contains(e.getCodigo()) && !codigos.isEmpty()){
+                            iterator.remove();
+                            for(artigos a: e.getArtigos()){
+                                a.setDisponivel(true);
+                            }
+                            u.setPrejuizo(u.getPrejuizo() - e.getPreco());
+                            u.getPendentes().remove(e);
+                            ge.removerEncomenda(e);
+                        }
+                    }
+                }
+                break;
             case 0:
                 update(x, u);
                 controlo.run(x, ge, gt, true);
@@ -104,6 +137,8 @@ public class controloutilizador {
         x.getUtilizadores(u.getEmail()).setArtAVenda(u.getArtAVenda());
         x.getUtilizadores(u.getEmail()).setArtComprados(u.getArtComprados());
         x.getUtilizadores(u.getEmail()).setArtVendidos(u.getArtVendidos());
+        x.getUtilizadores(u.getEmail()).setLucro(u.getLucro());
+        x.getUtilizadores(u.getEmail()).setPrejuizo(u.getPrejuizo());
     }
 
     private static artigos criaArtigo(int tipo, utilizadores u, contas x, gestorencomendas ge, gestortransportadoras gt)

@@ -71,6 +71,8 @@ public class gestorencomendas {
         nova = u.getCarrinho();
         nova.setEstado(Estado.Finalizada);
         nova.setData(datemanager.getInstance().getCurrentDate());
+        u.setPrejuizo(u.getPrejuizo() + nova.getPreco());
+        u.getPendentes().add(nova);
         encomendas.add(nova);
     }
 }

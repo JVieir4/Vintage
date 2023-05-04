@@ -211,7 +211,7 @@ public class artigos {
                 green + "\n- Padrão: " + "\t\t" + reset + tshirt.getPadrao() +
                 green + "\n- Novo? " + "\t\t" + reset + this.estado +
                 green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) + "EUR" +
-                green + "€\n- Código: " + "\t\t" + reset + this.codigo +
+                green + "\n- Código: " + "\t\t" + reset + this.codigo +
                 green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
             case Mala:
                 return yellow +this.tipo +
@@ -223,7 +223,7 @@ public class artigos {
                 green + "\n- Edição: " + "\t\t" + reset + mala.getData() +
                 green + "\n- Novo? " + "\t\t" + reset + this.estado +
                 green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) + "EUR" +
-                green + "€\n- Código: " + "\t\t" + reset + this.codigo +
+                green + "\n- Código: " + "\t\t" + reset + this.codigo +
                 green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
             case Outro:
                 return yellow + this.tipo +
@@ -231,7 +231,7 @@ public class artigos {
                 green + "\n- Descrição: " + "\t\t" + reset + this.descricao +
                 green + "\n- Novo? " + "\t\t" + reset + this.estado +
                 green + "\n- Preço: " + "\t\t" + reset + df.format(this.preco) + "EUR" +
-                green + "€\n- Código: " + "\t\t" + reset + this.codigo +
+                green + "\n- Código: " + "\t\t" + reset + this.codigo +
                 green + "\n- Transportadora: " + "\t" + reset + this.transp.getNome();
         }
         return null;

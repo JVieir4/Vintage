@@ -24,7 +24,7 @@ public class contas {
         this.contas = c.getContas();
     }
 
-    private Map<String, utilizadores> getContas() {
+    public Map<String, utilizadores> getContas() {
         return this.contas;
     }
 

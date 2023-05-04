@@ -3,6 +3,7 @@ package vintage;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class encomendas {
     private String nome;
@@ -10,6 +11,7 @@ public class encomendas {
     private Estado estado;
     private double preco;
     private int numero_artigos;
+    private String codigo;
     private datemanager data = datemanager.getInstance();
     private LocalDate data_de_criacao;
     ArrayList<artigos> artigos;
@@ -33,6 +35,7 @@ public class encomendas {
         this.artigos = new ArrayList<>();
         this.estado = Estado.Pendente;
         this.data_de_criacao = data.getCurrentDate();
+        this.codigo = UUID.randomUUID().toString().substring(0, 5);
         this.numero_artigos = 0;
     }
 
@@ -43,6 +46,13 @@ public class encomendas {
         this.estado = e.getEstado();
         this.artigos = e.getArtigos();
         this.preco = e.getPreco();
+    }
+
+    public String getCodigo() {
+        return this.codigo;
+    }
+    public void setCodigo(String cod){
+        this.codigo = cod;
     }
 
     public String getNome(){
@@ -98,10 +108,11 @@ public class encomendas {
         double res = 0;
         int novos = 0;
         int usados = 0;
+        double pre = 0;
         for(artigos art : a){
             res += art.getPreco();
             
-            preco += (art.getPreco() * (0.01 * art.getTransportadora().getTaxa() + 1) * (1 + 0.10)); /* Sendo 10% imposto */
+            pre += (art.getPreco() * (0.01 * art.getTransportadora().getTaxa() + 1) * (1 + 0.10)); /* Sendo 10% imposto */
             if(art.getEstado()){
                 novos++;
             }
@@ -109,7 +120,8 @@ public class encomendas {
                 usados++;
             }
         }
-        preco = (preco + (0.5*novos) + (0.25*usados)) * 0.9;
+        pre = (pre + (0.5*novos) + (0.25*usados)) * 0.9;
+        this.preco = pre;
         return res;
     }
 
@@ -141,6 +153,14 @@ public class encomendas {
         for (artigos artigo : this.artigos) {
             sb.append(index + ") ").append(artigo.toString()).append("\n");
             index++;
+        }
+        return sb.toString();
+    }
+
+    public String getArtigosLista() {
+        StringBuilder sb = new StringBuilder();
+        for(artigos a: this.artigos){
+            sb.append(colors.YELLOW + "\n- " + colors.RESET + a.getTipo() + colors.YELLOW +  " da " + colors.RESET + a.getMarca());
         }
         return sb.toString();
     }

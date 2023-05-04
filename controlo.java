@@ -1,6 +1,7 @@
 package vintage;
 
 import java.time.temporal.ChronoUnit;
+import java.util.Iterator;
 
 import vintage.encomendas.Estado;
 
@@ -87,7 +88,7 @@ public class controlo {
                     case 0:
                         break;
                 }
-                update(ge);
+                update(x, ge, gt);
                 controlo.run(x,ge,gt,true);
                 break;
             case 0:
@@ -96,11 +97,27 @@ public class controlo {
         }
     }
 
-    private static void update(gestorencomendas ge){
+    private static void update(contas x, gestorencomendas ge, gestortransportadoras gt){
         for(encomendas e: ge.getEncomendas()){
             long dif = ChronoUnit.DAYS.between(e.getData(), datemanager.getInstance().getCurrentDate());
             if(dif > 2 && e.getEstado() == Estado.Finalizada){
                 e.setEstado(Estado.Expedida);
+            }
+        }
+        x.artigoVendidoForAll();
+        for(utilizadores u: x.getContas().values()){
+            double lucro = 0;
+            for(artigos a: u.getArtVendidos()){
+                lucro += a.getPreco();
+            }
+            u.setLucro(u.getLucro() + lucro);
+            Iterator<encomendas> iterator = u.getPendentes().iterator();
+            while (iterator.hasNext()) {
+                encomendas e = iterator.next();
+                if (e.getEstado() == Estado.Expedida) {
+                    iterator.remove();
+                    u.getPendentes().remove(e);
+                }
             }
         }
     }
