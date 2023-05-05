@@ -40,6 +40,7 @@ public class vintage {
     }
 
     public static int menuUtilizador(utilizadores u){
+        df.setMinimumFractionDigits(2);
         StringBuilder sb = new StringBuilder(colors.RED + "\n\n|-----------MENU UTILIZADOR-----------| " + colors.YELLOW +date.getCurrentDate() + colors.RED + " |\n\n");
         sb.append(colors.YELLOW + u.getNome() + ":\n");
         sb.append(colors.YELLOW + "Lucro: " + colors.RESET + df.format(u.getLucro()) + " EUR\n");

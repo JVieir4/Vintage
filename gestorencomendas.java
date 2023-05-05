@@ -61,7 +61,9 @@ public class gestorencomendas {
     public double lucroTotal() {
         double lucro = 0;
         for(encomendas e: this.encomendas){
-            lucro += e.getPreco();
+            if(e.getEstado() == Estado.Expedida){
+                lucro += e.getPreco();
+            }
         }
         return lucro;
     }

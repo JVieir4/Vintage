@@ -2,7 +2,6 @@ package vintage;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Iterator;
-
 import vintage.encomendas.Estado;
 
 public class controlo {
@@ -43,7 +42,7 @@ public class controlo {
                 break;
             case 4:
                 int op = -1;
-                while(op < 0 || op > 2) {
+                while(op < 0 || op > 3) {
                     op = vintage.menuTransportadora(gt);
                 }
                 switch(op){
@@ -62,7 +61,7 @@ public class controlo {
                         temp.setTaxa(novataxa);
                         break;
                     case 3:
-                        gt.removerTransportadora(vintage.escolheTransportadora(gt, "remover: ", true));
+                        gt.removerTransportadora(vintage.escolheTransportadora(gt, "remover: ", false));
                         break;
                     case 0:
                         break;
@@ -97,7 +96,7 @@ public class controlo {
         }
     }
 
-    private static void update(contas x, gestorencomendas ge, gestortransportadoras gt){
+    public static void update(contas x, gestorencomendas ge, gestortransportadoras gt){
         for(encomendas e: ge.getEncomendas()){
             long dif = ChronoUnit.DAYS.between(e.getData(), datemanager.getInstance().getCurrentDate());
             if(dif > 2 && e.getEstado() == Estado.Finalizada){

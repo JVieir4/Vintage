@@ -83,6 +83,7 @@ public class controloutilizador {
                     break;
                 }
                 u.printListaArts(u.getArtVendidos(), "vendidos");
+                break;
             case 6:
                 if (u.getArtComprados().isEmpty()) {
                     System.out.println(colors.RESET + "Não comprou nenhum artigo.");
@@ -107,6 +108,9 @@ public class controloutilizador {
                             String codigo = temp.get(index-1).getCodigo();
                             codigos.add(codigo);
                         }
+                        else{
+                            System.out.println(colors.RESET + "\nValor inválido, por favor insira um número dos apresentados: " + colors.BLACK);
+                        }
                         index = vintage.intScanner();
                     }
                     Iterator<encomendas> iterator = temp.iterator();
@@ -115,9 +119,12 @@ public class controloutilizador {
                         if (codigos.contains(e.getCodigo()) && !codigos.isEmpty()){
                             iterator.remove();
                             for(artigos a: e.getArtigos()){
+                                u.getArtComprados().remove(a);
                                 a.setDisponivel(true);
                             }
-                            u.setPrejuizo(u.getPrejuizo() - e.getPreco());
+                            double prej = u.getPrejuizo() - e.getPreco();
+                            if(prej < 0){ prej = 0;}
+                            u.setPrejuizo(prej);
                             u.getPendentes().remove(e);
                             ge.removerEncomenda(e);
                         }
@@ -206,6 +213,9 @@ public class controloutilizador {
                 String codigo = temp.get(index-1).getCodigo();
                 codigos.add(codigo);
             }
+            else{
+                System.out.println(colors.RESET + "\nValor inválido, por favor insira um número dos apresentados: " + colors.BLACK);
+            }
             index = vintage.intScanner();
         }
         Iterator<artigos> iterator = temp.iterator();
@@ -228,6 +238,9 @@ public class controloutilizador {
             if(index <= temp.size()){
                 String codigo = temp.get(index-1).getCodigo();
                 codigos.add(codigo);
+            }
+            else{
+                System.out.println(colors.RESET + "\nValor inválido, por favor insira um número dos apresentados: " + colors.BLACK);
             }
             index = vintage.intScanner();
         }
