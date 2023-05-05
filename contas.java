@@ -8,19 +8,19 @@ import java.util.Map;
 import vintage.artigos.Tipo;
 
 public class contas {
-    private Map<String,utilizadores> contas;
+    private Map<String, utilizadores> contas;
     private int utilcounter;
 
-    public contas(){
+    public contas() {
         this.contas = new HashMap<>();
         utilcounter = 0;
     }
 
-    public contas(Map<String,utilizadores> c){
+    public contas(Map<String, utilizadores> c) {
         this.setContas(c);
     }
 
-    public contas(contas c){
+    public contas(contas c) {
         this.contas = c.getContas();
     }
 
@@ -28,11 +28,11 @@ public class contas {
         return this.contas;
     }
 
-    public void setContas(Map<String,utilizadores> c){
+    public void setContas(Map<String, utilizadores> c) {
         this.contas = c;
     }
 
-    public void addConta (utilizadores conta) throws CloneNotSupportedException {
+    public void addConta(utilizadores conta) throws CloneNotSupportedException {
         String code = generateCode();
         conta.setCode(code);
         this.contas.put(conta.getCode(), conta.clone());
@@ -58,22 +58,22 @@ public class contas {
         }
     }
 
-    public utilizadores getUtilizadores(String mail){
+    public utilizadores getUtilizadores(String mail) {
         for (Map.Entry<String, utilizadores> entry : contas.entrySet()) {
             utilizadores util = entry.getValue();
-            if (mail.equals(util.getEmail())){
+            if (mail.equals(util.getEmail())) {
                 return util;
             }
         }
         return null;
     }
 
-    public boolean existeEmail(String s){
-        return this.contas.entrySet().stream().anyMatch(a->s.equals(a.getValue().getEmail()));
+    public boolean existeEmail(String s) {
+        return this.contas.entrySet().stream().anyMatch(a -> s.equals(a.getValue().getEmail()));
     }
 
     public ArrayList<artigos> Stock(utilizadores u, String filtro) {
-        ArrayList< artigos> artigosMap = new ArrayList<>();
+        ArrayList<artigos> artigosMap = new ArrayList<>();
         for (utilizadores util : contas.values()) {
             if (util.equals(u)) {
                 continue;
@@ -85,7 +85,7 @@ public class contas {
         }
         int index = 1;
         ArrayList<artigos> stock = new ArrayList<>();
-        for (artigos a: artigosMap) {
+        for (artigos a : artigosMap) {
             boolean shouldPrint = false;
             switch (filtro) {
                 case "todos":
@@ -126,12 +126,12 @@ public class contas {
         }
     }
 
-    public void artigoVendidoForAll(){
-        for(utilizadores u: contas.values()){
+    public void artigoVendidoForAll() {
+        for (utilizadores u : contas.values()) {
             u.artigoVendido();
         }
     }
-    
+
     public String toString() {
         final StringBuffer sb = new StringBuffer();
         sb.append(colors.YELLOW + "Contas:\n");
@@ -139,7 +139,7 @@ public class contas {
             utilizadores conta = contas.get(key);
             sb.append(colors.GREEN + key).append("=\t\t" + colors.RESET).append(conta.getNome()).append("\n");
             sb.append(colors.GREEN + "Email: " + "\t\t" + colors.RESET).append(conta.getEmail()).append("\n");
-            sb.append(colors.GREEN +"Morada: " + "\t" + colors.RESET).append(conta.getMorada()).append("\n");
+            sb.append(colors.GREEN + "Morada: " + "\t" + colors.RESET).append(conta.getMorada()).append("\n");
             sb.append(colors.GREEN + "Número Fiscal: " + "\t" + colors.RESET).append(conta.getFiscal()).append("\n\n");
         });
         return sb.toString();
@@ -148,14 +148,14 @@ public class contas {
     public String melhorVendedor() {
         utilizadores maior = null;
         double maximo = 0;
-        for(utilizadores u : contas.values()){
+        for (utilizadores u : contas.values()) {
             double temp = u.getTotalVendas();
-            if(temp > maximo){
+            if (temp > maximo) {
                 maior = u;
                 maximo = temp;
             }
         }
-        if(maior == null){
+        if (maior == null) {
             return "N/A";
         }
         return maior.getNome();
@@ -165,21 +165,20 @@ public class contas {
         StringBuilder sb = new StringBuilder(colors.YELLOW + "Melhores Vendedores:\n");
         ArrayList<utilizadores> sortedUtilizadores = new ArrayList<>(contas.values());
         Collections.sort(sortedUtilizadores, (u1, u2) -> Double.compare(u2.getTotalVendas(), u1.getTotalVendas()));
-        for(utilizadores u : sortedUtilizadores) {
+        for (utilizadores u : sortedUtilizadores) {
             sb.append("- " + colors.GREEN + u.getNome() + "\n" + colors.YELLOW);
         }
         sb.append(colors.RESET);
         return sb.toString();
     }
 
-    public double maiorLucroTransportadora(String nome_transportadora){
+    public double maiorLucroTransportadora(String nome_transportadora) {
         double lucro = 0;
-        for(utilizadores u: contas.values()){
-            for(artigos art: u.getArtVendidos()){
-                if(art.getTransportadora().getNome().equals(nome_transportadora)){
+        for (utilizadores u : contas.values()) {
+            for (artigos art : u.getArtVendidos()) {
+                if (art.getTransportadora().getNome().equals(nome_transportadora)) {
                     lucro += ((art.getPreco() * art.getTransportadora().getTaxa()) - art.getPreco());
-                }
-                else{
+                } else {
                     continue;
                 }
             }
@@ -191,7 +190,7 @@ public class contas {
         StringBuilder sb = new StringBuilder(colors.YELLOW + "Melhores Compradores:\n");
         ArrayList<utilizadores> sortedUtilizadores = new ArrayList<>(contas.values());
         Collections.sort(sortedUtilizadores, (u1, u2) -> Double.compare(u2.getTotalComprado(), u1.getTotalComprado()));
-        for(utilizadores u : sortedUtilizadores) {
+        for (utilizadores u : sortedUtilizadores) {
             sb.append("- " + colors.GREEN + u.getNome() + "\n" + colors.YELLOW);
         }
         sb.append(colors.RESET);

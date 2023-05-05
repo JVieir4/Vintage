@@ -18,12 +18,11 @@ public class gestortransportadoras {
         this.counter = transportadoras.size();
     }
 
-
     public ArrayList<transportadora> getTransportadora() {
         return this.transportadoras;
     }
 
-    public void setTransportadora(ArrayList<transportadora> transportadoras){
+    public void setTransportadora(ArrayList<transportadora> transportadoras) {
         this.transportadoras = transportadoras;
     }
 
@@ -45,19 +44,17 @@ public class gestortransportadoras {
         this.counter--;
     }
 
-    
     public String imprime(boolean prem) {
         StringBuilder sb = new StringBuilder();
         int index = 1;
-        for(transportadora t : this.transportadoras){
-            if(prem && t.getPremium()){
+        for (transportadora t : this.transportadoras) {
+            if (prem && t.getPremium()) {
                 sb.append(colors.BLUE + index + ") " + colors.YELLOW + t.getNome() +
-                "\n" + colors.GREEN + "Taxa de expedição: " + colors.RESET + df.format(t.getTaxa()) + "%\n\n");
+                        "\n" + colors.GREEN + "Taxa de expedição: " + colors.RESET + df.format(t.getTaxa()) + "%\n\n");
                 index++;
-            }
-            else if(!prem){
+            } else if (!prem) {
                 sb.append(colors.BLUE + index + ") " + colors.YELLOW + t.getNome() +
-                "\n" + colors.GREEN + "Taxa de expedição: " + colors.RESET + df.format(t.getTaxa()) + "%\n\n");
+                        "\n" + colors.GREEN + "Taxa de expedição: " + colors.RESET + df.format(t.getTaxa()) + "%\n\n");
                 index++;
             }
         }
@@ -65,9 +62,9 @@ public class gestortransportadoras {
     }
 
     public transportadora getTransportadorabyIndex(int index) {
-        if (index-1 >= 0 && index-1 < counter){
-            return transportadoras.get(index-1);
-            //return transportadoras.toArray(new transportadora[0])[index-1];
+        if (index - 1 >= 0 && index - 1 < counter) {
+            return transportadoras.get(index - 1);
+            // return transportadoras.toArray(new transportadora[0])[index-1];
         }
         return null;
     }
@@ -75,14 +72,14 @@ public class gestortransportadoras {
     public String melhorTransportadora(contas x) {
         transportadora melhor = null;
         double maximo = 0;
-        for(transportadora t : this.transportadoras){
+        for (transportadora t : this.transportadoras) {
             double temp = x.maiorLucroTransportadora(t.getNome());
-            if(temp > maximo){
+            if (temp > maximo) {
                 melhor = t;
                 maximo = temp;
             }
         }
-        if(melhor == null){
+        if (melhor == null) {
             return "N/A";
         }
         return melhor.getNome();
@@ -90,8 +87,8 @@ public class gestortransportadoras {
 
     public int getNotPremiumCounter() {
         int n = 0;
-        for(transportadora t: this.transportadoras){
-            if(!t.getPremium()){
+        for (transportadora t : this.transportadoras) {
+            if (!t.getPremium()) {
                 n++;
             }
         }

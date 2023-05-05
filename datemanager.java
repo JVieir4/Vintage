@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class datemanager {
     private static datemanager instance;
-
     private LocalDate currentDate;
 
     private datemanager() {

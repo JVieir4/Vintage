@@ -20,7 +20,7 @@ public class utilizadores implements Cloneable {
     private ArrayList<artigos> artvendidos = new ArrayList<>();
     private ArrayList<artigos> artcomprados = new ArrayList<>();
 
-    public utilizadores( String mail,String pass, String name, String address, int fiscal){
+    public utilizadores(String mail, String pass, String name, String address, int fiscal) {
         this.email = mail;
         this.password = pass;
         this.nome = name;
@@ -30,7 +30,7 @@ public class utilizadores implements Cloneable {
         this.pendentes = new ArrayList<encomendas>();
     }
 
-    public utilizadores(utilizadores novo){
+    public utilizadores(utilizadores novo) {
         this.systemcode = novo.getCode();
         this.password = novo.getPassword();
         this.email = novo.getEmail();
@@ -39,23 +39,26 @@ public class utilizadores implements Cloneable {
         this.nfiscal = novo.getFiscal();
     }
 
-    public double getLucro(){
+    public double getLucro() {
         return this.lucro;
     }
-    public void setLucro(double l){
+
+    public void setLucro(double l) {
         this.lucro = l;
     }
 
-    public double getPrejuizo(){
+    public double getPrejuizo() {
         return this.prejuizo;
     }
-    public void setPrejuizo(double p){
+
+    public void setPrejuizo(double p) {
         this.prejuizo = p;
     }
 
     public String getPassword() {
         return this.password;
     }
+
     public void setPassword(String p) {
         this.password = p;
     }
@@ -63,6 +66,7 @@ public class utilizadores implements Cloneable {
     public int getFiscal() {
         return this.nfiscal;
     }
+
     public void setFiscal(int f) {
         this.nfiscal = f;
     }
@@ -70,6 +74,7 @@ public class utilizadores implements Cloneable {
     public String getMorada() {
         return this.morada;
     }
+
     public void setMorada(String m) {
         this.morada = m;
     }
@@ -77,6 +82,7 @@ public class utilizadores implements Cloneable {
     public String getNome() {
         return this.nome;
     }
+
     public void setNome(String n) {
         this.nome = n;
     }
@@ -84,6 +90,7 @@ public class utilizadores implements Cloneable {
     public String getEmail() {
         return this.email;
     }
+
     public void setEmail(String mail) {
         this.email = mail;
     }
@@ -91,6 +98,7 @@ public class utilizadores implements Cloneable {
     public String getCode() {
         return this.systemcode;
     }
+
     public void setCode(String c) {
         this.systemcode = c;
     }
@@ -98,6 +106,7 @@ public class utilizadores implements Cloneable {
     public ArrayList<artigos> getArtAVenda() {
         return this.artavenda;
     }
+
     public void setArtAVenda(ArrayList<artigos> a) {
         this.artavenda = a;
     }
@@ -105,6 +114,7 @@ public class utilizadores implements Cloneable {
     public ArrayList<artigos> getArtVendidos() {
         return this.artvendidos;
     }
+
     public void setArtVendidos(ArrayList<artigos> a) {
         this.artvendidos = a;
     }
@@ -112,6 +122,7 @@ public class utilizadores implements Cloneable {
     public ArrayList<artigos> getArtComprados() {
         return this.artcomprados;
     }
+
     public void setArtComprados(ArrayList<artigos> a) {
         this.artcomprados = a;
     }
@@ -119,6 +130,7 @@ public class utilizadores implements Cloneable {
     public ArrayList<encomendas> getPendentes() {
         return this.pendentes;
     }
+
     public void setPendentes(ArrayList<encomendas> p) {
         this.pendentes = p;
     }
@@ -132,7 +144,7 @@ public class utilizadores implements Cloneable {
         return encomendas.get(encomendas.size() - 1);
     }
 
-    public void listarArtigo(artigos A){
+    public void listarArtigo(artigos A) {
         artavenda.add(A);
     }
 
@@ -142,8 +154,8 @@ public class utilizadores implements Cloneable {
         clone.artavenda = new ArrayList<>(this.artavenda);
         return clone;
     }
-    
-    public void printListaArts(ArrayList<artigos> lista, String filtro){
+
+    public void printListaArts(ArrayList<artigos> lista, String filtro) {
         int index = 1;
         System.out.println(colors.BLUE + "Artigos " + filtro + ":");
         for (artigos artigo : lista) {
@@ -151,8 +163,8 @@ public class utilizadores implements Cloneable {
             index++;
         }
     }
-    
-    public void artigoVendido(){
+
+    public void artigoVendido() {
         Iterator<artigos> iterator = artavenda.iterator();
         while (iterator.hasNext()) {
             artigos art = iterator.next();
@@ -164,25 +176,25 @@ public class utilizadores implements Cloneable {
     }
 
     public boolean equals(Object obj) {
-        if(obj==this) 
-           return true;
-        if(obj==null || obj.getClass() != this.getClass()) 
-           return false;
+        if (obj == this)
+            return true;
+        if (obj == null || obj.getClass() != this.getClass())
+            return false;
         utilizadores u = (utilizadores) obj;
         return u.getCode().equals(this.getCode()) &&
-            u.getEmail().equals(this.getEmail()) &&
-            u.getFiscal() == this.getFiscal() &&
-            u.getMorada().equals(this.getMorada()) &&
-            u.getNome().equals(this.getNome()) &&
-            u.getPassword().equals(this.getPassword()) &&
-            u.getArtAVenda().equals(this.getArtAVenda()) &&
-            u.getArtComprados().equals(this.getArtComprados()) &&
-            u.getArtVendidos().equals(this.getArtVendidos());
+                u.getEmail().equals(this.getEmail()) &&
+                u.getFiscal() == this.getFiscal() &&
+                u.getMorada().equals(this.getMorada()) &&
+                u.getNome().equals(this.getNome()) &&
+                u.getPassword().equals(this.getPassword()) &&
+                u.getArtAVenda().equals(this.getArtAVenda()) &&
+                u.getArtComprados().equals(this.getArtComprados()) &&
+                u.getArtVendidos().equals(this.getArtVendidos());
     }
 
-    public boolean carrinhotem(artigos art){
-        for(artigos a: getCarrinho().artigos){
-            if(a.equals(art)){
+    public boolean carrinhotem(artigos art) {
+        for (artigos a : getCarrinho().artigos) {
+            if (a.equals(art)) {
                 return true;
             }
         }
@@ -191,7 +203,7 @@ public class utilizadores implements Cloneable {
 
     public double getTotalVendas() {
         double total = 0;
-        for(artigos art: this.artvendidos){
+        for (artigos art : this.artvendidos) {
             total += art.getPreco();
         }
         return total;
@@ -199,19 +211,20 @@ public class utilizadores implements Cloneable {
 
     public double getTotalComprado() {
         double total = 0;
-        for(artigos art: this.artcomprados){
+        for (artigos art : this.artcomprados) {
             total += art.getPreco();
         }
         return total;
     }
 
-    public String imprimePendentes(){
+    public String imprimePendentes() {
         int index = 1;
-        StringBuilder sb = new StringBuilder(colors.BLUE + "Encomendas pendentes: (Tem 48h para as cancelar, antes da expedição)\n\n");
-        for(encomendas e : this.pendentes){
+        StringBuilder sb = new StringBuilder(
+                colors.BLUE + "Encomendas pendentes: (Tem 48h para as cancelar, antes da expedição)\n\n");
+        for (encomendas e : this.pendentes) {
             sb.append(colors.BLUE + index + ") " + colors.GREEN + e.calculaDimensao(e.getNartigos()))
-            .append(colors.RESET + " feita em: " + colors.GREEN).append(e.getData())
-            .append(colors.GREEN + "\nArtigos: " + colors.RESET + e.getArtigosLista() + "\n\n");
+                    .append(colors.RESET + " feita em: " + colors.GREEN).append(e.getData())
+                    .append(colors.GREEN + "\nArtigos: " + colors.RESET + e.getArtigosLista() + "\n\n");
             index++;
         }
         return sb.toString();

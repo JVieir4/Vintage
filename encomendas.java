@@ -16,21 +16,20 @@ public class encomendas {
     private LocalDate data_de_criacao;
     ArrayList<artigos> artigos;
     DecimalFormat df = new DecimalFormat("#.##");
-    
 
-    enum Dimensao{
+    enum Dimensao {
         Grande,
         Média,
         Pequena
     }
 
-    enum Estado{
+    enum Estado {
         Pendente,
         Finalizada,
         Expedida
     }
 
-    public encomendas(String name){
+    public encomendas(String name) {
         this.nome = name;
         this.artigos = new ArrayList<>();
         this.estado = Estado.Pendente;
@@ -39,7 +38,7 @@ public class encomendas {
         this.numero_artigos = 0;
     }
 
-    public encomendas(encomendas e){
+    public encomendas(encomendas e) {
         this.nome = e.getNome();
         this.data_de_criacao = getData();
         this.dimensao = e.getDimensao();
@@ -51,88 +50,95 @@ public class encomendas {
     public String getCodigo() {
         return this.codigo;
     }
-    public void setCodigo(String cod){
+
+    public void setCodigo(String cod) {
         this.codigo = cod;
     }
 
-    public String getNome(){
+    public String getNome() {
         return this.nome;
     }
-    public void setNome(String n){
+
+    public void setNome(String n) {
         this.nome = n;
     }
 
-    public int getNartigos(){
+    public int getNartigos() {
         return this.numero_artigos;
     }
-    public void setNartigos(int n){
+
+    public void setNartigos(int n) {
         this.numero_artigos = n;
     }
 
-    public LocalDate getData(){
+    public LocalDate getData() {
         return this.data_de_criacao;
     }
-    public void setData(LocalDate d){
+
+    public void setData(LocalDate d) {
         this.data_de_criacao = d;
     }
 
     public double getPreco() {
         return this.preco;
     }
-    public void setPreco(double p){
+
+    public void setPreco(double p) {
         this.preco = p;
     }
 
     public Dimensao getDimensao() {
         return this.dimensao;
     }
-    public void setDimensao(Dimensao d){
+
+    public void setDimensao(Dimensao d) {
         this.dimensao = d;
     }
 
     public Estado getEstado() {
         return this.estado;
     }
-    public void setEstado(Estado es){
+
+    public void setEstado(Estado es) {
         this.estado = es;
     }
 
-    public ArrayList<artigos> getArtigos(){
+    public ArrayList<artigos> getArtigos() {
         return this.artigos;
     }
-    public void setArtigos(ArrayList<artigos> a){
+
+    public void setArtigos(ArrayList<artigos> a) {
         this.artigos = a;
     }
 
-    public double calculaPreco(ArrayList<artigos> a){
+    public double calculaPreco(ArrayList<artigos> a) {
         double res = 0;
         int novos = 0;
         int usados = 0;
         double pre = 0;
-        for(artigos art : a){
+        for (artigos art : a) {
             res += art.getPreco();
-            
-            pre += (art.getPreco() * (0.01 * art.getTransportadora().getTaxa() + 1) * (1 + 0.10)); /* Sendo 10% imposto */
-            if(art.getEstado()){
+
+            pre += (art.getPreco() * (0.01 * art.getTransportadora().getTaxa() + 1) * (1 + 0.10)); /*
+                                                                                                    * Sendo 10% imposto
+                                                                                                    */
+            if (art.getEstado()) {
                 novos++;
-            }
-            else{
+            } else {
                 usados++;
             }
         }
-        pre = (pre + (0.5*novos) + (0.25*usados)) * 0.9;
+        pre = (pre + (0.5 * novos) + (0.25 * usados)) * 0.9;
         this.preco = pre;
         return res;
     }
 
-    public Dimensao calculaDimensao(int size){
-        if(size < 2){
+    public Dimensao calculaDimensao(int size) {
+        if (size < 2) {
             return Dimensao.Pequena;
-        }
-        else if(size >= 2 && size <= 5){
+        } else if (size >= 2 && size <= 5) {
             return Dimensao.Média;
-        }
-        else{
+        } else {
             return Dimensao.Grande;
         }
     }
@@ -142,12 +148,12 @@ public class encomendas {
         this.numero_artigos++;
     }
 
-    public void removeArtigo(artigos art){
+    public void removeArtigo(artigos art) {
         artigos.remove(art);
         this.numero_artigos--;
     }
 
-    public String imprimeArtigos(ArrayList<artigos> art){
+    public String imprimeArtigos(ArrayList<artigos> art) {
         int index = 1;
         StringBuilder sb = new StringBuilder();
         for (artigos artigo : this.artigos) {
@@ -159,23 +165,25 @@ public class encomendas {
 
     public String getArtigosLista() {
         StringBuilder sb = new StringBuilder();
-        for(artigos a: this.artigos){
-            sb.append(colors.YELLOW + "\n- " + colors.RESET + a.getTipo() + colors.YELLOW +  " da " + colors.RESET + a.getMarca());
+        for (artigos a : this.artigos) {
+            sb.append(colors.YELLOW + "\n- " + colors.RESET + a.getTipo() + colors.YELLOW + " da " + colors.RESET
+                    + a.getMarca());
         }
         return sb.toString();
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         df.setMinimumFractionDigits(2);
         StringBuilder sb = new StringBuilder();
         sb.append(colors.RESET + "Encomenda " + colors.GREEN).append(calculaDimensao(this.numero_artigos))
-          .append(colors.RESET + " feita em: " + colors.GREEN).append(this.data_de_criacao)
-          .append(colors.RESET + " por: " + colors.BLUE).append(this.nome)
-          .append("." + colors.GREEN + "\nEstado: " + colors.RESET).append(this.estado)
-          .append(colors.GREEN + "\nCusto base (sem impostos e taxas): " + colors.RESET).append(df.format(calculaPreco(this.artigos))).append(" EUR")
-          .append(colors.GREEN + "\nCusto: " + colors.RESET).append(df.format(this.preco)).append(" EUR")
-          .append(colors.BLUE + "\nArtigos:\n" + colors.RESET).append(imprimeArtigos(this.artigos));
+                .append(colors.RESET + " feita em: " + colors.GREEN).append(this.data_de_criacao)
+                .append(colors.RESET + " por: " + colors.BLUE).append(this.nome)
+                .append("." + colors.GREEN + "\nEstado: " + colors.RESET).append(this.estado)
+                .append(colors.GREEN + "\nCusto base (sem impostos e taxas): " + colors.RESET)
+                .append(df.format(calculaPreco(this.artigos))).append(" EUR")
+                .append(colors.GREEN + "\nCusto: " + colors.RESET).append(df.format(this.preco)).append(" EUR")
+                .append(colors.BLUE + "\nArtigos:\n" + colors.RESET).append(imprimeArtigos(this.artigos));
         return sb.toString();
     }
 }

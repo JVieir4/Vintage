@@ -40,35 +40,37 @@ public class gestorencomendas {
 
     @Override
     public String toString() {
-        for(encomendas enc : this.encomendas){
-            if(enc.getNartigos() < 1){ removerEncomenda(enc);}
+        for (encomendas enc : this.encomendas) {
+            if (enc.getNartigos() < 1) {
+                removerEncomenda(enc);
+            }
         }
-        if(this.encomendas.isEmpty()){
+        if (this.encomendas.isEmpty()) {
             return "Nenhuma encomenda feita.";
         }
         df.setMinimumFractionDigits(2);
         StringBuilder sb = new StringBuilder(colors.BLUE + "Encomendas:\n");
-        for(encomendas e : this.encomendas){
+        for (encomendas e : this.encomendas) {
             sb.append(colors.GREEN + e.calculaDimensao(e.getNartigos()))
-            .append(colors.RESET + " feita em: " + colors.GREEN).append(e.getData())
-            .append(colors.RESET + " por: " + colors.BLUE).append(e.getNome())
-            .append("." + colors.GREEN + "\nEstado: " + colors.RESET).append(e.getEstado())
-            .append(colors.GREEN + "\nArtigos: " + colors.RESET + e.getNartigos() + "\n\n");
+                    .append(colors.RESET + " feita em: " + colors.GREEN).append(e.getData())
+                    .append(colors.RESET + " por: " + colors.BLUE).append(e.getNome())
+                    .append("." + colors.GREEN + "\nEstado: " + colors.RESET).append(e.getEstado())
+                    .append(colors.GREEN + "\nArtigos: " + colors.RESET + e.getNartigos() + "\n\n");
         }
         return sb.toString();
     }
 
     public double lucroTotal() {
         double lucro = 0;
-        for(encomendas e: this.encomendas){
-            if(e.getEstado() == Estado.Expedida){
+        for (encomendas e : this.encomendas) {
+            if (e.getEstado() == Estado.Expedida) {
                 lucro += e.getPreco();
             }
         }
         return lucro;
     }
 
-    public void concluirEncomenda(utilizadores u){
+    public void concluirEncomenda(utilizadores u) {
         encomendas nova = new encomendas(u.getNome());
         nova = u.getCarrinho();
         nova.setEstado(Estado.Finalizada);
@@ -78,4 +80,3 @@ public class gestorencomendas {
         encomendas.add(nova);
     }
 }
-

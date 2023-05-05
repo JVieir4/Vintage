@@ -2,8 +2,9 @@ package vintage;
 
 import vintage.artigos.Tipo;
 import vintage.encomendas.Estado;
-public class mainV {   
-    public static void main(String[] args) throws CloneNotSupportedException{
+
+public class mainV {
+    public static void main(String[] args) throws CloneNotSupportedException {
         /* Transportadoras */
         transportadora amazon = new transportadora("Amazon", 30, true);
         transportadora UPS = new transportadora("UPS", 15, false);
@@ -17,7 +18,7 @@ public class mainV {
         sapatilhas sap1 = new sapatilhas(false, 40, true, "azul", 2020);
         artigos artS = new artigos(sap1, false, 1, "sapatilhas fixes", "Nike", 19.99, amazon);
 
-        sapatilhas sap2 = new sapatilhas(true, 35, true,"rosa", 2012);
+        sapatilhas sap2 = new sapatilhas(true, 35, true, "rosa", 2012);
         artigos artS2 = new artigos(sap2, false, 3, "sapatilhas rosinhas", "Adidas", 60.00, DHL);
 
         sapatilhas sap3 = new sapatilhas(false, 39, true, "preto", 2022);
@@ -30,14 +31,14 @@ public class mainV {
         tshirts ts1 = new tshirts(Tamanho.M, Padroes.Liso);
         artigos artT = new artigos(ts1, true, 0, "T-Shirt fixe", "Tiffosi", 9.99, amazon);
 
-        tshirts ts2 = new tshirts(Tamanho.L,Padroes.Palmeiras);
-        artigos artT2 =new artigos(ts2, false, 1, "Palmeiras bonitas", "Gucci", 35.99, UPS);
+        tshirts ts2 = new tshirts(Tamanho.L, Padroes.Palmeiras);
+        artigos artT2 = new artigos(ts2, false, 1, "Palmeiras bonitas", "Gucci", 35.99, UPS);
 
-        tshirts ts3 = new tshirts(Tamanho.XL,Padroes.Riscas);
+        tshirts ts3 = new tshirts(Tamanho.XL, Padroes.Riscas);
         artigos artT3 = new artigos(ts3, false, 1, "Tshirt rosinha com um unicornio", "Brand Melvin", 18.99, DHL);
 
-        tshirts ts4 = new tshirts(Tamanho.S,Padroes.Liso);
-        artigos artT4 =new artigos(ts4, false, 12, "Perfeita tshirt para uma criança", "Adidas", 12.99, UPS);
+        tshirts ts4 = new tshirts(Tamanho.S, Padroes.Liso);
+        artigos artT4 = new artigos(ts4, false, 12, "Perfeita tshirt para uma criança", "Adidas", 12.99, UPS);
 
         tshirts tsE = new tshirts(Tamanho.M, Padroes.Liso);
         artigos artTenc = new artigos(tsE, true, 0, "T-Shirt fixe", "Tiffosi", 9.99, amazon);
@@ -47,16 +48,17 @@ public class mainV {
         malas ma1 = new malas(true, 30, 32, "Policarbonato", 2008);
         artigos artM = new artigos(ma1, false, 2, "Mala fixe", "Samsonite", 49.99, UPS);
 
-        malas ma2 = new malas(true,20,15,"Plastico", 2019);
+        malas ma2 = new malas(true, 20, 15, "Plastico", 2019);
         artigos artM2 = new artigos(ma2, true, 0, "Nunca usada, e muito incrivel", "Prada", 1300.94, DHL);
 
-        malas ma3 = new malas(false,50,59,"ganga",2023);
+        malas ma3 = new malas(false, 50, 59, "ganga", 2023);
         artigos artM3 = new artigos(ma3, true, 0, "Novinho e stylish", "parfois", 40.60, amazon);
 
-        malas ma4 = new malas(true, 25,29,"ABS", 2019);
-        artigos artM4 = new artigos(ma4, false, 2, "Mala dourada perfeita para sair de casa", "Giorgio Armani", 570.99, DHL);
+        malas ma4 = new malas(true, 25, 29, "ABS", 2019);
+        artigos artM4 = new artigos(ma4, false, 2, "Mala dourada perfeita para sair de casa", "Giorgio Armani", 570.99,
+                DHL);
 
-        malas maE = new malas(false,50,59,"ganga",2023);
+        malas maE = new malas(false, 50, 59, "ganga", 2023);
         artigos artMenc = new artigos(maE, true, 0, "Novinho e stylish", "parfois", 40.60, amazon);
         artMenc.setDisponivel(false);
 
@@ -66,9 +68,11 @@ public class mainV {
         artigos artO3 = new artigos(Tipo.Outro, false, 1, "Calça beje com detalhes de lado", "SUITS", 25.99, DHL);
 
         /* Utilizadores */
-        utilizadores uti1 = new utilizadores("a","a", "João Vieira", "Avenida Afonso Pena", 295334495);
-        utilizadores uti2 = new utilizadores("xanax@gmail.com","xanax", "Alexandra Calafate", "Rua Arlindo Nogueira", 207238782);
-        utilizadores uti3 = new utilizadores("jorg2000@gmail.com","jojo", "Jorge Borges", "Rua Tenente-Coronel Cardoso", 291607497);
+        utilizadores uti1 = new utilizadores("a", "a", "João Vieira", "Avenida Afonso Pena", 295334495);
+        utilizadores uti2 = new utilizadores("xanax@gmail.com", "xanax", "Alexandra Calafate", "Rua Arlindo Nogueira",
+                207238782);
+        utilizadores uti3 = new utilizadores("jorg2000@gmail.com", "jojo", "Jorge Borges",
+                "Rua Tenente-Coronel Cardoso", 291607497);
 
         /* Listar artigos nos diferentes utilizadores */
         uti1.listarArtigo(artS);
@@ -90,7 +94,7 @@ public class mainV {
         uti3.listarArtigo(artT4);
         uti3.listarArtigo(artO2);
         uti3.listarArtigo(artMenc);
-        
+
         /* Contas */
         contas x = new contas();
         x.addConta(uti1);
@@ -113,7 +117,8 @@ public class mainV {
         E2.calculaPreco(E2.getArtigos());
         uti2.getArtComprados().addAll(E2.getArtigos());
 
-        for(utilizadores u : x.getContas().values()){
+        /* Contar prejuízos das encomendas iniciais */
+        for (utilizadores u : x.getContas().values()) {
             u.setPrejuizo(u.getTotalComprado());
         }
 

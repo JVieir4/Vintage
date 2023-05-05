@@ -1,12 +1,12 @@
 package vintage;
 
-enum Padroes{
+enum Padroes {
     Liso,
     Riscas,
     Palmeiras
 }
 
-enum Tamanho{
+enum Tamanho {
     S,
     M,
     L,
@@ -17,12 +17,12 @@ public class tshirts {
     private Tamanho tamanho;
     private Padroes padrao;
 
-    public tshirts(Tamanho tam, Padroes padr){
+    public tshirts(Tamanho tam, Padroes padr) {
         this.tamanho = tam;
         this.padrao = padr;
     }
 
-    public tshirts(tshirts t){
+    public tshirts(tshirts t) {
         this.tamanho = t.getTamanho();
         this.padrao = t.getPadrao();
     }
@@ -30,15 +30,16 @@ public class tshirts {
     public Padroes getPadrao() {
         return this.padrao;
     }
-    public void setPadrao(Padroes p){
+
+    public void setPadrao(Padroes p) {
         this.padrao = p;
     }
 
     public Tamanho getTamanho() {
         return this.tamanho;
     }
-    public void setTamanho(Tamanho ta){
+
+    public void setTamanho(Tamanho ta) {
         this.tamanho = ta;
     }
-    
 }

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class controloutilizador {
-    public static void run(int novo, utilizadores u, contas x, gestorencomendas ge, gestortransportadoras gt) throws CloneNotSupportedException {
+    public static void run(int novo, utilizadores u, contas x, gestorencomendas ge, gestortransportadoras gt)
+            throws CloneNotSupportedException {
         int opcao = -1;
         while (opcao < 0 || opcao > 7) {
             opcao = vintage.menuUtilizador(u);
@@ -57,7 +58,7 @@ public class controloutilizador {
                             u.getArtComprados().addAll(u.getCarrinho().getArtigos());
                             ge.concluirEncomenda(u);
                             u.getCarrinho().getArtigos().clear();
-                            
+
                         }
                         break;
                     case 0:
@@ -72,7 +73,7 @@ public class controloutilizador {
                 }
                 u.printListaArts(u.getArtAVenda(), "à venda");
                 System.out.println(colors.RESET + "Pretende retirar algum artigo? (y/n)" + colors.BLACK);
-                if(vintage.isYesNo()){
+                if (vintage.isYesNo()) {
                     ArrayList<artigos> temp = u.getArtAVenda();
                     removerArtigo(u, temp, "artigosavenda");
                 }
@@ -92,38 +93,42 @@ public class controloutilizador {
                 u.printListaArts(u.getArtComprados(), "comprados");
                 break;
             case 7:
-                if(u.getPendentes().isEmpty()){
+                if (u.getPendentes().isEmpty()) {
                     System.out.println("Nenhuma encomenda por expedir.");
                     break;
                 }
                 System.out.println(u.imprimePendentes());
                 System.out.println(colors.RESET + "Pretende cancelar alguma encomenda? (y/n)" + colors.BLACK);
-                if(vintage.isYesNo()){
+                if (vintage.isYesNo()) {
                     ArrayList<encomendas> temp = u.getPendentes();
                     ArrayList<String> codigos = new ArrayList<>();
-                    System.out.println(colors.RESET + "Insira o número da(s) encomenda(s) que deseja cancelar: (0 para terminar)" + colors.BLACK);
+                    System.out.println(
+                            colors.RESET + "Insira o número da(s) encomenda(s) que deseja cancelar: (0 para terminar)"
+                                    + colors.BLACK);
                     int index = vintage.intScanner();
                     while (index != 0) {
-                        if(index <= temp.size()){
-                            String codigo = temp.get(index-1).getCodigo();
+                        if (index <= temp.size()) {
+                            String codigo = temp.get(index - 1).getCodigo();
                             codigos.add(codigo);
-                        }
-                        else{
-                            System.out.println(colors.RESET + "\nValor inválido, por favor insira um número dos apresentados: " + colors.BLACK);
+                        } else {
+                            System.out.println(colors.RESET
+                                    + "\nValor inválido, por favor insira um número dos apresentados: " + colors.BLACK);
                         }
                         index = vintage.intScanner();
                     }
                     Iterator<encomendas> iterator = temp.iterator();
                     while (iterator.hasNext()) {
                         encomendas e = iterator.next();
-                        if (codigos.contains(e.getCodigo()) && !codigos.isEmpty()){
+                        if (codigos.contains(e.getCodigo()) && !codigos.isEmpty()) {
                             iterator.remove();
-                            for(artigos a: e.getArtigos()){
+                            for (artigos a : e.getArtigos()) {
                                 u.getArtComprados().remove(a);
                                 a.setDisponivel(true);
                             }
                             double prej = u.getPrejuizo() - e.getPreco();
-                            if(prej < 0){ prej = 0;}
+                            if (prej < 0) {
+                                prej = 0;
+                            }
                             u.setPrejuizo(prej);
                             u.getPendentes().remove(e);
                             ge.removerEncomenda(e);
@@ -174,7 +179,8 @@ public class controloutilizador {
         return art;
     }
 
-    private static void comprarArtigo(int escolha, utilizadores u, contas x, encomendas carrinho, gestorencomendas ge, gestortransportadoras gt) throws CloneNotSupportedException {
+    private static void comprarArtigo(int escolha, utilizadores u, contas x, encomendas carrinho, gestorencomendas ge,
+            gestortransportadoras gt) throws CloneNotSupportedException {
         ArrayList<artigos> temp = null;
         switch (escolha) {
             case 1:
@@ -209,19 +215,19 @@ public class controloutilizador {
         System.out.println("Insira o número do(s) artigo(s) que deseja comprar: (0 para terminar)" + colors.BLACK);
         int index = vintage.intScanner();
         while (index != 0) {
-            if(index <= temp.size()){
-                String codigo = temp.get(index-1).getCodigo();
+            if (index <= temp.size()) {
+                String codigo = temp.get(index - 1).getCodigo();
                 codigos.add(codigo);
-            }
-            else{
-                System.out.println(colors.RESET + "\nValor inválido, por favor insira um número dos apresentados: " + colors.BLACK);
+            } else {
+                System.out.println(colors.RESET + "\nValor inválido, por favor insira um número dos apresentados: "
+                        + colors.BLACK);
             }
             index = vintage.intScanner();
         }
         Iterator<artigos> iterator = temp.iterator();
         while (iterator.hasNext()) {
             artigos a = iterator.next();
-            if (codigos.contains(a.getCodigo())){
+            if (codigos.contains(a.getCodigo())) {
                 a.setDisponivel(false);
                 carrinho.addArtigo(a);
                 iterator.remove();
@@ -230,17 +236,18 @@ public class controloutilizador {
         ge.adicionarEncomenda(u.getCarrinho());
     }
 
-    private static void removerArtigo(utilizadores u, ArrayList<artigos> temp, String filtro){
+    private static void removerArtigo(utilizadores u, ArrayList<artigos> temp, String filtro) {
         ArrayList<String> codigos = new ArrayList<>();
-        System.out.println(colors.RESET + "Insira o número do(s) artigo(s) que deseja remover: (0 para terminar)" + colors.BLACK);
+        System.out.println(
+                colors.RESET + "Insira o número do(s) artigo(s) que deseja remover: (0 para terminar)" + colors.BLACK);
         int index = vintage.intScanner();
         while (index != 0) {
-            if(index <= temp.size()){
-                String codigo = temp.get(index-1).getCodigo();
+            if (index <= temp.size()) {
+                String codigo = temp.get(index - 1).getCodigo();
                 codigos.add(codigo);
-            }
-            else{
-                System.out.println(colors.RESET + "\nValor inválido, por favor insira um número dos apresentados: " + colors.BLACK);
+            } else {
+                System.out.println(colors.RESET + "\nValor inválido, por favor insira um número dos apresentados: "
+                        + colors.BLACK);
             }
             index = vintage.intScanner();
         }
@@ -248,12 +255,11 @@ public class controloutilizador {
         while (iterator.hasNext()) {
             artigos a = iterator.next();
             if (codigos.contains(a.getCodigo())) {
-                if(filtro.equals("carrinho")){
+                if (filtro.equals("carrinho")) {
                     a.setDisponivel(true);
                     iterator.remove();
                     u.getCarrinho().removeArtigo(a);
-                }
-                else if(filtro.equals("artigosavenda")){
+                } else if (filtro.equals("artigosavenda")) {
                     iterator.remove();
                     u.getArtAVenda().remove(a);
                 }

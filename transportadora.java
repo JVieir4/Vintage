@@ -6,37 +6,41 @@ public class transportadora {
     private int margemlucro;
     private double lucro;
 
-    public transportadora(String nome, int mlucro, boolean prem){
+    public transportadora(String nome, int mlucro, boolean prem) {
         this.transportadora = nome;
         this.margemlucro = mlucro;
         this.premium = prem;
     }
 
-    public boolean getPremium(){
+    public boolean getPremium() {
         return this.premium;
     }
-    public void setPremium(boolean p){
+
+    public void setPremium(boolean p) {
         this.premium = p;
     }
 
-    public double getLucro(){
+    public double getLucro() {
         return this.lucro;
     }
-    public void setLucro(double d){
+
+    public void setLucro(double d) {
         this.lucro = d;
     }
 
-    public String getNome(){
+    public String getNome() {
         return this.transportadora;
     }
-    public void setNome(String n){
+
+    public void setNome(String n) {
         this.transportadora = n;
     }
 
-    public double getTaxa(){
+    public double getTaxa() {
         return this.margemlucro;
     }
-    public void setTaxa(int t){
+
+    public void setTaxa(int t) {
         this.margemlucro = t;
     }
 }
