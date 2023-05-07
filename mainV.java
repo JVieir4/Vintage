@@ -68,7 +68,7 @@ public class mainV {
         artigos artO3 = new artigos(Tipo.Outro, false, 1, "Calça beje com detalhes de lado", "SUITS", 25.99, DHL);
 
         /* Utilizadores */
-        utilizadores uti1 = new utilizadores("a", "a", "João Vieira", "Avenida Afonso Pena", 295334495);
+        utilizadores uti1 = new utilizadores("jvieira@gmail.com", "passe", "João Vieira", "Avenida Afonso Pena", 295334495);
         utilizadores uti2 = new utilizadores("xanax@gmail.com", "xanax", "Alexandra Calafate", "Rua Arlindo Nogueira",
                 207238782);
         utilizadores uti3 = new utilizadores("jorg2000@gmail.com", "jojo", "Jorge Borges",
