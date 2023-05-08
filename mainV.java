@@ -116,6 +116,7 @@ public class mainV {
         E2.setEstado(Estado.Expedida);
         E2.calculaPreco(E2.getArtigos());
         uti2.getArtComprados().addAll(E2.getArtigos());
+        uti3.getArtVendidos().add(artMenc);
 
         /* Contar prejuízos das encomendas iniciais */
         for (utilizadores u : x.getContas().values()) {
