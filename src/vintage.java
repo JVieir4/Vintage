@@ -6,6 +6,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 import vintage.src.artigos.Tipo;
+import vintage.src.tshirts.Padroes;
+import vintage.src.tshirts.Tamanho;
 
 public class vintage {
     static StringBuilder banner = new StringBuilder(" _    ___       __                 \n")

@@ -3,6 +3,8 @@ package vintage.src;
 
 import vintage.src.artigos.Tipo;
 import vintage.src.encomendas.Estado;
+import vintage.src.tshirts.Padroes;
+import vintage.src.tshirts.Tamanho;
 
 public class mainV {
     public static void main(String[] args) throws CloneNotSupportedException {

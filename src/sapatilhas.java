@@ -13,7 +13,6 @@ public class sapatilhas {
         this.atacadores = atac;
         this.cor = c;
         this.data = ano;
-        // this.desconto = desc;
     }
 
     public sapatilhas(sapatilhas s) {
@@ -22,7 +21,6 @@ public class sapatilhas {
         this.atacadores = s.getAtac();
         this.cor = s.getCor();
         this.data = s.getData();
-        // this.desconto = s.getDesc();
     }
 
     public int getData() {
@@ -33,14 +31,6 @@ public class sapatilhas {
         this.data = a;
     }
 
-    /*
-     * public int getDesc() {
-     * return this.desconto;
-     * }
-     * public void setDesc(int d){
-     * this.desconto = d;
-     * }
-     */
     public String getCor() {
         return this.cor;
     }

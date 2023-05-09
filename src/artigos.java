@@ -3,6 +3,8 @@ package vintage.src;
 import java.text.DecimalFormat;
 import java.util.UUID;
 
+import vintage.src.tshirts.Padroes;
+
 public class artigos {
     private Tipo tipo;
     private boolean estado;

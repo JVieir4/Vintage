@@ -1,21 +1,21 @@
 package vintage.src;
 
-enum Padroes {
-    Liso,
-    Riscas,
-    Palmeiras
-}
-
-enum Tamanho {
-    S,
-    M,
-    L,
-    XL
-}
-
 public class tshirts {
     private Tamanho tamanho;
     private Padroes padrao;
+
+    enum Padroes {
+        Liso,
+        Riscas,
+        Palmeiras
+    }
+    
+    enum Tamanho {
+        S,
+        M,
+        L,
+        XL
+    }
 
     public tshirts(Tamanho tam, Padroes padr) {
         this.tamanho = tam;

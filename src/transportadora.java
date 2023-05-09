@@ -3,12 +3,12 @@ package vintage.src;
 public class transportadora {
     private String transportadora;
     private boolean premium;
-    private int margemlucro;
+    private int taxa;
     private double lucro;
 
-    public transportadora(String nome, int mlucro, boolean prem) {
+    public transportadora(String nome, int tx, boolean prem) {
         this.transportadora = nome;
-        this.margemlucro = mlucro;
+        this.taxa = tx;
         this.premium = prem;
     }
 
@@ -37,10 +37,10 @@ public class transportadora {
     }
 
     public double getTaxa() {
-        return this.margemlucro;
+        return this.taxa;
     }
 
     public void setTaxa(int t) {
-        this.margemlucro = t;
+        this.taxa = t;
     }
 }
