@@ -42,7 +42,7 @@ public class gestorencomendas {
     public String toString() {
         for (encomendas enc : this.encomendas) {
             if (enc.getNartigos() < 1) {
-                removerEncomenda(enc);
+                continue;
             }
         }
         if (this.encomendas.isEmpty()) {

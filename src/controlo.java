@@ -2,7 +2,6 @@ package vintage.src;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Iterator;
-
 import vintage.src.encomendas.Estado;
 
 public class controlo {

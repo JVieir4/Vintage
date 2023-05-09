@@ -86,7 +86,7 @@ public class contas {
                 case "malas":
                     shouldPrint = a.getTipo() == Tipo.Mala;
                     break;
-                case "outros":
+                case "outro":
                     shouldPrint = a.getTipo() == Tipo.Outro;
                     break;
             }

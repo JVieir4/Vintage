@@ -205,6 +205,9 @@ public class controloutilizador {
                     case 4:
                         temp = x.Stock(u, "outro");
                         break;
+                    case 0:
+                        controloutilizador.run(0, u, x, ge, gt);
+                        break;
                 }
                 break;
             case 0:
