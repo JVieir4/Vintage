@@ -1,11 +1,11 @@
 package vintage.src;
 
+
 import vintage.src.artigos.Tipo;
 import vintage.src.encomendas.Estado;
 
 public class mainV {
     public static void main(String[] args) throws CloneNotSupportedException {
-
 	// Transportadoras
 	transportadora amazon = new transportadora("Amazon", 30, true);
 	transportadora UPS = new transportadora("UPS", 15, false);
