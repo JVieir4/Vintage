@@ -1,4 +1,4 @@
-package vintage;
+package vintage.src;
 
 public class controloestatisticas {
     public static void run(contas x, gestorencomendas ge, gestortransportadoras gt) throws CloneNotSupportedException {

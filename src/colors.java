@@ -1,4 +1,4 @@
-package vintage;
+package vintage.src;
 
 public class colors {
     public static final String RESET = "\u001B[0m";

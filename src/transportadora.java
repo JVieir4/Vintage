@@ -1,4 +1,4 @@
-package vintage;
+package vintage.src;
 
 public class transportadora {
     private String transportadora;

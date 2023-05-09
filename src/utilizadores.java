@@ -1,9 +1,9 @@
-package vintage;
+package vintage.src;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import vintage.encomendas.Estado;
+import vintage.src.encomendas.Estado;
 
 public class utilizadores implements Cloneable {
     private String systemcode;

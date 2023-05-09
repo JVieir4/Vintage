@@ -1,10 +1,10 @@
-package vintage;
+package vintage.src;
 
 import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 
-import vintage.encomendas.Estado;
+import vintage.src.encomendas.Estado;
 
 public class gestorencomendas {
     private Set<encomendas> encomendas;

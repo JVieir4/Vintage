@@ -1,4 +1,4 @@
-package vintage;
+package vintage.src;
 
 import java.text.DecimalFormat;
 import java.util.UUID;

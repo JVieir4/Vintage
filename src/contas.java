@@ -1,11 +1,11 @@
-package vintage;
+package vintage.src;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import vintage.artigos.Tipo;
+import vintage.src.artigos.Tipo;
 
 public class contas {
     private Map<String, utilizadores> contas;
