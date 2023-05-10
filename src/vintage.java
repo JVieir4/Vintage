@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
-
 import vintage.src.artigos.Tipo;
 import vintage.src.tshirts.Padroes;
 import vintage.src.tshirts.Tamanho;

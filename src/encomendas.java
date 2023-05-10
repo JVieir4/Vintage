@@ -119,9 +119,7 @@ public class encomendas {
         for (artigos art : a) {
             res += art.getPreco();
 
-            pre += (art.getPreco() * (0.01 * art.getTransportadora().getTaxa() + 1) * (1 + 0.10)); /*
-                                                                                                    * Sendo 10% imposto
-                                                                                                    */
+            pre += (art.getPreco() * (0.01 * art.getTransportadora().getTaxa() + 1) * (1 + 0.10)); /* Sendo 10% imposto */
             if (art.getEstado()) {
                 novos++;
             } else {

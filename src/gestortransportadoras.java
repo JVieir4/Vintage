@@ -64,7 +64,6 @@ public class gestortransportadoras {
     public transportadora getTransportadorabyIndex(int index) {
         if (index - 1 >= 0 && index - 1 < counter) {
             return transportadoras.get(index - 1);
-            // return transportadoras.toArray(new transportadora[0])[index-1];
         }
         return null;
     }

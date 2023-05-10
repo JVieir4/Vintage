@@ -3,7 +3,6 @@ package vintage.src;
 import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
-
 import vintage.src.encomendas.Estado;
 
 public class gestorencomendas {
